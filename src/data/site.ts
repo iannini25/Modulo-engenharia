@@ -104,7 +104,7 @@ export const site = {
       cases: [placeholderCase],
     },
     offshore: {
-      slug: 'offshore', title: 'Offshore', badge: 'OFFSHORE', img: '/assets/img/offshore-2.jpg',
+      slug: 'offshore', title: 'Offshore', badge: 'OFFSHORE', img: '/hero/platform.jpg',
       intro: 'Controle e segurança no ambiente mais exigente: o mar aberto.',
       description:
         'Sistemas de controle e segurança para plataformas e navios-sonda, projetados para o ambiente ' +

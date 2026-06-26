@@ -1,0 +1,71 @@
+---
+import ContactSection from './ContactSection.astro';
+import { site, type Segment } from '../data/site';
+import { waURL, buildContactMessage } from '../lib/wa';
+
+interface Props { segment: Segment }
+const { segment } = Astro.props;
+const wa = waURL(site.contact.whatsappDigits, buildContactMessage({ seg: segment.title }));
+const heroAlt = `Operação de ${segment.title.toLowerCase()} — representação do segmento atendido pela Módulo Engenharia`;
+---
+<!-- segment banner -->
+<section class="seg-hero">
+  <div class="seg-hero__media">
+    <img src={segment.img} alt={heroAlt} fetchpriority="high" />
+  </div>
+  <div class="seg-hero__grade"></div>
+  <div class="grain-overlay grain-overlay--local" aria-hidden="true"></div>
+  <div class="seg-hero__hud" aria-hidden="true">
+    <span class="hud__corner hud__corner--tl"></span>
+    <span class="hud__corner hud__corner--br"></span>
+    <span class="hud__tag hud__tag--scale">SEGMENTO · {segment.badge}</span>
+  </div>
+  <div class="wrap seg-hero__inner">
+    <p class="kicker kicker--light" data-reveal>[ SEGMENTO ] &nbsp;{segment.badge}</p>
+    <h1 class="display display--light" data-reveal>{segment.title}</h1>
+    <p class="lead lead--light" data-reveal>{segment.intro}</p>
+  </div>
+</section>
+
+<!-- how we work in this segment -->
+<section class="section seg-body">
+  <div class="wrap seg-body__grid">
+    <div class="seg-body__text">
+      <p class="kicker" data-reveal>COMO ATUAMOS</p>
+      <h2 class="display" data-reveal>Engenharia e automação para {segment.title.toLowerCase()}</h2>
+      <p class="lead" data-reveal>{segment.description}</p>
+      <a href={wa} class="btn btn--solid" data-magnetic data-reveal target="_blank" rel="noopener">
+        Conversar sobre {segment.title}
+        <svg viewBox="0 0 24 24" class="ico-arrow"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg>
+      </a>
+    </div>
+    <ul class="seg-caps" data-reveal>
+      {segment.capabilities.map((c, i) => (
+        <li>
+          <span class="seg-caps__n mono">{String(i + 1).padStart(2, '0')}</span>
+          <span>{c}</span>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<!-- cases (placeholders until the client supplies real ones) -->
+<section class="section seg-cases">
+  <header class="wrap sec-head">
+    <p class="kicker" data-reveal>CASES</p>
+    <h2 class="display" data-reveal>Resultados em campo</h2>
+    <p class="lead" data-reveal>Casos reais deste segmento — a serem confirmados com a Módulo Engenharia.</p>
+  </header>
+  <div class="wrap seg-cases__grid">
+    {segment.cases.map((c) => (
+      <article class="seg-case is-placeholder" data-reveal>
+        <span class="seg-case__flag mono">⚠ A CONFIRMAR</span>
+        <h3>{c.title}</h3>
+        <p>{c.summary}</p>
+      </article>
+    ))}
+  </div>
+</section>
+
+<ContactSection />

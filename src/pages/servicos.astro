@@ -1,0 +1,19 @@
+---
+import Base from '../layouts/Base.astro';
+import Services from '../components/Services.astro';
+import ContactSection from '../components/ContactSection.astro';
+---
+<Base
+  title="Serviços — Módulo Engenharia"
+  description="Automação e controle, engenharia elétrica e instrumentação, máquinas de pátio, transportadores, montagem e manutenção eletromecânica e comissionamento."
+>
+  <header class="page-hero">
+    <div class="wrap">
+      <p class="kicker">[ SERVIÇOS ]</p>
+      <h1 class="display">O que entregamos</h1>
+      <p class="lead">Da engenharia de projeto ao equipamento rodando em campo — um único responsável técnico, do diagnóstico à manutenção, em mineração, siderurgia, offshore e energia.</p>
+    </div>
+  </header>
+  <Services withHeader={false} />
+  <ContactSection />
+</Base>

@@ -4,9 +4,10 @@ import { site } from '../data/site';
 import { greetingURL } from '../lib/wa';
 const wa = greetingURL(site.contact.whatsappDigits);
 const { pathname } = Astro.url;
+const isHome = pathname === '/';
 const isActive = (href: string) => pathname === href || pathname === href + '/';
 ---
-<header class="nav" id="nav">
+<header class={`nav${isHome ? '' : ' nav--solid'}`} id="nav">
   <Brand href="/" />
 
   <nav class="nav__links" aria-label="Navegação principal">

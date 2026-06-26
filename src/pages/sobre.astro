@@ -1,0 +1,49 @@
+---
+import Base from '../layouts/Base.astro';
+import ContactSection from '../components/ContactSection.astro';
+import { site } from '../data/site';
+---
+<Base
+  title="Sobre — Módulo Engenharia"
+  description="A Módulo Engenharia integra engenharia e automação para a indústria pesada — mais produtividade, qualidade e segurança, com menos esforço humano."
+>
+  <header class="page-hero">
+    <div class="wrap">
+      <p class="kicker">[ A EMPRESA ]</p>
+      <h1 class="display">Engenharia onde a operação acontece</h1>
+      <p class="lead">{site.brand.tagline}</p>
+    </div>
+  </header>
+
+  <section class="section page-section">
+    <div class="wrap">
+      <div class="prose">
+        <p><strong>Missão.</strong> {site.brand.mission}</p>
+
+        <h3>Como trabalhamos</h3>
+        <p>
+          Projetamos e integramos sistemas que fazem equipamentos de grande porte
+          produzirem mais, com previsibilidade e segurança. Da lógica de controle ao
+          painel em campo, cada entrega é pensada para rodar anos sem surpresas — no
+          calor da mina, na linha de aço, no mar aberto.
+        </p>
+
+        <h3>Um único responsável técnico</h3>
+        <p>
+          Do diagnóstico à manutenção, a Módulo acompanha o ativo de ponta a ponta:
+          projeto de engenharia, fabricação de painéis, montagem eletromecânica,
+          comissionamento e operação assistida — sem lacunas entre projeto e campo.
+        </p>
+      </div>
+
+      <ul class="manifesto__pills" style="margin-top:2.4rem">
+        <li><b>+ Produtividade</b></li>
+        <li><b>+ Qualidade</b></li>
+        <li><b>+ Segurança</b></li>
+        <li><b>− Esforço humano</b></li>
+      </ul>
+    </div>
+  </section>
+
+  <ContactSection />
+</Base>

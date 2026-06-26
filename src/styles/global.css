@@ -186,6 +186,11 @@ html.js [data-reveal]{opacity:0;transform:translateY(26px)}
   background:rgba(244,245,246,.82);backdrop-filter:blur(16px) saturate(1.4);
   border-bottom-color:var(--line);padding-top:12px;padding-bottom:12px;
 }
+/* internal pages: solid nav from the top (first section is dark) */
+.nav--solid{
+  background:rgba(244,245,246,.92);backdrop-filter:blur(16px) saturate(1.4);
+  border-bottom-color:var(--line);
+}
 .brand{display:inline-flex;align-items:center;gap:.6rem;color:var(--ink)}
 .brand__mark{width:30px;height:30px;color:var(--ink);flex:none;transition:transform .6s var(--ease)}
 .brand:hover .brand__mark{transform:rotate(90deg)}
@@ -459,6 +464,7 @@ html.js .hero{height:240svh}
    8 · CONTATO
    ============================================================ */
 .contact{background:var(--panel);color:#fff;position:relative;overflow:hidden}
+.contact--top{padding-top:clamp(120px,16vh,180px)}
 .contact::before{content:"";position:absolute;inset:0;background:radial-gradient(80% 60% at 80% 0%,rgba(190,22,34,.18),transparent 70%);pointer-events:none}
 .contact__grid{display:grid;grid-template-columns:1fr .85fr;gap:clamp(2rem,5vw,5rem);position:relative}
 .contact__intro .display{margin-bottom:1.3rem}
@@ -521,6 +527,52 @@ html.js .hero{height:240svh}
 .fab:hover{transform:translateY(-3px) scale(1.05)}
 .fab::after{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid var(--wa);animation:fabPulse 2.4s var(--ease) infinite}
 @keyframes fabPulse{0%{transform:scale(1);opacity:.6}100%{transform:scale(1.7);opacity:0}}
+
+/* ============================================================
+   INTERNAL PAGES — segment template
+   ============================================================ */
+.seg-hero{position:relative;height:clamp(420px,62vh,640px);overflow:hidden;background:var(--ink);display:flex;align-items:flex-end}
+.seg-hero__media{position:absolute;inset:0}
+.seg-hero__media img{width:100%;height:100%;object-fit:cover;filter:saturate(.92) contrast(1.05) brightness(.95)}
+.seg-hero__grade{position:absolute;inset:0;pointer-events:none;background:
+  linear-gradient(180deg,rgba(9,12,17,.5) 0%,rgba(9,12,17,.12) 38%,rgba(9,12,17,.8) 100%),
+  linear-gradient(75deg,rgba(9,12,17,.66) 0%,rgba(9,12,17,.1) 55%,transparent 82%)}
+.grain-overlay--local{position:absolute;z-index:2;pointer-events:none;opacity:.05;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:170px 170px}
+.seg-hero__hud{position:absolute;inset:clamp(16px,3vw,40px);pointer-events:none;color:rgba(255,255,255,.7)}
+.seg-hero__hud .hud__tag--scale{right:0;bottom:0}
+.seg-hero__inner{position:relative;z-index:3;padding-bottom:clamp(2rem,5vw,3.5rem)}
+.seg-hero__inner .display{margin:.5rem 0 .9rem}
+.seg-hero__inner .lead{max-width:46ch}
+
+.seg-body{background:var(--bg)}
+.seg-body__grid{display:grid;grid-template-columns:1.2fr .8fr;gap:clamp(2rem,5vw,4.5rem);align-items:start}
+.seg-body__text .display{margin:.8rem 0 1.2rem;font-size:clamp(1.7rem,3.2vw,2.5rem)}
+.seg-body__text .btn{margin-top:1.8rem}
+.seg-caps{list-style:none;border-top:1px solid var(--line-2)}
+.seg-caps li{display:grid;grid-template-columns:42px 1fr;gap:1rem;align-items:baseline;padding:1.1rem 0;border-bottom:1px solid var(--line-2);font-size:1rem;color:var(--ink)}
+.seg-caps__n{color:var(--red);font-weight:600}
+@media (max-width:820px){.seg-body__grid{grid-template-columns:1fr}}
+
+.seg-cases{background:var(--bg-2);border-top:1px solid var(--line)}
+.seg-cases__grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.2rem}
+.seg-case{background:var(--paper);border:1px dashed var(--line-2);border-radius:var(--r-lg);padding:1.6rem}
+.seg-case__flag{display:inline-block;font-size:.6rem;letter-spacing:.14em;color:var(--red);background:var(--red-tint);padding:.25rem .5rem;border-radius:3px;margin-bottom:.9rem}
+.seg-case h3{font-family:var(--display);font-weight:700;font-size:1.1rem;color:var(--ink);margin-bottom:.5rem}
+.seg-case p{font-size:.92rem;color:var(--graphite);line-height:1.5}
+
+/* simple page header for non-segment internal pages */
+.page-hero{background:var(--panel);color:#fff;padding-block:clamp(120px,16vh,180px) clamp(48px,7vw,84px);position:relative;overflow:hidden}
+.page-hero::before{content:"";position:absolute;inset:0;background:radial-gradient(70% 60% at 85% 0%,rgba(190,22,34,.16),transparent 70%);pointer-events:none}
+.page-hero .kicker{color:var(--red-500)}
+.page-hero .display{color:#fff;margin:.4rem 0 1rem}
+.page-hero .lead{color:rgba(255,255,255,.72);max-width:56ch}
+.page-section{background:var(--bg)}
+.prose{max-width:68ch}
+.prose p{font-size:1.05rem;color:var(--graphite);line-height:1.7;margin-bottom:1.2rem}
+.prose h3{font-family:var(--display);font-weight:700;font-size:1.3rem;color:var(--ink);margin:2rem 0 .8rem}
+.empty-state{border:1px dashed var(--line-2);border-radius:var(--r-lg);padding:clamp(2rem,5vw,3.5rem);text-align:center;color:var(--graphite);background:var(--paper)}
+.empty-state .mono{display:block;font-size:.66rem;letter-spacing:.16em;color:var(--red);margin-bottom:.8rem}
 
 /* ============================================================
    ANTI-AI — global film grain + cohesive editorial grade

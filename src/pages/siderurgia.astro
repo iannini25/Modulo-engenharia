@@ -1,0 +1,9 @@
+---
+import Base from '../layouts/Base.astro';
+import SegmentPage from '../components/SegmentPage.astro';
+import { site } from '../data/site';
+const segment = site.segments.siderurgia;
+---
+<Base title={`${segment.title} — Módulo Engenharia`} description={segment.description}>
+  <SegmentPage segment={segment} />
+</Base>

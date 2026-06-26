@@ -1,12 +1,16 @@
 ---
 import { site } from '../data/site';
+interface Props { withHeader?: boolean }
+const { withHeader = true } = Astro.props;
 ---
 <section id="servicos" class="section services">
-  <header class="wrap sec-head">
-    <p class="kicker" data-reveal>[ 01 ] &nbsp;CAPACIDADES</p>
-    <h2 class="display" data-reveal>O que entregamos</h2>
-    <p class="lead" data-reveal>Da engenharia de projeto ao equipamento rodando em campo — um único responsável técnico, do diagnóstico à manutenção.</p>
-  </header>
+  {withHeader && (
+    <header class="wrap sec-head">
+      <p class="kicker" data-reveal>[ 01 ] &nbsp;CAPACIDADES</p>
+      <h2 class="display" data-reveal>O que entregamos</h2>
+      <p class="lead" data-reveal>Da engenharia de projeto ao equipamento rodando em campo — um único responsável técnico, do diagnóstico à manutenção.</p>
+    </header>
+  )}
 
   <div class="wrap svc-grid">
     {site.services.map((s) => (

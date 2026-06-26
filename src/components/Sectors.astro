@@ -44,7 +44,7 @@ const first = site.segments.mineracao;
         <ul class="sectors__list" id="secList">
           {first.capabilities.map((c) => <li>{c}</li>)}
         </ul>
-        <a href="#contato" class="btn btn--solid" data-magnetic>Conversar sobre este segmento</a>
+        <a href={`/${first.slug}`} id="secCta" class="btn btn--solid" data-magnetic>Ver atuação em {first.title}</a>
       </div>
     </div>
   </div>

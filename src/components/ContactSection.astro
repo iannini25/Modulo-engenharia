@@ -2,8 +2,10 @@
 import { site } from '../data/site';
 import { greetingURL } from '../lib/wa';
 const wa = greetingURL(site.contact.whatsappDigits);
+interface Props { topPadded?: boolean }
+const { topPadded = false } = Astro.props;
 ---
-<section id="contato" class="section contact">
+<section id="contato" class:list={['section contact', { 'contact--top': topPadded }]}>
   <div class="wrap contact__grid">
     <div class="contact__intro">
       <p class="kicker kicker--light" data-reveal>[ 05 ] &nbsp;CONTATO</p>

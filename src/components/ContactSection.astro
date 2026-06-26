@@ -38,6 +38,10 @@ const { topPadded = false } = Astro.props;
         <input id="cf-empresa" name="empresa" type="text" placeholder="Nome da planta / empresa" autocomplete="organization" />
       </div>
       <div class="field">
+        <label for="cf-email">E-mail <span>(para resposta por e-mail)</span></label>
+        <input id="cf-email" name="email" type="email" placeholder="voce@empresa.com" autocomplete="email" />
+      </div>
+      <div class="field">
         <label>Segmento</label>
         <div class="chips" id="cf-seg" role="group" aria-label="Segmento">
           <button type="button" class="chip" data-val="Mineração">Mineração</button>
@@ -51,10 +55,16 @@ const { topPadded = false } = Astro.props;
         <label for="cf-msg">O desafio <span>(opcional)</span></label>
         <textarea id="cf-msg" name="msg" rows="3" placeholder="Ex.: modernizar o controle de uma recuperadora, reduzir paradas de correia…"></textarea>
       </div>
+      <!-- honeypot (anti-spam): must stay empty -->
+      <input type="text" name="botcheck" id="cf-botcheck" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true" />
+
       <button type="submit" class="btn btn--wa btn--lg">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.8 4.9-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-2.9.8.8-2.8-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1-.2.2-.6.8-.8 1-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-2-1.2 7.4 7.4 0 0 1-1.4-1.7c-.1-.2 0-.4.1-.5l.4-.5c.1-.1.2-.3.2-.4 0-.2 0-.3 0-.4l-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.4 0-.6.3a2.5 2.5 0 0 0-.8 1.9c0 1.1.8 2.2 1 2.4.1.2 1.7 2.6 4 3.6.6.2 1 .4 1.4.5.6.2 1.1.2 1.5.1.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2 0-.1-.2-.2-.4-.3z" /></svg>
         Abrir no WhatsApp
       </button>
+
+      <button type="button" id="cfEmail" class="btn btn--ghost-dark cform__emailbtn">Prefere e-mail? Enviar por e-mail</button>
+      <p class="cform__status mono" id="cfStatus" role="status" aria-live="polite"></p>
       <p class="cform__alt mono">ou <a id="waDirect" href={wa} target="_blank" rel="noopener">fale direto com a engenharia →</a></p>
     </form>
   </div>

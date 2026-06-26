@@ -11,6 +11,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Lenis from 'lenis';
 import { site } from '../data/site';
 import { waURL, buildContactMessage, greetingURL } from '../lib/wa';
+import { buildWeb3FormsPayload, isSpam, hasRealKey } from '../lib/form';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -423,5 +424,44 @@ if (finePointer && !reduce) {
     e.preventDefault();
     const text = buildContactMessage({ nome: val('cf-nome'), empresa: val('cf-empresa'), seg, msg: val('cf-msg') });
     window.open(waURL(WHATSAPP, text), '_blank', 'noopener');
+  });
+
+  // Secondary path: send by e-mail via Web3Forms (WhatsApp stays primary).
+  const emailBtn = document.getElementById('cfEmail') as HTMLButtonElement | null;
+  const statusEl = document.getElementById('cfStatus');
+  const setStatus = (msg: string, kind: 'ok' | 'err' | 'loading') => {
+    if (statusEl) { statusEl.textContent = msg; statusEl.dataset.kind = kind; }
+  };
+  if (emailBtn) emailBtn.addEventListener('click', async () => {
+    const botcheck = (document.getElementById('cf-botcheck') as HTMLInputElement | null)?.value || '';
+    if (isSpam({ botcheck })) return; // silently drop bots
+    const email = val('cf-email');
+    if (!email || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
+      setStatus('Informe um e-mail válido para retornarmos.', 'err');
+      return;
+    }
+    if (!hasRealKey(site.forms.web3formsKey)) {
+      setStatus('Envio por e-mail ainda não configurado — use o WhatsApp acima.', 'err');
+      return;
+    }
+    setStatus('Enviando…', 'loading');
+    emailBtn.disabled = true;
+    try {
+      const payload = buildWeb3FormsPayload(site.forms.web3formsKey, {
+        nome: val('cf-nome'), email, empresa: val('cf-empresa'), segmento: seg, msg: val('cf-msg'), botcheck,
+      });
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (res.ok && data.success) setStatus('Mensagem enviada! Retornaremos em breve.', 'ok');
+      else setStatus('Não foi possível enviar agora — tente o WhatsApp acima.', 'err');
+    } catch {
+      setStatus('Falha de conexão — tente o WhatsApp acima.', 'err');
+    } finally {
+      emailBtn.disabled = false;
+    }
   });
 })();

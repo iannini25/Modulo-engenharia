@@ -26,8 +26,10 @@
   --panel-2:#1C2025;
   --wa:#25D366;
 
-  /* type — brand typeface: logo-matching geometric-humanist sans.
-     Plus Jakarta Sans is the working choice (confirmed via A/B in Task 2.1).
+  /* type — brand typeface: Plus Jakarta Sans.
+     Chosen via rendered A/B over logo-original.png (Task 2.1): captures the logo's
+     geometric-humanist DNA (round o, even strokes, two-story a) and is more
+     distinctive than Poppins/Montserrat (the "fidelity ruler" candidates).
      One family for display + body for full brand cohesion; mono is the data accent. */
   --display:"Plus Jakarta Sans Variable",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
   --sans:"Plus Jakarta Sans Variable",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;

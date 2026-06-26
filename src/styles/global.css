@@ -238,13 +238,17 @@ html.js [data-reveal]{opacity:0;transform:translateY(26px)}
 /* Reduced-motion / no-JS default: a single static viewport (no dead scroll).
    With JS (animate), the section grows tall and the stage pins for a scroll-scrub. */
 .hero{position:relative;height:100svh;min-height:620px;background:var(--ink)}
-html.js .hero{height:200svh}
-@media (max-width:860px){html.js .hero{height:150svh}}
+html.js .hero{height:240svh}
+@media (max-width:860px){html.js .hero{height:175svh}}
 .hero__stage{position:sticky;top:0;height:100svh;min-height:620px;overflow:hidden}
 .hero__media{position:absolute;inset:0;will-change:transform}
 .hero__media picture{display:block;width:100%;height:100%}
-.hero__media img{width:100%;height:100%;object-fit:cover;object-position:50% 48%;transform:scale(1.06)}
+.hero__media img{width:100%;height:100%;object-fit:cover;object-position:50% 50%}
+/* frame-sequence canvas — covers the poster once frames load */
+.hero__canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
 .hero__dust{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.5}
+/* mobile: bias the poster crop toward the platform (right) */
+@media (max-width:640px){.hero--platform .hero__media img{object-position:72% 50%}}
 /* hero film grain (anti-AI / filmic) */
 .hero__grain{position:absolute;inset:0;pointer-events:none;opacity:.5;mix-blend-mode:overlay;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
@@ -255,6 +259,16 @@ html.js .hero{height:200svh}
     linear-gradient(180deg,rgba(15,18,22,.40) 0%,rgba(15,18,22,.05) 16%,rgba(15,18,22,.08) 40%,rgba(15,18,22,.74) 100%),
     linear-gradient(75deg,rgba(15,18,22,.72) 0%,rgba(15,18,22,.22) 42%,rgba(15,18,22,0) 68%),
     radial-gradient(120% 90% at 70% 40%,transparent 52%,rgba(10,12,15,.52) 100%);
+}
+/* v3 left-biased scrim: darkens the left (text) + the bottom, keeps the platform clear */
+.hero__grade--left{
+  background:
+    linear-gradient(90deg,rgba(9,12,17,.74) 0%,rgba(9,12,17,.44) 28%,rgba(9,12,17,.08) 54%,transparent 72%),
+    linear-gradient(180deg,rgba(9,12,17,.28) 0%,transparent 24%,transparent 58%,rgba(9,12,17,.74) 100%);
+}
+@media (max-width:860px){
+  .hero__grade--left{background:
+    linear-gradient(180deg,rgba(9,12,17,.55) 0%,rgba(9,12,17,.18) 30%,rgba(9,12,17,.35) 64%,rgba(9,12,17,.82) 100%);}
 }
 
 /* HUD */
@@ -277,7 +291,15 @@ html.js .hero{height:200svh}
 .hud__cross::after{content:"";position:absolute;inset:12px;border:1px solid rgba(255,255,255,.55);border-radius:50%}
 @media (max-width:720px){.hud__cross,.hud__tag--top{display:none}}
 
-.hero__inner{position:absolute;left:0;right:0;bottom:clamp(96px,15vh,150px);z-index:3}
+/* v3: text column on the LEFT, vertically centered */
+.hero__inner{position:absolute;inset:0;z-index:3;display:flex;align-items:center;pointer-events:none}
+.hero__lead{max-width:min(620px,52%);pointer-events:auto}
+@media (max-width:860px){
+  .hero__inner{align-items:flex-end;padding-bottom:clamp(90px,16vh,150px)}
+  .hero__lead{max-width:none}
+}
+.hero__hud--quiet{color:rgba(255,255,255,.7)}
+.hero__hud--quiet .hud__corner{opacity:.75}
 .hero__eyebrow{
   font-family:var(--mono);font-weight:500;font-size:.72rem;letter-spacing:.2em;
   color:#fff;margin-bottom:1.5rem;display:inline-flex;align-items:center;gap:.6rem;
@@ -286,8 +308,8 @@ html.js .hero{height:200svh}
 .hero__eyebrow .dot{width:8px;height:8px;background:var(--red-500);transform:rotate(45deg)}
 .hero__title{
   font-family:var(--display);font-weight:900;color:#fff;
-  font-size:clamp(2.7rem,8.2vw,7rem);line-height:.95;letter-spacing:-.03em;
-  text-shadow:0 4px 40px rgba(0,0,0,.4);
+  font-size:clamp(2.6rem,6.6vw,5.4rem);line-height:.98;letter-spacing:-.03em;
+  text-shadow:0 4px 40px rgba(0,0,0,.45);
 }
 .hero__title .line{display:block;overflow:hidden}
 .hero__title em{color:var(--red-500)}

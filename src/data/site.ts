@@ -141,16 +141,17 @@ export const site = {
     web3formsKey: 'WEB3FORMS_ACCESS_KEY_PLACEHOLDER',
   },
 
-  // Procedência das mídias. Licenças sem share-alike (CC BY / Unsplash / Pexels / CC0).
-  // O hero é um SÍMBOLO da categoria (não é máquina da Módulo) — escavadeira de
-  // rodas de caçambas (classe Bagger), foto real, sem geração por IA.
+  // Procedência das mídias. O hero é uma imagem ILUSTRATIVA gerada por IA
+  // (Higgsfield: Nano Banana Pro → Kling 3.0) a partir de uma referência REAL do
+  // acervo da Módulo (offshore-3.jpg). Representa o segmento offshore — não é "a
+  // plataforma da Módulo". Honestidade de procedência registrada aqui.
   media: [
     {
       id: 'hero',
-      source: 'Wikimedia Commons',
-      url: 'https://commons.wikimedia.org/wiki/File:Schaufelradbagger_im_Tagebau_Hambach_bei_Nacht.jpg',
-      license: 'CC BY 4.0',
-      author: 'Jan Anskeit',
+      source: 'Imagem ilustrativa gerada por IA (Higgsfield) a partir de referência real do acervo Módulo (offshore-3)',
+      url: '',
+      license: 'Conteúdo gerado por IA — uso comercial do solicitante',
+      author: 'Nano Banana Pro + Kling 3.0',
     },
   ] as MediaCredit[],
 };

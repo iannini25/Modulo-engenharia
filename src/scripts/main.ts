@@ -271,6 +271,77 @@ if (animate) {
   });
 }
 
+/* ============================================================
+   HERO — scroll-driven frame sequence (cinematic scroll-video)
+   Preloads frames, draws the scrubbed frame on a canvas (cover,
+   DPR-capped, mobile right-bias) via the GSAP/Lenis ticker.
+   If frames are absent/disabled it no-ops and the poster shows.
+   ============================================================ */
+(function heroFrames() {
+  const hero = document.getElementById('inicio');
+  const canvas = document.getElementById('heroCanvas') as HTMLCanvasElement | null;
+  if (!hero || !canvas || reduce) return;
+  const mobile = window.matchMedia('(max-width:860px)').matches;
+  const count = parseInt((mobile ? hero.dataset.frameCountMobile : hero.dataset.frameCount) || '0', 10);
+  if (!count) { canvas.style.display = 'none'; return; }
+  const ctx = canvas.getContext('2d');
+  if (!ctx) return;
+
+  const base = (mobile ? hero.dataset.framesMobile : hero.dataset.framesDesktop) || '/frames/desktop/f_';
+  const ext = hero.dataset.frameExt || '.webp';
+  const pad = parseInt(hero.dataset.framePad || '3', 10);
+  const biasX = mobile ? 0.78 : 0.5;
+
+  const frames: HTMLImageElement[] = new Array(count);
+  for (let i = 0; i < count; i++) {
+    const img = new Image();
+    img.decoding = 'async';
+    img.src = base + String(i + 1).padStart(pad, '0') + ext;
+    img.onload = () => { if (i === 0) draw(0); };
+    frames[i] = img;
+  }
+
+  let cw = 0, ch = 0, dpr = 1;
+  function size() {
+    dpr = Math.min(window.devicePixelRatio || 1, mobile ? 1.5 : 2);
+    cw = canvas!.clientWidth; ch = canvas!.clientHeight;
+    canvas!.width = Math.round(cw * dpr); canvas!.height = Math.round(ch * dpr);
+    ctx!.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+  function nearestLoaded(i: number): HTMLImageElement | null {
+    const ready = (img?: HTMLImageElement) => !!(img && img.complete && img.naturalWidth);
+    if (ready(frames[i])) return frames[i];
+    for (let d = 1; d < count; d++) {
+      if (ready(frames[i - d])) return frames[i - d];
+      if (ready(frames[i + d])) return frames[i + d];
+    }
+    return null;
+  }
+  function draw(i: number) {
+    const img = nearestLoaded(clamp(i, 0, count - 1));
+    if (!img) return;
+    const scale = Math.max(cw / img.naturalWidth, ch / img.naturalHeight);
+    const dw = img.naturalWidth * scale, dh = img.naturalHeight * scale;
+    ctx!.clearRect(0, 0, cw, ch);
+    ctx!.drawImage(img, (cw - dw) * biasX, (ch - dh) * 0.5, dw, dh);
+  }
+  function progress() {
+    const total = hero!.offsetHeight - window.innerHeight;
+    if (total <= 0) return 0;
+    return clamp(-hero!.getBoundingClientRect().top / total, 0, 1);
+  }
+
+  let eased = 0, last = -1;
+  size();
+  window.addEventListener('resize', () => { size(); last = -1; draw(Math.round(eased)); });
+  gsap.ticker.add(() => {
+    const target = progress() * (count - 1);
+    eased += (target - eased) * 0.18;
+    const i = Math.round(eased);
+    if (i !== last) { draw(i); last = i; }
+  });
+})();
+
 /* ============================================================ SECTOR TABS */
 (function sectors() {
   const tabs = Array.from(document.querySelectorAll<HTMLButtonElement>('.seg-tab'));

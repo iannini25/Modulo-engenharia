@@ -4,6 +4,7 @@ import { site } from '../data/site';
 import { greetingURL } from '../lib/wa';
 const wa = greetingURL(site.contact.whatsappDigits);
 const year = new Date().getFullYear();
+const heroCredit = site.media.find((m) => m.id === 'hero');
 ---
 <footer class="footer">
   <div class="wrap footer__in">
@@ -37,6 +38,10 @@ const year = new Date().getFullYear();
 
   <div class="wrap footer__base">
     <span class="mono">© <span id="year">{year}</span> MÓDULO ENGENHARIA · CNPJ {site.legal.cnpj}<sup>*</sup></span>
-    <span class="mono">SITE DEMONSTRATIVO · ENGENHARIA DIGITAL</span>
+    {heroCredit && (
+      <span class="mono footer__credit">
+        Imagem: <a href={heroCredit.url} target="_blank" rel="noopener">{heroCredit.author} / {heroCredit.license}</a>
+      </span>
+    )}
   </div>
 </footer>

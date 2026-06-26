@@ -1,9 +1,29 @@
 ---
-// Signature scroll-telemetry rail (left edge). Upgraded to a drawn SVG stroke in Task 2.4.
+// Signature scroll-telemetry rail — an SVG stroke that draws as you scroll,
+// with measurement ticks (engineering-instrument feel). Driven by main.ts.
 ---
 <aside class="rail" id="rail" aria-hidden="true">
   <span class="rail__top">DEPTH</span>
-  <div class="rail__track"><i class="rail__fill" id="railFill"></i><b class="rail__dot" id="railDot"></b></div>
+  <div class="rail__track">
+    <svg class="rail__svg" viewBox="0 0 8 100" preserveAspectRatio="none">
+      <line class="rail__line rail__line--bg" x1="4" y1="0" x2="4" y2="100" vector-effect="non-scaling-stroke" />
+      <g class="rail__ticks">
+        <line x1="1" y1="0" x2="7" y2="0" vector-effect="non-scaling-stroke" />
+        <line x1="2.5" y1="25" x2="5.5" y2="25" vector-effect="non-scaling-stroke" />
+        <line x1="2.5" y1="50" x2="5.5" y2="50" vector-effect="non-scaling-stroke" />
+        <line x1="2.5" y1="75" x2="5.5" y2="75" vector-effect="non-scaling-stroke" />
+        <line x1="1" y1="100" x2="7" y2="100" vector-effect="non-scaling-stroke" />
+      </g>
+      <line
+        class="rail__line rail__line--draw"
+        id="railDraw"
+        x1="4" y1="0" x2="4" y2="100"
+        pathLength="1"
+        vector-effect="non-scaling-stroke"
+      />
+    </svg>
+    <b class="rail__dot" id="railDot"></b>
+  </div>
   <span class="rail__pct" id="railPct">00%</span>
   <span class="rail__sec" id="railSec">INÍCIO</span>
 </aside>

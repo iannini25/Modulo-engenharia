@@ -121,11 +121,11 @@ const onScroll = (fn: () => void) => {
 
 /* ============================================================ RAIL */
 (function rail() {
-  const fill = document.getElementById('railFill');
+  const draw = document.getElementById('railDraw');
   const dot = document.getElementById('railDot');
   const pct = document.getElementById('railPct');
   const secEl = document.getElementById('railSec');
-  if (!fill) return;
+  if (!draw) return;
   const map = [
     ['inicio', 'INÍCIO'], ['sobre', 'A EMPRESA'], ['servicos', 'SERVIÇOS'],
     ['equipamentos', 'CAMPO'], ['numeros', 'DADOS'], ['processo', 'MÉTODO'],
@@ -136,7 +136,7 @@ const onScroll = (fn: () => void) => {
   function update() {
     const max = (document.documentElement.scrollHeight - window.innerHeight) || 1;
     const prog = clamp(window.scrollY / max, 0, 1);
-    fill!.style.height = prog * 100 + '%';
+    draw!.style.strokeDashoffset = String(1 - prog);
     if (dot) dot.style.top = prog * 100 + '%';
     if (pct) pct.textContent = String(Math.round(prog * 100)).padStart(2, '0') + '%';
     const center = window.scrollY + window.innerHeight * 0.5;

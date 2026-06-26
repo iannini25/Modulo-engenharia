@@ -60,6 +60,7 @@ export const site = {
     // ⚠️ PLACEHOLDER — "+55 31 999485 8169" é ambíguo (um dígito a mais).
     // NÃO publicar sem confirmação do cliente.
     whatsappDigits: '5531999485816',
+    whatsappDisplay: '+55 (31) 99948-5816', // ⚠️ derivado do placeholder; confirmar com o cliente
     whatsappConfirmed: false,
     email: 'rodolfocintra.modulo@gmail.com',
     baseLocation: 'Minas Gerais — Brasil',

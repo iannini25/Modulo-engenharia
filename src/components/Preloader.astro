@@ -1,0 +1,17 @@
+---
+// Boot preloader with progress bar (driven by main.ts). Doubles as the
+// frame-preload progress UI if a frame-sequence hero is ever added (Phase 5).
+---
+<div class="preloader" id="preloader" aria-hidden="true">
+  <div class="preloader__core">
+    <svg class="preloader__mark" viewBox="0 0 48 48" fill="none">
+      <rect class="pl-sq pl-sq--ink" x="9" y="13" width="26" height="26" rx="1.5" stroke="currentColor" stroke-width="2.4" transform="rotate(45 22 26)" />
+      <rect class="pl-sq pl-sq--red" x="19" y="9" width="22" height="22" rx="1.5" stroke="var(--red)" stroke-width="2.4" transform="rotate(45 30 20)" />
+    </svg>
+    <div class="preloader__meta">
+      <span class="preloader__name">MÓDULO ENGENHARIA</span>
+      <span class="preloader__bar"><i id="plBar"></i></span>
+      <span class="preloader__pct" id="plPct">000</span>
+    </div>
+  </div>
+</div>

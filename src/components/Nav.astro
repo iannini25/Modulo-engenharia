@@ -1,0 +1,25 @@
+---
+import Brand from './Brand.astro';
+import { site } from '../data/site';
+import { greetingURL } from '../lib/wa';
+const wa = greetingURL(site.contact.whatsappDigits);
+const { pathname } = Astro.url;
+const isActive = (href: string) => pathname === href || pathname === href + '/';
+---
+<header class="nav" id="nav">
+  <Brand href="/" />
+
+  <nav class="nav__links" aria-label="Navegação principal">
+    {site.nav.map((n) => (
+      <a href={n.href} aria-current={isActive(n.href) ? 'page' : undefined}>{n.label}</a>
+    ))}
+  </nav>
+
+  <a href={wa} class="btn btn--solid nav__cta" data-magnetic target="_blank" rel="noopener">
+    Falar com a engenharia
+  </a>
+
+  <button class="nav__burger" id="burger" aria-label="Abrir menu" aria-expanded="false">
+    <span></span><span></span>
+  </button>
+</header>

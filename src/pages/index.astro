@@ -1,14 +1,7 @@
 ---
-// Temporary minimal page to prove the build. Replaced in Phase 1.
+import Base from '../layouts/Base.astro';
+import { site } from '../data/site';
 ---
-<!doctype html>
-<html lang="pt-BR">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Módulo Engenharia</title>
-  </head>
-  <body>
-    <h1>Módulo — build OK</h1>
-  </body>
-</html>
+<Base title={`${site.brand.name} — Automação e Engenharia para a Indústria Pesada`} description={site.brand.tagline}>
+  <h1 style="padding:40vh 6vw">build OK</h1>
+</Base>

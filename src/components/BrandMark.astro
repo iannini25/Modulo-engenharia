@@ -1,0 +1,8 @@
+---
+interface Props { class?: string }
+const { class: className = 'brand__mark' } = Astro.props;
+---
+<svg class={className} viewBox="0 0 48 48" fill="none" aria-hidden="true">
+  <rect x="9" y="13" width="26" height="26" rx="1.5" fill="none" stroke="currentColor" stroke-width="3" transform="rotate(45 22 26)" />
+  <rect x="19" y="9" width="22" height="22" rx="1.5" fill="none" stroke="var(--red)" stroke-width="3" transform="rotate(45 30 20)" />
+</svg>

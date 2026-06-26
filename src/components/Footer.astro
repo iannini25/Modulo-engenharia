@@ -1,0 +1,42 @@
+---
+import Brand from './Brand.astro';
+import { site } from '../data/site';
+import { greetingURL } from '../lib/wa';
+const wa = greetingURL(site.contact.whatsappDigits);
+const year = new Date().getFullYear();
+---
+<footer class="footer">
+  <div class="wrap footer__in">
+    <div class="footer__brand">
+      <Brand href="/" footer={true} />
+      <p class="footer__tag">Automação e engenharia para a indústria pesada. Mais produção, menos esforço humano.</p>
+    </div>
+
+    <nav class="footer__col">
+      <span class="footer__h mono">SEGMENTOS</span>
+      <a href="/mineracao">Mineração</a>
+      <a href="/siderurgia">Siderurgia</a>
+      <a href="/offshore">Offshore</a>
+      <a href="/energia">Energia</a>
+    </nav>
+
+    <nav class="footer__col">
+      <span class="footer__h mono">EMPRESA</span>
+      <a href="/sobre">Sobre</a>
+      <a href="/servicos">Serviços</a>
+      <a href="/contato">Contato</a>
+    </nav>
+
+    <div class="footer__col">
+      <span class="footer__h mono">CONTATO</span>
+      <a href={`mailto:${site.contact.email}`}>{site.contact.email}</a>
+      <a id="telLink2" href={wa} target="_blank" rel="noopener">{site.contact.whatsappDisplay}</a>
+      <a>{site.contact.baseLocation}</a>
+    </div>
+  </div>
+
+  <div class="wrap footer__base">
+    <span class="mono">© <span id="year">{year}</span> MÓDULO ENGENHARIA · CNPJ {site.legal.cnpj}<sup>*</sup></span>
+    <span class="mono">SITE DEMONSTRATIVO · ENGENHARIA DIGITAL</span>
+  </div>
+</footer>

@@ -1,0 +1,44 @@
+---
+// Horizontal pinned showcase (desktop) / native swipe (mobile) — ported from baseline.
+const cards = [
+  { img: 'empilhadeira.jpg', tag: 'MINERAÇÃO', title: 'Recuperadora de Minério', sub: 'Máquina de pátio · automação', alt: 'Recuperadora de minério' },
+  { img: 'roda-canecas.jpg', tag: 'MINERAÇÃO', title: 'Roda de Canecas', sub: 'Acionamento & proteções', alt: 'Roda de canecas de recuperadora' },
+  { img: 'correia.jpg', tag: 'MINERAÇÃO', title: 'Transportador de Correia', sub: 'Pesagem & intertravamento', alt: 'Transportador de correia de longa distância' },
+  { img: 'patio-minerio.jpg', tag: 'MINERAÇÃO', title: 'Pátio de Estocagem', sub: 'Controle de movimentação', alt: 'Pátio de estocagem de minério' },
+  { img: 'beneficiamento.jpg', tag: 'MINERAÇÃO', title: 'Usina de Beneficiamento', sub: 'Processo & supervisório', alt: 'Usina de beneficiamento mineral' },
+  { img: 'alto-forno.jpg', tag: 'SIDERURGIA', title: 'Alto-Forno', sub: 'Instrumentação de processo', alt: 'Alto-forno de siderúrgica' },
+  { img: 'laminacao.jpg', tag: 'SIDERURGIA', title: 'Laminação', sub: 'Controle de acionamento', alt: 'Linha de laminação de aço' },
+  { img: 'siderurgica.jpg', tag: 'SIDERURGIA', title: 'Planta Siderúrgica', sub: 'Elétrica & automação', alt: 'Complexo siderúrgico' },
+  { img: 'offshore-2.jpg', tag: 'OFFSHORE', title: 'Plataforma Offshore', sub: 'Sistemas de controle', alt: 'Plataforma de petróleo offshore' },
+  { img: 'navio-sonda.jpg', tag: 'OFFSHORE', title: 'Navio-Sonda', sub: 'Automação & segurança', alt: 'Navio-sonda de perfuração' },
+];
+---
+<section id="equipamentos" class="equip">
+  <div class="equip__pin" id="equipPin">
+    <div class="equip__track" id="equipTrack">
+      <div class="equip__intro">
+        <p class="kicker">[ 02 ] &nbsp;EM CAMPO</p>
+        <h2 class="display">Onde a<br />Módulo<br />atua<span class="acc">.</span></h2>
+        <p class="lead">Arraste para o lado. Frentes reais de mineração, siderurgia, offshore e energia.</p>
+        <span class="equip__hint mono" aria-hidden="true">DRAG →</span>
+      </div>
+
+      {cards.map((c) => (
+        <figure class="eq-card">
+          <img src={`/assets/img/${c.img}`} alt={c.alt} loading="lazy" />
+          <figcaption>
+            <span class="eq-tag mono">{c.tag}</span>
+            <b>{c.title}</b>
+            <em>{c.sub}</em>
+          </figcaption>
+        </figure>
+      ))}
+
+      <a href="#contato" class="eq-cta">
+        <span class="mono">PRÓXIMA FRENTE</span>
+        <b>É a sua planta?</b>
+        <em>Falar com a engenharia →</em>
+      </a>
+    </div>
+  </div>
+</section>

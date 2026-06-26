@@ -1,0 +1,28 @@
+---
+const steps = [
+  { n: '01', title: 'Diagnóstico', body: 'Visita técnica, levantamento do ativo e mapeamento de gargalos, riscos e oportunidades de automação.' },
+  { n: '02', title: 'Projeto de Engenharia', body: 'Documentação elétrica, lógica de controle e especificação técnica dimensionada para o ambiente real.' },
+  { n: '03', title: 'Execução & Montagem', body: 'Fabricação de painéis, instalação e integração eletromecânica com equipe própria em campo.' },
+  { n: '04', title: 'Comissionamento', body: 'Loop-check, testes e partida assistida. O sistema entra em operação validado e documentado.' },
+  { n: '05', title: 'Operação & Manutenção', body: 'Acompanhamento, paradas programadas e suporte para manter a disponibilidade ao longo dos anos.' },
+];
+---
+<section id="processo" class="section process">
+  <header class="wrap sec-head">
+    <p class="kicker" data-reveal>[ 03 ] &nbsp;MÉTODO</p>
+    <h2 class="display" data-reveal>Do diagnóstico à operação</h2>
+    <p class="lead" data-reveal>Um fluxo de engenharia com responsável técnico em cada etapa — sem lacunas entre projeto e campo.</p>
+  </header>
+
+  <ol class="wrap proc-list">
+    {steps.map((s) => (
+      <li class="proc" data-reveal>
+        <span class="proc__n mono">{s.n}</span>
+        <div class="proc__body">
+          <h3>{s.title}</h3>
+          <p>{s.body}</p>
+        </div>
+      </li>
+    ))}
+  </ol>
+</section>

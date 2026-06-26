@@ -1,0 +1,52 @@
+---
+// TEMPORARY hero — ported from baseline so the home renders during Phase 1.
+// Rebuilt in Phase 2 (Task 2.3) as the real-still cinematic scroll hero.
+// Honesty: the machine is a symbol of the heavy-industry category, never "Módulo's".
+import { site } from '../data/site';
+---
+<section id="inicio" class="hero">
+  <div class="hero__media" id="heroMedia">
+    <img src="/assets/img/hero_empilhadeira.jpg" alt="Máquina de pátio de grande porte em operação de mineração — símbolo da indústria pesada atendida pela Módulo Engenharia" />
+  </div>
+  <div class="hero__grade"></div>
+  <canvas class="hero__dust" id="heroDust" aria-hidden="true"></canvas>
+
+  <div class="hero__hud" aria-hidden="true">
+    <span class="hud__corner hud__corner--tl"></span>
+    <span class="hud__corner hud__corner--tr"></span>
+    <span class="hud__corner hud__corner--bl"></span>
+    <span class="hud__corner hud__corner--br"></span>
+    <div class="hud__cross" id="hudCross"><i></i><b></b></div>
+    <span class="hud__tag hud__tag--top">FIG.01 — INDÚSTRIA PESADA · MÁQUINA DE PÁTIO</span>
+    <span class="hud__tag hud__tag--scale">ESCALA &nbsp;|&nbsp; REF. ≈ 12 m</span>
+    <span class="hud__rec"><i></i>SISTEMA ATIVO</span>
+  </div>
+
+  <div class="hero__inner wrap">
+    <p class="hero__eyebrow" data-reveal>
+      <span class="dot"></span>ENGENHARIA · AUTOMAÇÃO · MANUTENÇÃO
+    </p>
+    <h1 class="hero__title">
+      <span class="line" data-reveal>Automação que move</span>
+      <span class="line" data-reveal>a <em>indústria pesada</em>.</span>
+    </h1>
+    <p class="hero__lede" data-reveal>
+      Software e hardware de alto desempenho que elevam produtividade,
+      qualidade e segurança — reduzindo o esforço e a interferência humana
+      sobre o processo e a máquina.
+    </p>
+    <div class="hero__actions" data-reveal>
+      <a href="#contato" class="btn btn--solid btn--lg" data-magnetic>Iniciar um projeto<svg viewBox="0 0 24 24" class="ico-arrow"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg></a>
+      <a href="#atuacao" class="btn btn--ghost-light btn--lg">Ver atuação</a>
+    </div>
+  </div>
+
+  <div class="hero__cue" aria-hidden="true"><span>ROLE PARA EXPLORAR</span><i></i></div>
+
+  <div class="hero__ribbon" aria-hidden="true">
+    <div class="marquee" id="marquee">
+      <span>MINERAÇÃO</span><b>◆</b><span>SIDERURGIA</span><b>◆</b><span>OFFSHORE</span><b>◆</b><span>ENERGIA</span><b>◆</b>
+      <span>MINERAÇÃO</span><b>◆</b><span>SIDERURGIA</span><b>◆</b><span>OFFSHORE</span><b>◆</b><span>ENERGIA</span><b>◆</b>
+    </div>
+  </div>
+</section>

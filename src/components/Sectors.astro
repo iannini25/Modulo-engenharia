@@ -1,0 +1,51 @@
+---
+import { site } from '../data/site';
+const keys = ['mineracao', 'siderurgia', 'offshore', 'energia'] as const;
+const first = site.segments.mineracao;
+---
+<section id="atuacao" class="section sectors">
+  <header class="wrap sec-head sec-head--row">
+    <div>
+      <p class="kicker" data-reveal>[ 04 ] &nbsp;SEGMENTOS</p>
+      <h2 class="display" data-reveal>Indústrias que atendemos</h2>
+    </div>
+    <p class="lead" data-reveal>Selecione um segmento para ver como a Módulo atua nele.</p>
+  </header>
+
+  <div class="wrap sectors__ui">
+    <div class="sectors__tabs" role="tablist" aria-label="Segmentos de atuação">
+      {keys.map((k, i) => {
+        const s = site.segments[k];
+        const active = i === 0;
+        return (
+          <button
+            class={`seg-tab${active ? ' is-active' : ''}`}
+            role="tab"
+            id={`seg-tab-${s.slug}`}
+            aria-selected={active ? 'true' : 'false'}
+            aria-controls="sectors-panel"
+            tabindex={active ? 0 : -1}
+            data-sector={s.slug}
+          >
+            <span class="seg-tab__code mono">{`M—0${i + 1}`}</span> {s.title}
+          </button>
+        );
+      })}
+    </div>
+
+    <div class="sectors__panel" id="sectors-panel" role="tabpanel" aria-labelledby={`seg-tab-${first.slug}`}>
+      <figure class="sectors__media">
+        <img id="secImg" src={first.img} alt={`Operação de ${first.title.toLowerCase()}`} />
+        <span class="sectors__badge mono" id="secBadge">{first.badge}</span>
+      </figure>
+      <div class="sectors__copy">
+        <h3 id="secTitle">{first.title}</h3>
+        <p id="secDesc">{first.description}</p>
+        <ul class="sectors__list" id="secList">
+          {first.capabilities.map((c) => <li>{c}</li>)}
+        </ul>
+        <a href="#contato" class="btn btn--solid" data-magnetic>Conversar sobre este segmento</a>
+      </div>
+    </div>
+  </div>
+</section>

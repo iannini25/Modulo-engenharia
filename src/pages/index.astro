@@ -1,7 +1,25 @@
 ---
 import Base from '../layouts/Base.astro';
+import CinematicHero from '../components/CinematicHero.astro';
+import Manifesto from '../components/Manifesto.astro';
+import Services from '../components/Services.astro';
+import EquipShowcase from '../components/EquipShowcase.astro';
+import Stats from '../components/Stats.astro';
+import Process from '../components/Process.astro';
+import Sectors from '../components/Sectors.astro';
+import ContactSection from '../components/ContactSection.astro';
 import { site } from '../data/site';
 ---
-<Base title={`${site.brand.name} — Automação e Engenharia para a Indústria Pesada`} description={site.brand.tagline}>
-  <h1 style="padding:40vh 6vw">build OK</h1>
+<Base
+  title={`${site.brand.name} — Automação e Engenharia para a Indústria Pesada`}
+  description="Módulo Engenharia: automação, engenharia elétrica, instrumentação, montagem e manutenção para mineração, siderurgia, offshore e energia. Mais produtividade, mais segurança, menos esforço humano."
+>
+  <CinematicHero />
+  <Manifesto />
+  <Services />
+  <EquipShowcase />
+  <Stats />
+  <Process />
+  <Sectors />
+  <ContactSection />
 </Base>

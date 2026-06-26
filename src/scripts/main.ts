@@ -257,6 +257,10 @@ if (animate) {
   window.addEventListener('load', () => ScrollTrigger.refresh());
 } else {
   document.getElementById('equipamentos')?.classList.add('equip--native');
+  // Reduced motion: no count-up animation — show final values immediately.
+  document.querySelectorAll<HTMLElement>('[data-count]').forEach((el) => {
+    el.textContent = (el.dataset.prefix || '') + (el.dataset.count || '') + (el.dataset.suffix || '');
+  });
 }
 
 /* ============================================================ SECTOR TABS */

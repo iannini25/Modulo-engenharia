@@ -501,6 +501,22 @@ html.js .hero{height:200svh}
 @keyframes fabPulse{0%{transform:scale(1);opacity:.6}100%{transform:scale(1.7);opacity:0}}
 
 /* ============================================================
+   ANTI-AI — global film grain + cohesive editorial grade
+   ============================================================ */
+.grain-overlay{
+  position:fixed;inset:0;z-index:55;pointer-events:none;opacity:.04;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size:170px 170px;
+}
+/* one editorial grade so the varied stock photos read as a single shoot */
+.manifesto__media img,
+.sectors__media img,
+.eq-card img,
+.seg-hero__media img{
+  filter:saturate(.93) contrast(1.05) brightness(.99);
+}
+
+/* ============================================================
    REDUCED MOTION
    ============================================================ */
 @media (prefers-reduced-motion:reduce){

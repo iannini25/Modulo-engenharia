@@ -190,17 +190,25 @@ if (animate) {
     onEnter: (els) => gsap.to(els, { opacity: 1, y: 0, duration: 1, ease: 'power3.out', stagger: 0.08, overwrite: true }),
   });
 
+  // Hero: slow cinematic push-in across the whole (tall, sticky) section.
   const heroMedia = document.querySelector('.hero__media');
   if (heroMedia) {
-    gsap.to(heroMedia, {
-      yPercent: 16, scale: 1.16, ease: 'none',
-      scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true },
+    gsap.fromTo(heroMedia, { scale: 1, yPercent: 0 }, {
+      scale: 1.16, yPercent: 8, ease: 'none',
+      scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom bottom', scrub: 0.6 },
     });
   }
+  // Title/HUD drift + fade over the first portion, freeing the view of the machine.
   if (document.querySelector('.hero__inner')) {
     gsap.to('.hero__inner', {
-      yPercent: -22, opacity: 0, ease: 'none',
-      scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom 55%', scrub: true },
+      yPercent: -26, opacity: 0, ease: 'none',
+      scrollTrigger: { trigger: '.hero', start: 'top top', end: '40% top', scrub: true },
+    });
+  }
+  if (document.querySelector('.hero__cue')) {
+    gsap.to('.hero__cue', {
+      opacity: 0, ease: 'none',
+      scrollTrigger: { trigger: '.hero', start: 'top top', end: '8% top', scrub: true },
     });
   }
   if (document.querySelector('#hudCross')) {

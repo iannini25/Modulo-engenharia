@@ -25,7 +25,7 @@ const cards = [
 
       {cards.map((c) => (
         <figure class="eq-card">
-          <img src={`/assets/img/${c.img}`} alt={c.alt} loading="lazy" />
+          <img src={`/assets/img/${c.img.replace(/\.jpg$/, '.webp')}`} alt={c.alt} loading="lazy" />
           <figcaption>
             <span class="eq-tag mono">{c.tag}</span>
             <b>{c.title}</b>

@@ -86,7 +86,7 @@ export const site = {
 
   segments: {
     mineracao: {
-      slug: 'mineracao', title: 'Mineração', badge: 'MINERAÇÃO', img: '/assets/img/empilhadeira.jpg',
+      slug: 'mineracao', title: 'Mineração', badge: 'MINERAÇÃO', img: '/assets/img/empilhadeira.webp',
       intro: 'Disponibilidade alta em ambiente abrasivo e crítico.',
       description:
         'Automação e manutenção de máquinas de pátio, transportadores e plantas de beneficiamento — ' +
@@ -95,7 +95,7 @@ export const site = {
       cases: [placeholderCase],
     },
     siderurgia: {
-      slug: 'siderurgia', title: 'Siderurgia', badge: 'SIDERURGIA', img: '/assets/img/laminacao.jpg',
+      slug: 'siderurgia', title: 'Siderurgia', badge: 'SIDERURGIA', img: '/assets/img/laminacao.webp',
       intro: 'Estabilidade e segurança em processos de alta temperatura.',
       description:
         'Instrumentação e controle para processos de alta temperatura — do alto-forno à laminação, ' +
@@ -104,7 +104,7 @@ export const site = {
       cases: [placeholderCase],
     },
     offshore: {
-      slug: 'offshore', title: 'Offshore', badge: 'OFFSHORE', img: '/hero/platform.jpg',
+      slug: 'offshore', title: 'Offshore', badge: 'OFFSHORE', img: '/hero/platform.webp',
       intro: 'Controle e segurança no ambiente mais exigente: o mar aberto.',
       description:
         'Sistemas de controle e segurança para plataformas e navios-sonda, projetados para o ambiente ' +
@@ -113,7 +113,7 @@ export const site = {
       cases: [placeholderCase],
     },
     energia: {
-      slug: 'energia', title: 'Energia', badge: 'ENERGIA', img: '/assets/img/paineis.jpg',
+      slug: 'energia', title: 'Energia', badge: 'ENERGIA', img: '/assets/img/paineis.webp',
       intro: 'Energia confiável e medida para toda a operação industrial.',
       description:
         'Engenharia elétrica e painéis de potência e automação que garantem energia confiável e medida ' +

@@ -12,7 +12,7 @@ const {
   title,
   description,
   canonical = Astro.url.href,
-  ogImage = '/assets/img/hero_empilhadeira.jpg',
+  ogImage = '/og-image.png',
 } = Astro.props;
 
 const siteBase = Astro.site ?? new URL(Astro.url.origin);
@@ -40,4 +40,7 @@ const favicon =
 <meta name="twitter:description" content={description} />
 <meta name="twitter:image" content={ogImageAbs} />
 
-<link rel="icon" href={favicon} />
+<link rel="icon" type="image/svg+xml" href={favicon} />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicons/icon-32.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/favicons/icon-180.png" />
+<link rel="manifest" href="/site.webmanifest" />

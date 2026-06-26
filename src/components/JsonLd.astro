@@ -1,0 +1,29 @@
+---
+import { site } from '../data/site';
+const origin = (Astro.site ?? new URL(Astro.url.origin)).origin;
+
+const data: Record<string, unknown> = {
+  '@context': 'https://schema.org',
+  '@type': site.legal.address ? 'LocalBusiness' : 'Organization',
+  name: site.brand.name,
+  url: origin,
+  logo: `${origin}/favicons/icon-512.png`,
+  image: `${origin}/og-image.png`,
+  email: site.contact.email,
+  description: site.brand.tagline,
+  areaServed: 'Brasil',
+  knowsAbout: [
+    'Automação industrial',
+    'Engenharia elétrica',
+    'Instrumentação',
+    'Máquinas de pátio',
+    'Transportadores de correia',
+    'Montagem e manutenção eletromecânica',
+    'Comissionamento',
+  ],
+};
+// Only emit fields that are confirmed (no placeholders in structured data).
+if (site.contact.whatsappConfirmed) data.telephone = '+' + site.contact.whatsappDigits;
+if (site.legal.address) data.address = site.legal.address;
+---
+<script type="application/ld+json" set:html={JSON.stringify(data)} />

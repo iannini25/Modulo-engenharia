@@ -6,6 +6,7 @@ import '@fontsource/ibm-plex-mono/600.css';
 import '../styles/global.css';
 
 import Seo from '../components/Seo.astro';
+import JsonLd from '../components/JsonLd.astro';
 import Preloader from '../components/Preloader.astro';
 import Rail from '../components/Rail.astro';
 import Nav from '../components/Nav.astro';
@@ -25,6 +26,7 @@ const { title, description, canonical, ogImage } = Astro.props;
 <html lang="pt-BR">
   <head>
     <Seo title={title} description={description} canonical={canonical} ogImage={ogImage} />
+    <JsonLd />
   </head>
   <body>
     <Preloader />

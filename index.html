@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Módulo Engenharia — Automação e Engenharia para a Indústria Pesada</title>
+  <meta name="description" content="Módulo Engenharia: automação, engenharia elétrica, instrumentação, montagem e manutenção para mineração, siderurgia, offshore e energia. Mais produtividade, mais segurança, menos esforço humano." />
+  <meta name="theme-color" content="#F4F5F6" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Módulo Engenharia — Automação para a Indústria Pesada" />
+  <meta property="og:description" content="Software e hardware que aumentam produtividade, qualidade e segurança em mineração, siderurgia, offshore e energia." />
+  <meta property="og:image" content="assets/img/hero_empilhadeira.jpg" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="preload" as="image" href="assets/img/hero_empilhadeira.jpg" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect x='9' y='13' width='26' height='26' rx='1.5' fill='none' stroke='%2314171A' stroke-width='3.4' transform='rotate(45 22 26)'/%3E%3Crect x='19' y='9' width='22' height='22' rx='1.5' fill='none' stroke='%23BE1622' stroke-width='3.4' transform='rotate(45 30 20)'/%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ============ PRELOADER ============ -->
+  <div class="preloader" id="preloader" aria-hidden="true">
+    <div class="preloader__core">
+      <svg class="preloader__mark" viewBox="0 0 48 48" fill="none">
+        <rect class="pl-sq pl-sq--ink" x="9" y="13" width="26" height="26" rx="1.5" stroke="currentColor" stroke-width="2.4" transform="rotate(45 22 26)"/>
+        <rect class="pl-sq pl-sq--red" x="19" y="9" width="22" height="22" rx="1.5" stroke="var(--red)" stroke-width="2.4" transform="rotate(45 30 20)"/>
+      </svg>
+      <div class="preloader__meta">
+        <span class="preloader__name">MÓDULO ENGENHARIA</span>
+        <span class="preloader__bar"><i id="plBar"></i></span>
+        <span class="preloader__pct" id="plPct">000</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ SIGNATURE: left engineering rail ============ -->
+  <aside class="rail" id="rail" aria-hidden="true">
+    <span class="rail__top">DEPTH</span>
+    <div class="rail__track"><i class="rail__fill" id="railFill"></i><b class="rail__dot" id="railDot"></b></div>
+    <span class="rail__pct" id="railPct">00%</span>
+    <span class="rail__sec" id="railSec">INÍCIO</span>
+  </aside>
+
+  <!-- ============ NAV ============ -->
+  <header class="nav" id="nav">
+    <a href="#top" class="brand" aria-label="Módulo Engenharia — início">
+      <svg class="brand__mark" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+        <rect x="9" y="13" width="26" height="26" rx="1.5" fill="none" stroke="currentColor" stroke-width="3" transform="rotate(45 22 26)"/>
+        <rect x="19" y="9" width="22" height="22" rx="1.5" fill="none" stroke="var(--red)" stroke-width="3" transform="rotate(45 30 20)"/>
+      </svg>
+      <span class="brand__type"><b>Módulo</b><em>Engenharia</em></span>
+    </a>
+
+    <nav class="nav__links" aria-label="Navegação principal">
+      <a href="#sobre">Sobre</a>
+      <a href="#servicos">Serviços</a>
+      <a href="#equipamentos">Equipamentos</a>
+      <a href="#processo">Processo</a>
+      <a href="#atuacao">Atuação</a>
+    </nav>
+
+    <a href="#contato" class="btn btn--solid nav__cta" data-magnetic>Falar com a engenharia</a>
+
+    <button class="nav__burger" id="burger" aria-label="Abrir menu" aria-expanded="false">
+      <span></span><span></span>
+    </button>
+  </header>
+
+  <!-- mobile menu -->
+  <div class="menu" id="menu" aria-hidden="true">
+    <nav class="menu__links">
+      <a href="#sobre"><span>01</span>Sobre</a>
+      <a href="#servicos"><span>02</span>Serviços</a>
+      <a href="#equipamentos"><span>03</span>Equipamentos</a>
+      <a href="#processo"><span>04</span>Processo</a>
+      <a href="#atuacao"><span>05</span>Atuação</a>
+      <a href="#contato"><span>06</span>Contato</a>
+    </nav>
+    <a href="#contato" class="btn btn--solid btn--lg menu__cta">Iniciar um projeto</a>
+  </div>
+
+  <main id="main">
+    <span id="top"></span>
+
+    <!-- ============ 1 · HERO ============ -->
+    <section id="inicio" class="hero">
+      <div class="hero__media" id="heroMedia">
+        <img src="assets/img/hero_empilhadeira.jpg" alt="Recuperadora de minério de grande porte em pátio de mineração, com ônibus ao lado evidenciando a escala do equipamento" />
+      </div>
+      <div class="hero__grade"></div>
+      <canvas class="hero__dust" id="heroDust" aria-hidden="true"></canvas>
+
+      <!-- technical HUD overlay -->
+      <div class="hero__hud" aria-hidden="true">
+        <span class="hud__corner hud__corner--tl"></span>
+        <span class="hud__corner hud__corner--tr"></span>
+        <span class="hud__corner hud__corner--bl"></span>
+        <span class="hud__corner hud__corner--br"></span>
+        <div class="hud__cross" id="hudCross"><i></i><b></b></div>
+        <span class="hud__tag hud__tag--top">FIG.01 — MÁQUINA DE PÁTIO · RECUPERADORA DE MINÉRIO</span>
+        <span class="hud__tag hud__tag--scale">ESCALA &nbsp;|&nbsp; REF. ≈ 12 m</span>
+        <span class="hud__rec"><i></i>SISTEMA ATIVO</span>
+      </div>
+
+      <div class="hero__inner wrap">
+        <p class="hero__eyebrow" data-reveal>
+          <span class="dot"></span>ENGENHARIA · AUTOMAÇÃO · MANUTENÇÃO
+        </p>
+        <h1 class="hero__title">
+          <span class="line" data-reveal>Automação que move</span>
+          <span class="line" data-reveal>a <em>indústria pesada</em>.</span>
+        </h1>
+        <p class="hero__lede" data-reveal>
+          Software e hardware de alto desempenho que elevam produtividade,
+          qualidade e segurança — reduzindo o esforço e a interferência humana
+          sobre o processo e a máquina.
+        </p>
+        <div class="hero__actions" data-reveal>
+          <a href="#contato" class="btn btn--solid btn--lg" data-magnetic>Iniciar um projeto<svg viewBox="0 0 24 24" class="ico-arrow"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          <a href="#atuacao" class="btn btn--ghost-light btn--lg">Ver atuação</a>
+        </div>
+      </div>
+
+      <div class="hero__cue" aria-hidden="true"><span>ROLE PARA EXPLORAR</span><i></i></div>
+
+      <!-- segment marquee -->
+      <div class="hero__ribbon" aria-hidden="true">
+        <div class="marquee" id="marquee">
+          <span>MINERAÇÃO</span><b>◆</b><span>SIDERURGIA</span><b>◆</b><span>OFFSHORE</span><b>◆</b><span>ENERGIA</span><b>◆</b>
+          <span>MINERAÇÃO</span><b>◆</b><span>SIDERURGIA</span><b>◆</b><span>OFFSHORE</span><b>◆</b><span>ENERGIA</span><b>◆</b>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 2 · MANIFESTO / SOBRE ============ -->
+    <section id="sobre" class="section manifesto">
+      <span class="sec-marks" aria-hidden="true"></span>
+      <div class="wrap manifesto__grid">
+        <div class="manifesto__text">
+          <p class="kicker" data-reveal>[ 00 ] &nbsp;A&nbsp;EMPRESA</p>
+          <h2 class="display" data-reveal>Existe um ponto onde a <em>engenharia</em> encontra a operação. A Módulo trabalha exatamente ali.</h2>
+          <p class="lead" data-reveal>
+            Projetamos e integramos sistemas que fazem equipamentos de grande
+            porte produzirem mais, com previsibilidade e segurança. Da lógica de
+            controle ao painel em campo, cada entrega é pensada para rodar anos
+            sem surpresas — no calor da mina, na linha de aço, no mar aberto.
+          </p>
+          <ul class="manifesto__pills" data-reveal>
+            <li><b>+ Produtividade</b></li>
+            <li><b>+ Qualidade</b></li>
+            <li><b>+ Segurança</b></li>
+            <li><b>− Esforço humano</b></li>
+          </ul>
+        </div>
+        <figure class="manifesto__media" data-reveal>
+          <div class="frame" data-parallax="0.14">
+            <img src="assets/img/paineis.jpg" alt="Painéis elétricos e de automação industrial montados pela Módulo Engenharia" loading="lazy" />
+          </div>
+          <figcaption><span class="mono">REF — PAINÉIS DE CONTROLE &amp; AUTOMAÇÃO</span></figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ============ 3 · SERVIÇOS / CAPABILITIES ============ -->
+    <section id="servicos" class="section services">
+      <header class="wrap sec-head">
+        <p class="kicker" data-reveal>[ 01 ] &nbsp;CAPACIDADES</p>
+        <h2 class="display" data-reveal>O que entregamos</h2>
+        <p class="lead" data-reveal>Da engenharia de projeto ao equipamento rodando em campo — um único responsável técnico, do diagnóstico à manutenção.</p>
+      </header>
+
+      <div class="wrap svc-grid">
+        <article class="svc" data-reveal>
+          <span class="svc__code mono">S—01</span>
+          <span class="svc__mark" aria-hidden="true"></span>
+          <h3>Automação &amp; Controle de Processos</h3>
+          <p>Lógica de CLP, supervisórios SCADA, redes industriais e integração de chão de fábrica. Mais visibilidade, menos parada.</p>
+        </article>
+        <article class="svc" data-reveal>
+          <span class="svc__code mono">S—02</span>
+          <span class="svc__mark" aria-hidden="true"></span>
+          <h3>Engenharia Elétrica &amp; Instrumentação</h3>
+          <p>Projeto, dimensionamento e montagem de painéis, sensores e malhas de instrumentação calibradas para ambiente severo.</p>
+        </article>
+        <article class="svc" data-reveal>
+          <span class="svc__code mono">S—03</span>
+          <span class="svc__mark" aria-hidden="true"></span>
+          <h3>Máquinas de Pátio</h3>
+          <p>Empilhadeiras e recuperadoras: automação, modernização e retrofit de controle para operação contínua e segura.</p>
+        </article>
+        <article class="svc" data-reveal>
+          <span class="svc__code mono">S—04</span>
+          <span class="svc__mark" aria-hidden="true"></span>
+          <h3>Transportadores de Correia</h3>
+          <p>Proteções, pesagem, intertravamentos e controle de acionamento para longas distâncias com alta disponibilidade.</p>
+        </article>
+        <article class="svc" data-reveal>
+          <span class="svc__code mono">S—05</span>
+          <span class="svc__mark" aria-hidden="true"></span>
+          <h3>Montagem &amp; Manutenção Eletromecânica</h3>
+          <p>Equipes em campo para montagem, paradas programadas e manutenção corretiva com foco em retorno rápido à produção.</p>
+        </article>
+        <article class="svc" data-reveal>
+          <span class="svc__code mono">S—06</span>
+          <span class="svc__mark" aria-hidden="true"></span>
+          <h3>Comissionamento &amp; Start-up</h3>
+          <p>Testes, loop-check e partida assistida. Entregamos o sistema validado, documentado e pronto para operar.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============ 4 · EQUIPAMENTOS (horizontal pinned) ============ -->
+    <section id="equipamentos" class="equip">
+      <div class="equip__pin" id="equipPin">
+        <div class="equip__track" id="equipTrack">
+          <div class="equip__intro">
+            <p class="kicker">[ 02 ] &nbsp;EM CAMPO</p>
+            <h2 class="display">Onde a<br>Módulo<br>atua<span class="acc">.</span></h2>
+            <p class="lead">Arraste para o lado. Frentes reais de mineração, siderurgia, offshore e energia.</p>
+            <span class="equip__hint mono" aria-hidden="true">DRAG →</span>
+          </div>
+
+          <figure class="eq-card"><img src="assets/img/empilhadeira.jpg" alt="Recuperadora de minério" loading="lazy"><figcaption><span class="eq-tag mono">MINERAÇÃO</span><b>Recuperadora de Minério</b><em>Máquina de pátio · automação</em></figcaption></figure>
+          <figure class="eq-card"><img src="assets/img/roda-canecas.jpg" alt="Roda de canecas de recuperadora" loading="lazy"><figcaption><span class="eq-tag mono">MINERAÇÃO</span><b>Roda de Canecas</b><em>Acionamento &amp; proteções</em></figcaption></figure>
+          <figure class="eq-card"><img src="assets/img/correia.jpg" alt="Transportador de correia de longa distância" loading="lazy"><figcaption><span class="eq-tag mono">MINERAÇÃO</span><b>Transportador de Correia</b><em>Pesagem &amp; intertravamento</em></figcaption></figure>
+          <figure class="eq-card"><img src="assets/img/patio-minerio.jpg" alt="Pátio de estocagem de minério" loading="lazy"><figcaption><span class="eq-tag mono">MINERAÇÃO</span><b>Pátio de Estocagem</b><em>Controle de movimentação</em></figcaption></figure>
+          <figure class="eq-card"><img src="assets/img/beneficiamento.jpg" alt="Usina de beneficiamento mineral" loading="lazy"><figcaption><span class="eq-tag mono">MINERAÇÃO</span><b>Usina de Beneficiamento</b><em>Processo &amp; supervisório</em></figcaption></figure>
+          <figure class="eq-card"><img src="assets/img/alto-forno.jpg" alt="Alto-forno de siderúrgica" loading="lazy"><figcaption><span class="eq-tag mono">SIDERURGIA</span><b>Alto-Forno</b><em>Instrumentação de processo</em></figcaption></figure>
+          <figure class="eq-card"><img src="assets/img/laminacao.jpg" alt="Linha de laminação de aço" loading="lazy"><figcaption><span class="eq-tag mono">SIDERURGIA</span><b>Laminação</b><em>Controle de acionamento</em></figcaption></figure>
+          <figure class="eq-card"><img src="assets/img/siderurgica.jpg" alt="Complexo siderúrgico" loading="lazy"><figcaption><span class="eq-tag mono">SIDERURGIA</span><b>Planta Siderúrgica</b><em>Elétrica &amp; automação</em></figcaption></figure>
+          <figure class="eq-card"><img src="assets/img/offshore-2.jpg" alt="Plataforma de petróleo offshore" loading="lazy"><figcaption><span class="eq-tag mono">OFFSHORE</span><b>Plataforma Offshore</b><em>Sistemas de controle</em></figcaption></figure>
+          <figure class="eq-card"><img src="assets/img/navio-sonda.jpg" alt="Navio-sonda de perfuração" loading="lazy"><figcaption><span class="eq-tag mono">OFFSHORE</span><b>Navio-Sonda</b><em>Automação &amp; segurança</em></figcaption></figure>
+
+          <a href="#contato" class="eq-cta">
+            <span class="mono">PRÓXIMA FRENTE</span>
+            <b>É a sua planta?</b>
+            <em>Falar com a engenharia →</em>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 5 · NÚMEROS ============ -->
+    <section id="numeros" class="section stats">
+      <div class="wrap stats__grid">
+        <div class="stat" data-reveal>
+          <span class="stat__num" data-count="4" data-suffix="">0</span>
+          <span class="stat__lbl">Segmentos<br>atendidos</span>
+        </div>
+        <div class="stat" data-reveal>
+          <span class="stat__num" data-count="15" data-prefix="+">0</span>
+          <span class="stat__lbl">Anos de<br>campo<sup>*</sup></span>
+        </div>
+        <div class="stat" data-reveal>
+          <span class="stat__num" data-count="120" data-prefix="+">0</span>
+          <span class="stat__lbl">Projetos<br>entregues<sup>*</sup></span>
+        </div>
+        <div class="stat" data-reveal>
+          <span class="stat__num" data-count="99" data-suffix="%">0</span>
+          <span class="stat__lbl">Disponibilidade<br>média<sup>*</sup></span>
+        </div>
+      </div>
+      <p class="wrap stats__note mono"><sup>*</sup>&nbsp;Valores ilustrativos — a confirmar com a Módulo Engenharia.</p>
+    </section>
+
+    <!-- ============ 6 · PROCESSO ============ -->
+    <section id="processo" class="section process">
+      <header class="wrap sec-head">
+        <p class="kicker" data-reveal>[ 03 ] &nbsp;MÉTODO</p>
+        <h2 class="display" data-reveal>Do diagnóstico à operação</h2>
+        <p class="lead" data-reveal>Um fluxo de engenharia com responsável técnico em cada etapa — sem lacunas entre projeto e campo.</p>
+      </header>
+
+      <ol class="wrap proc-list">
+        <li class="proc" data-reveal>
+          <span class="proc__n mono">01</span>
+          <div class="proc__body">
+            <h3>Diagnóstico</h3>
+            <p>Visita técnica, levantamento do ativo e mapeamento de gargalos, riscos e oportunidades de automação.</p>
+          </div>
+        </li>
+        <li class="proc" data-reveal>
+          <span class="proc__n mono">02</span>
+          <div class="proc__body">
+            <h3>Projeto de Engenharia</h3>
+            <p>Documentação elétrica, lógica de controle e especificação técnica dimensionada para o ambiente real.</p>
+          </div>
+        </li>
+        <li class="proc" data-reveal>
+          <span class="proc__n mono">03</span>
+          <div class="proc__body">
+            <h3>Execução &amp; Montagem</h3>
+            <p>Fabricação de painéis, instalação e integração eletromecânica com equipe própria em campo.</p>
+          </div>
+        </li>
+        <li class="proc" data-reveal>
+          <span class="proc__n mono">04</span>
+          <div class="proc__body">
+            <h3>Comissionamento</h3>
+            <p>Loop-check, testes e partida assistida. O sistema entra em operação validado e documentado.</p>
+          </div>
+        </li>
+        <li class="proc" data-reveal>
+          <span class="proc__n mono">05</span>
+          <div class="proc__body">
+            <h3>Operação &amp; Manutenção</h3>
+            <p>Acompanhamento, paradas programadas e suporte para manter a disponibilidade ao longo dos anos.</p>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <!-- ============ 7 · ATUAÇÃO (interactive tabs) ============ -->
+    <section id="atuacao" class="section sectors">
+      <header class="wrap sec-head sec-head--row">
+        <div>
+          <p class="kicker" data-reveal>[ 04 ] &nbsp;SEGMENTOS</p>
+          <h2 class="display" data-reveal>Indústrias que atendemos</h2>
+        </div>
+        <p class="lead" data-reveal>Selecione um segmento para ver como a Módulo atua nele.</p>
+      </header>
+
+      <div class="wrap sectors__ui">
+        <div class="sectors__tabs" role="tablist" aria-label="Segmentos de atuação">
+          <button class="seg-tab is-active" role="tab" aria-selected="true" data-sector="mineracao">
+            <span class="seg-tab__code mono">M—01</span> Mineração
+          </button>
+          <button class="seg-tab" role="tab" aria-selected="false" data-sector="siderurgia">
+            <span class="seg-tab__code mono">M—02</span> Siderurgia
+          </button>
+          <button class="seg-tab" role="tab" aria-selected="false" data-sector="offshore">
+            <span class="seg-tab__code mono">M—03</span> Offshore
+          </button>
+          <button class="seg-tab" role="tab" aria-selected="false" data-sector="energia">
+            <span class="seg-tab__code mono">M—04</span> Energia
+          </button>
+        </div>
+
+        <div class="sectors__panel">
+          <figure class="sectors__media">
+            <img id="secImg" src="assets/img/patio-minerio.jpg" alt="Operação de mineração" />
+            <span class="sectors__badge mono" id="secBadge">MINERAÇÃO</span>
+          </figure>
+          <div class="sectors__copy">
+            <h3 id="secTitle">Mineração</h3>
+            <p id="secDesc">Automação e manutenção de máquinas de pátio, transportadores e plantas de beneficiamento — disponibilidade alta em ambiente abrasivo e crítico.</p>
+            <ul class="sectors__list" id="secList">
+              <li>Recuperadoras e empilhadeiras</li>
+              <li>Transportadores de longa distância</li>
+              <li>Supervisório de pátio e beneficiamento</li>
+            </ul>
+            <a href="#contato" class="btn btn--solid" data-magnetic>Conversar sobre este segmento</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 8 · CONTATO ============ -->
+    <section id="contato" class="section contact">
+      <div class="wrap contact__grid">
+        <div class="contact__intro">
+          <p class="kicker kicker--light" data-reveal>[ 05 ] &nbsp;CONTATO</p>
+          <h2 class="display display--light" data-reveal>Vamos tirar seu projeto do papel</h2>
+          <p class="lead lead--light" data-reveal>Conte o desafio da sua planta. Montamos a mensagem para você e abrimos direto no WhatsApp — resposta rápida, sem compromisso.</p>
+
+          <ul class="contact__direct" data-reveal>
+            <li>
+              <span class="mono">WHATSAPP / TEL</span>
+              <a id="telLink" href="#">+55 (31) 99948-58169</a>
+            </li>
+            <li>
+              <span class="mono">E-MAIL</span>
+              <a href="mailto:rodolfocintra.modulo@gmail.com">rodolfocintra.modulo@gmail.com</a>
+            </li>
+            <li>
+              <span class="mono">BASE</span>
+              <a>Minas Gerais — Brasil</a>
+            </li>
+          </ul>
+        </div>
+
+        <form class="cform" id="cform" novalidate>
+          <div class="field">
+            <label for="cf-nome">Seu nome</label>
+            <input id="cf-nome" name="nome" type="text" placeholder="Como podemos te chamar?" autocomplete="name" />
+          </div>
+          <div class="field">
+            <label for="cf-empresa">Empresa <span>(opcional)</span></label>
+            <input id="cf-empresa" name="empresa" type="text" placeholder="Nome da planta / empresa" autocomplete="organization" />
+          </div>
+          <div class="field">
+            <label>Segmento</label>
+            <div class="chips" id="cf-seg" role="group" aria-label="Segmento">
+              <button type="button" class="chip" data-val="Mineração">Mineração</button>
+              <button type="button" class="chip" data-val="Siderurgia">Siderurgia</button>
+              <button type="button" class="chip" data-val="Offshore">Offshore</button>
+              <button type="button" class="chip" data-val="Energia">Energia</button>
+              <button type="button" class="chip" data-val="Outro">Outro</button>
+            </div>
+          </div>
+          <div class="field">
+            <label for="cf-msg">O desafio <span>(opcional)</span></label>
+            <textarea id="cf-msg" name="msg" rows="3" placeholder="Ex.: modernizar o controle de uma recuperadora, reduzir paradas de correia…"></textarea>
+          </div>
+          <button type="submit" class="btn btn--wa btn--lg">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.8 4.9-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-2.9.8.8-2.8-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1-.2.2-.6.8-.8 1-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-2-1.2 7.4 7.4 0 0 1-1.4-1.7c-.1-.2 0-.4.1-.5l.4-.5c.1-.1.2-.3.2-.4 0-.2 0-.3 0-.4l-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.4 0-.6.3a2.5 2.5 0 0 0-.8 1.9c0 1.1.8 2.2 1 2.4.1.2 1.7 2.6 4 3.6.6.2 1 .4 1.4.5.6.2 1.1.2 1.5.1.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2 0-.1-.2-.2-.4-.3z"/></svg>
+            Abrir no WhatsApp
+          </button>
+          <p class="cform__alt mono">ou <a id="waDirect" href="#">fale direto com a engenharia →</a></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="wrap footer__in">
+      <div class="footer__brand">
+        <a href="#top" class="brand brand--footer" aria-label="Módulo Engenharia">
+          <svg class="brand__mark" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+            <rect x="9" y="13" width="26" height="26" rx="1.5" fill="none" stroke="currentColor" stroke-width="3" transform="rotate(45 22 26)"/>
+            <rect x="19" y="9" width="22" height="22" rx="1.5" fill="none" stroke="var(--red)" stroke-width="3" transform="rotate(45 30 20)"/>
+          </svg>
+          <span class="brand__type"><b>Módulo</b><em>Engenharia</em></span>
+        </a>
+        <p class="footer__tag">Automação e engenharia para a indústria pesada. Mais produção, menos esforço humano.</p>
+      </div>
+
+      <nav class="footer__col">
+        <span class="footer__h mono">SEGMENTOS</span>
+        <a href="#atuacao">Mineração</a>
+        <a href="#atuacao">Siderurgia</a>
+        <a href="#atuacao">Offshore</a>
+        <a href="#atuacao">Energia</a>
+      </nav>
+      <nav class="footer__col">
+        <span class="footer__h mono">EMPRESA</span>
+        <a href="#sobre">Sobre</a>
+        <a href="#servicos">Serviços</a>
+        <a href="#processo">Processo</a>
+        <a href="#contato">Contato</a>
+      </nav>
+      <div class="footer__col">
+        <span class="footer__h mono">CONTATO</span>
+        <a href="mailto:rodolfocintra.modulo@gmail.com">rodolfocintra.modulo@gmail.com</a>
+        <a id="telLink2" href="#">+55 (31) 99948-58169</a>
+        <a>Minas Gerais — Brasil</a>
+      </div>
+    </div>
+    <div class="wrap footer__base">
+      <span class="mono">© <span id="year"></span> MÓDULO ENGENHARIA · CNPJ 00.000.000/0000-00<sup>*</sup></span>
+      <span class="mono">SITE DEMONSTRATIVO · ENGENHARIA DIGITAL</span>
+    </div>
+  </footer>
+
+  <!-- floating WhatsApp -->
+  <a href="#" class="fab" id="fab" aria-label="Falar no WhatsApp">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.8 4.9-1.3A10 10 0 1 0 12 2zm4.5 12.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1-.2.2-.6.8-.8 1-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-2-1.2 7.4 7.4 0 0 1-1.4-1.7c-.1-.2 0-.4.1-.5l.4-.5c.1-.1.2-.3.2-.4 0-.2 0-.3 0-.4l-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.4 0-.6.3a2.5 2.5 0 0 0-.8 1.9c0 1.1.8 2.2 1 2.4.1.2 1.7 2.6 4 3.6.6.2 1 .4 1.4.5.6.2 1.1.2 1.5.1.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2 0-.1-.2-.2-.4-.3z"/></svg>
+  </a>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,55 +1,78 @@
-# Módulo Engenharia — Site institucional (one-page cinematográfico)
+# Módulo Engenharia — Site v2 (Astro)
 
-Site de página única, modo claro, com hero cinematográfico, efeitos de scroll
-(GSAP + ScrollTrigger + Lenis) e identidade visual técnica ("Engenharia de
-Precisão"). Construído para **Módulo Engenharia** — automação e engenharia para
-mineração, siderurgia, offshore e energia.
+Site institucional da **Módulo Engenharia** (automação e engenharia para a
+indústria pesada: mineração, siderurgia, offshore e energia). Construído em
+**Astro** estático, com hero cinematográfico reativo ao scroll, tipografia da
+marca (Plus Jakarta Sans), GSAP/Lenis self-hosted e acessibilidade.
 
-## Como rodar localmente
-
-O site usa GSAP e Lenis via CDN, então **precisa ser servido por HTTP** (abrir o
-`index.html` direto com `file://` funciona, mas um servidor evita qualquer
-bloqueio de CDN/relativo). Qualquer servidor estático serve:
+## Como rodar
 
 ```bash
-# opção 1 — Python (já vem na maioria das máquinas)
-cd modulo
-python3 -m http.server 8080
-# abra http://localhost:8080
-
-# opção 2 — Node
-npx serve .
+npm install
+npm run dev       # http://localhost:4321
+npm run build     # gera dist/ (estático)
+npm run preview   # serve o dist/
+npm test          # vitest (site.ts, WhatsApp, formulário, build smoke)
 ```
 
-> Em ambiente sem internet os scripts de CDN (GSAP/Lenis) não carregam; o site
-> ainda renderiza e fica legível (degradação graciosa), mas sem as animações.
-> Para uso offline, baixe GSAP, ScrollTrigger e Lenis e referencie localmente.
+Requer Node 18+. Sem dependências de CDN em produção (fontes e GSAP/Lenis são
+empacotados pelo build).
 
 ## Estrutura
 
 ```
-modulo/
-├── index.html          # marcação completa (uma página, âncoras por seção)
-├── style.css           # design system "Engenharia de Precisão" + responsivo
-├── script.js           # Lenis + GSAP (hero, rail, horizontal pin, tabs, etc.)
-├── assets/img/         # fotos da empresa (renomeadas) + hero tratado + logo
-└── CLAUDE_CODE_BRIEF.md # o que falta finalizar (prompt para o Claude Code)
+src/
+├── data/site.ts        # FONTE ÚNICA de conteúdo + ⚠️ placeholders (editar aqui)
+├── lib/                # wa.ts (WhatsApp), form.ts (Web3Forms) — testados
+├── layouts/Base.astro  # <head>/SEO/JSON-LD, nav, menu, rail, footer, FAB
+├── components/         # CinematicHero, SegmentPage, ContactSection, Nav, etc.
+├── pages/              # index + mineracao/siderurgia/offshore/energia + servicos/sobre/contato/biblioteca
+├── scripts/main.ts     # Lenis + GSAP + hero frame-sequence + tabs + formulário
+└── styles/global.css   # design system "Engenharia de Precisão"
+public/
+├── frames/             # sequência de frames do hero (scroll-vídeo)
+├── hero/               # pôster do hero (still) + recortes
+├── assets/img/         # fotos da empresa (.jpg + .webp)
+└── favicons/ · og-image.png · robots.txt · site.webmanifest
 ```
 
-## Seções
+## Hero (scroll-vídeo)
 
-Hero · Sobre/Manifesto · Serviços (6) · Equipamentos (showcase horizontal) ·
-Números · Processo (5 etapas) · Atuação (tabs por segmento) · Contato
-(construtor de mensagem WhatsApp) · Rodapé.
+O hero é uma **sequência de frames** desenhada num `<canvas>` e amarrada ao
+scroll (técnica tipo Apple/Logitech), com pôster estático como fallback para
+`prefers-reduced-motion` / sem-JS. A mídia é uma **imagem ilustrativa gerada por
+IA** (Higgsfield: Nano Banana Pro → Kling 3.0) a partir de uma **referência real**
+do acervo da Módulo (`offshore-3.jpg`) — plataforma offshore ao entardecer. A
+plataforma representa o **segmento offshore**, não é "a plataforma da Módulo"
+(procedência registrada em `site.ts` e creditada no rodapé).
+
+Para trocar a mídia do hero: substitua os frames em `public/frames/desktop` e
+`public/frames/mobile` e o pôster em `public/hero/`, e ajuste `FRAME_COUNT` /
+`FRAME_COUNT_MOBILE` em `src/components/CinematicHero.astro`.
+
+## ⚠️ Pendências do cliente (todas centralizadas em `src/data/site.ts`)
+
+- **WhatsApp** — `5531999485816` é placeholder (o número publicado é ambíguo).
+  **Não publicar sem confirmar.** (`contact.whatsappDigits` / `whatsappDisplay`)
+- **Métricas** — `+15 anos`, `+120 projetos`, `99%` são ilustrativas (`metrics[].illustrative`).
+  "4 segmentos" é real.
+- **CNPJ / CREA / endereço** — `legal.*` (vazios = não aparecem no JSON-LD).
+- **Chave do Web3Forms** — `forms.web3formsKey` (criar grátis em web3forms.com).
+  Enquanto for placeholder, o botão de e-mail avisa e o WhatsApp segue como canal primário.
+- **Cases dos segmentos** e **arquivos da Biblioteca** — placeholders marcados.
+- **Fotos em alta resolução** — as fotos da empresa estão em baixa resolução;
+  substituir os arquivos em `public/assets/img/` (mantendo os nomes).
+
+## Deploy (Vercel)
+
+`vercel.json` já configurado (framework Astro + cache de assets). Conectar o
+repositório à Vercel ou `vercel --prod`. Apontar o domínio
+(ex.: moduloengenharia.com.br) e ajustar `site:` em `astro.config.mjs`.
 
 ## Identidade
 
-- **Vermelho da marca:** `#BE1622` (variações `#8C1016` / `#E11D2A`)
-- **Grafite/ink:** `#14171A` · **Base clara:** `#F4F5F6`
-- **Tipografia:** Archivo (títulos) · IBM Plex Sans (texto) · IBM Plex Mono (dados)
+- Vermelho `#BE1622` (`#8C1016` / `#E11D2A`) · grafite `#14171A` · base `#F4F5F6`
+- Tipografia: **Plus Jakarta Sans** (display + corpo) · **IBM Plex Mono** (dados/HUD)
+- Lighthouse: 91–97 Performance · 97–100 Acessibilidade · 100 Best Practices · 100 SEO
 
-## Pontos que precisam dos dados reais da empresa
-
-Ver `CLAUDE_CODE_BRIEF.md`. Em resumo: número de WhatsApp exato, métricas reais
-(seção Números está com valores ilustrativos marcados com `*`), CNPJ/CREA,
-endereço e **fotografia em alta resolução**.
+Documentos de design/plano em `docs/superpowers/`.

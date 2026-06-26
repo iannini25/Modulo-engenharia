@@ -3,7 +3,7 @@ import BrandMark from './BrandMark.astro';
 interface Props { href?: string; footer?: boolean }
 const { href = '/', footer = false } = Astro.props;
 ---
-<a href={href} class={`brand${footer ? ' brand--footer' : ''}`} aria-label="Módulo Engenharia">
+<a href={href} class={`brand${footer ? ' brand--footer' : ''}`}>
   <BrandMark />
-  <span class="brand__type"><b>Módulo</b><em>Engenharia</em></span>
+  <span class="brand__type"><b>Módulo</b> <em>Engenharia</em></span>
 </a>

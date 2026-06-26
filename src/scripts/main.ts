@@ -163,6 +163,7 @@ const onScroll = (fn: () => void) => {
       menu.classList.toggle('is-open', open);
       burger.setAttribute('aria-expanded', String(open));
       menu.setAttribute('aria-hidden', String(!open));
+      if (open) menu.removeAttribute('inert'); else menu.setAttribute('inert', '');
       if (lenis) open ? lenis.stop() : lenis.start();
       document.body.style.overflow = open ? 'hidden' : '';
     };

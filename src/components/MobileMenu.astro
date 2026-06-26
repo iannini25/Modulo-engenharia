@@ -2,7 +2,7 @@
 import { site } from '../data/site';
 const items = [...site.nav, { label: 'Contato', href: '/contato' }];
 ---
-<div class="menu" id="menu" aria-hidden="true">
+<div class="menu" id="menu" aria-hidden="true" inert>
   <nav class="menu__links">
     {items.map((n, i) => (
       <a href={n.href}><span>{String(i + 1).padStart(2, '0')}</span>{n.label}</a>

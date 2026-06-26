@@ -166,8 +166,18 @@ const onScroll = (fn: () => void) => {
       if (lenis) open ? lenis.stop() : lenis.start();
       document.body.style.overflow = open ? 'hidden' : '';
     };
-    burger.addEventListener('click', () => toggle(!menu.classList.contains('is-open')));
+    burger.addEventListener('click', () => {
+      const open = !menu.classList.contains('is-open');
+      toggle(open);
+      if (open) (menu.querySelector('a') as HTMLElement | null)?.focus();
+    });
     menu.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => toggle(false)));
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && menu.classList.contains('is-open')) {
+        toggle(false);
+        burger.focus();
+      }
+    });
   }
 })();
 

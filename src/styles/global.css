@@ -67,6 +67,12 @@ em{font-style:normal}
 button{font-family:inherit}
 ::selection{background:var(--red);color:#fff}
 
+/* ---------- accessibility ---------- */
+.skip-link{position:fixed;top:-100px;left:16px;z-index:300;background:var(--ink);color:#fff;padding:.7rem 1.1rem;border-radius:var(--r);font-size:.85rem;font-weight:500;transition:top .2s var(--ease)}
+.skip-link:focus{top:16px}
+:focus-visible{outline:2px solid var(--red-500);outline-offset:3px}
+.field input:focus-visible,.field textarea:focus-visible{outline-offset:0}
+
 .wrap{max-width:var(--maxw);margin-inline:auto;padding-inline:var(--pad)}
 .mono{font-family:var(--mono);font-weight:500;letter-spacing:.04em}
 

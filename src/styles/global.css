@@ -198,25 +198,41 @@ html.js [data-reveal]{opacity:0;transform:translateY(26px)}
   border-bottom-color:var(--line);
 }
 .brand{display:inline-flex;align-items:center;gap:.6rem;color:var(--ink)}
-.brand__mark{width:30px;height:30px;color:var(--ink);flex:none;transition:transform .6s var(--ease)}
+.brand__mark{width:30px;height:30px;color:var(--ink);flex:none;transition:transform .6s var(--ease),color .45s var(--ease)}
 .brand:hover .brand__mark{transform:rotate(90deg)}
 .brand__type{display:flex;flex-direction:column;line-height:.98}
-.brand__type b{font-family:var(--display);font-weight:800;font-size:1.06rem;letter-spacing:-.01em;color:var(--ink)}
-.brand__type em{font-family:var(--display);font-weight:600;font-size:.72rem;letter-spacing:.02em;color:var(--red)}
+.brand__type b{font-family:var(--display);font-weight:800;font-size:1.06rem;letter-spacing:-.01em;color:var(--ink);transition:color .45s var(--ease)}
+.brand__type em{font-family:var(--display);font-weight:600;font-size:.72rem;letter-spacing:.02em;color:var(--red);transition:color .45s var(--ease)}
 
 .nav__links{display:flex;gap:2rem}
-.nav__links a{font-size:.86rem;font-weight:500;color:var(--ink-soft);position:relative;letter-spacing:.005em}
+.nav__links a{font-size:.86rem;font-weight:500;color:var(--ink-soft);position:relative;letter-spacing:.005em;transition:color .4s var(--ease)}
 .nav__links a::after{content:"";position:absolute;left:0;bottom:-5px;width:100%;height:1.5px;background:var(--red);transform:scaleX(0);transform-origin:left;transition:transform .4s var(--ease)}
 .nav__links a:hover{color:var(--red)}
 .nav__links a:hover::after{transform:scaleX(1)}
 .nav__cta{padding:.6rem 1.2rem;font-size:.84rem}
 
-.nav__burger{display:none;width:42px;height:42px;background:none;border:1px solid var(--line-2);border-radius:var(--r);cursor:pointer;position:relative}
-.nav__burger span{position:absolute;left:11px;width:20px;height:1.8px;background:var(--ink);transition:transform .35s var(--ease),opacity .35s}
+.nav__burger{display:none;width:42px;height:42px;background:none;border:1px solid var(--line-2);border-radius:var(--r);cursor:pointer;position:relative;transition:border-color .45s var(--ease)}
+.nav__burger span{position:absolute;left:11px;width:20px;height:1.8px;background:var(--ink);transition:transform .35s var(--ease),opacity .35s,background .35s var(--ease)}
 .nav__burger span:nth-child(1){top:16px}
 .nav__burger span:nth-child(2){bottom:16px}
 .nav.is-open .nav__burger span:nth-child(1){transform:translateY(5px) rotate(45deg)}
 .nav.is-open .nav__burger span:nth-child(2){transform:translateY(-5px) rotate(-45deg)}
+
+/* ------------------------------------------------------------
+   Transparent nav over the dark hero (home, before scroll):
+   light brand + links, mirroring the footer's logo treatment.
+   The instant the light background appears — on scroll
+   (.is-scrolled), on inner pages (.nav--solid), or when the
+   light mobile menu opens (.is-open) — it reverts to the dark
+   "details in black".
+   ------------------------------------------------------------ */
+.nav:not(.nav--solid):not(.is-scrolled):not(.is-open) .brand__mark{color:#fff;filter:drop-shadow(0 2px 10px rgba(0,0,0,.45))}
+.nav:not(.nav--solid):not(.is-scrolled):not(.is-open) .brand__type b{color:#fff;text-shadow:0 2px 14px rgba(0,0,0,.5)}
+.nav:not(.nav--solid):not(.is-scrolled):not(.is-open) .brand__type em{color:rgba(255,255,255,.78);text-shadow:0 2px 14px rgba(0,0,0,.5)}
+.nav:not(.nav--solid):not(.is-scrolled):not(.is-open) .nav__links a{color:rgba(255,255,255,.84);text-shadow:0 2px 14px rgba(0,0,0,.45)}
+.nav:not(.nav--solid):not(.is-scrolled):not(.is-open) .nav__links a:hover{color:var(--red-500)}
+.nav:not(.nav--solid):not(.is-scrolled):not(.is-open) .nav__burger{border-color:rgba(255,255,255,.42)}
+.nav:not(.nav--solid):not(.is-scrolled):not(.is-open) .nav__burger span{background:#fff}
 
 @media (max-width:920px){
   .nav__links{display:none}

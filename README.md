@@ -36,19 +36,20 @@ public/
 └── favicons/ · og-image.png · robots.txt · site.webmanifest
 ```
 
-## Hero (scroll-vídeo)
+## Hero (still 4K + movimento de câmera no scroll)
 
-O hero é uma **sequência de frames** desenhada num `<canvas>` e amarrada ao
-scroll (técnica tipo Apple/Logitech), com pôster estático como fallback para
-`prefers-reduced-motion` / sem-JS. A mídia é uma **imagem ilustrativa gerada por
-IA** (Higgsfield: Nano Banana Pro → Kling 3.0) a partir de uma **referência real**
-do acervo da Módulo (`offshore-3.jpg`) — plataforma offshore ao entardecer. A
-plataforma representa o **segmento offshore**, não é "a plataforma da Módulo"
-(procedência registrada em `site.ts` e creditada no rodapé).
+O hero é uma imagem **4K** (`public/hero/platform.*`, 3840px) com um **movimento
+de câmera no scroll** (zoom lento via GSAP) e texto à esquerda. A imagem é
+**ilustrativa, gerada por IA** (Higgsfield: Nano Banana Pro) a partir de uma
+**referência real** do acervo da Módulo (`offshore-3.jpg`) — plataforma offshore
+ao entardecer. Representa o **segmento offshore**, não é "a plataforma da Módulo"
+(procedência em `site.ts`, crédito no rodapé).
 
-Para trocar a mídia do hero: substitua os frames em `public/frames/desktop` e
-`public/frames/mobile` e o pôster em `public/hero/`, e ajuste `FRAME_COUNT` /
-`FRAME_COUNT_MOBILE` em `src/components/CinematicHero.astro`.
+Para trocar: substitua `public/hero/platform.webp/.jpg` (desktop) e
+`platform-portrait.webp/.jpg` (mobile). O componente já tem o motor de
+sequência-de-frames embutido (caso queira voltar a um scroll-vídeo no futuro):
+basta colocar frames em `public/frames/` e ajustar `FRAME_COUNT` em
+`src/components/CinematicHero.astro`.
 
 ## ⚠️ Pendências do cliente (todas centralizadas em `src/data/site.ts`)
 
@@ -71,8 +72,8 @@ repositório à Vercel ou `vercel --prod`. Apontar o domínio
 
 ## Identidade
 
-- Vermelho `#BE1622` (`#8C1016` / `#E11D2A`) · grafite `#14171A` · base `#F4F5F6`
+- Vermelho **`#DE1019`** (amostrado da logo · `#AC0C12` / `#F32630`) · grafite `#14171A` · base `#F4F5F6`
 - Tipografia: **Plus Jakarta Sans** (display + corpo) · **IBM Plex Mono** (dados/HUD)
-- Lighthouse: 91–97 Performance · 97–100 Acessibilidade · 100 Best Practices · 100 SEO
+- Lighthouse: Performance 89 (mobile) / 97 (desktop) · Acessibilidade 97–100 · Best Practices 100 · SEO 100
 
 Documentos de design/plano em `docs/superpowers/`.

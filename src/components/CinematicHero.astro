@@ -5,21 +5,19 @@
 // the static golden-hour poster + a scroll camera move. Text sits LEFT, platform RIGHT.
 // Honesty: the platform is an ILLUSTRATIVE representation of the offshore segment
 // (AI-generated from a real reference), never claimed as "Módulo's platform".
-const FRAME_COUNT = 121; // desktop frames in public/frames/desktop
-const FRAME_COUNT_MOBILE = 71; // mobile frames in public/frames/mobile
+// Still-mode: a true-4K render (5504px source) with a scroll camera move.
+// (The 1080p AI video was too low-res for a 4K hero, so we use the 4K still.)
+const FRAME_COUNT = 0;
+const FRAME_COUNT_MOBILE = 0;
 const heroAlt =
   'Plataforma de petróleo offshore em mar aberto ao entardecer — representação do segmento offshore atendido pela Módulo Engenharia (imagem ilustrativa)';
 ---
 <section
   id="inicio"
   class="hero hero--platform"
-  data-hero-mode="frames"
+  data-hero-mode="still"
   data-frame-count={FRAME_COUNT}
   data-frame-count-mobile={FRAME_COUNT_MOBILE}
-  data-frames-desktop="/frames/desktop/f_"
-  data-frames-mobile="/frames/mobile/f_"
-  data-frame-ext=".webp"
-  data-frame-pad="3"
 >
   <div class="hero__stage">
     <div class="hero__media" id="heroMedia">
@@ -43,7 +41,7 @@ const heroAlt =
       <span class="hud__rec"><i></i>SISTEMA ATIVO</span>
     </div>
 
-    <div class="hero__inner wrap">
+    <div class="hero__inner">
       <div class="hero__lead">
         <p class="hero__eyebrow" data-reveal>
           <span class="dot"></span>ENGENHARIA · AUTOMAÇÃO · MANUTENÇÃO

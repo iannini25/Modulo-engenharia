@@ -1,7 +1,8 @@
 /* ============================================================
    MÓDULO ENGENHARIA — "Engenharia de Precisão"
    Light, concrete-neutral base · brand red (#BE1622) + graphite
-   Display: Archivo · Body: IBM Plex Sans · Data: IBM Plex Mono
+   Display/brand: Koralle NF (logo face) · Body: Plus Jakarta Sans
+   Feature/emphasis: Zilla Slab (engineered slab) · Data: IBM Plex Mono
    Signature: technical coordinate/measurement HUD over real plant
    ============================================================ */
 
@@ -26,13 +27,14 @@
   --panel-2:#1C2025;
   --wa:#25D366;
 
-  /* type — brand typeface: Plus Jakarta Sans.
-     Chosen via rendered A/B over logo-original.png (Task 2.1): captures the logo's
-     geometric-humanist DNA (round o, even strokes, two-story a) and is more
-     distinctive than Poppins/Montserrat (the "fidelity ruler" candidates).
-     One family for display + body for full brand cohesion; mono is the data accent. */
-  --display:"Plus Jakarta Sans Variable",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+  /* type — DISPLAY uses Koralle NF (the logo's font) for full brand match;
+     BODY stays on Plus Jakarta Sans (a geometric sans that harmonises with Koralle)
+     for paragraph legibility; ACCENT is Zilla Slab — a contrasting engineered slab
+     reserved for highlighted/featured text (headline emphasis, key figures);
+     mono is the data accent. */
+  --display:"Koralle NF","Plus Jakarta Sans Variable",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
   --sans:"Plus Jakarta Sans Variable",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+  --accent:"Zilla Slab",Rockwell,"Roboto Slab",Georgia,serif;
   --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
 
   /* layout */
@@ -43,6 +45,16 @@
   --r-lg:10px;
   --ease:cubic-bezier(.22,.61,.36,1);
   --ease-io:cubic-bezier(.65,.05,.36,1);
+}
+
+/* Brand display face — Koralle NF (the logo's font). Regular-only file declared
+   across the full weight range so headings use the real glyphs (no faux-bold). */
+@font-face{
+  font-family:"Koralle NF";
+  src:url("/fonts/koralle-nf.woff2") format("woff2"),url("/fonts/koralle-nf.woff") format("woff");
+  font-weight:100 900;
+  font-style:normal;
+  font-display:swap;
 }
 
 *{margin:0;padding:0;box-sizing:border-box}
@@ -86,7 +98,8 @@ button{font-family:inherit}
   color:var(--ink);
   text-wrap:balance;
 }
-.display em{color:var(--red)}
+/* highlighted word inside a Koralle headline → contrasting slab (Zilla Slab) */
+.display em{font-family:var(--accent);font-weight:600;font-style:normal;letter-spacing:-.005em;color:var(--red)}
 .display--light{color:#fff}
 .kicker{
   font-family:var(--mono);
@@ -330,29 +343,37 @@ html.js .hero{height:240svh}
 }
 .hero__hud--quiet{color:rgba(255,255,255,.7)}
 .hero__hud--quiet .hud__corner{opacity:.75}
+/* --- artistic, staggered editorial headline --- */
 .hero__eyebrow{
-  font-family:var(--mono);font-weight:500;font-size:.72rem;letter-spacing:.2em;
-  color:#fff;margin-bottom:1.5rem;display:inline-flex;align-items:center;gap:.6rem;
+  font-family:var(--mono);font-weight:500;font-size:.72rem;letter-spacing:.22em;
+  color:#fff;margin-bottom:1.7rem;display:inline-flex;align-items:center;gap:.75rem;
   text-transform:uppercase;text-shadow:0 2px 14px rgba(0,0,0,.5);
 }
-.hero__eyebrow .dot{width:8px;height:8px;background:var(--red-500);transform:rotate(45deg)}
+.hero__dash{display:inline-block;width:30px;height:2px;background:var(--red-500);flex:none}
 .hero__title{
-  font-family:var(--display);font-weight:800;color:#fff;
-  font-size:clamp(2.6rem,6.4vw,5.2rem);line-height:1.0;letter-spacing:-.022em;
+  position:relative;font-family:var(--display);font-weight:700;color:#fff;
+  font-size:clamp(2.9rem,7vw,5.9rem);line-height:.98;letter-spacing:-.018em;
+  padding-left:clamp(1rem,1.5vw,1.45rem);
   text-shadow:0 4px 40px rgba(0,0,0,.45);
 }
-.hero__title .line{display:block;overflow:hidden}
-.hero__title em{color:var(--red-500)}
+.hero__title::before{content:"";position:absolute;left:0;top:.14em;height:calc(100% - .32em);width:4px;background:var(--red-500);border-radius:2px}
+.hero__title .line{display:block}
+.hero__title .line--step{padding-left:clamp(1.4rem,5.5vw,4.2rem)}
+.hero__title em{font-family:var(--accent);font-weight:600;font-style:normal;letter-spacing:-.005em;color:var(--red-500)}
+.hero__period{color:var(--red-500)}
+.hero__meta{
+  margin-top:clamp(1.5rem,2.4vw,2.1rem);padding-left:clamp(1rem,1.5vw,1.45rem);
+  display:flex;flex-direction:column;align-items:flex-start;gap:clamp(1.3rem,2vw,1.8rem);
+}
 .hero__lede{
-  margin-top:1.6rem;max-width:50ch;color:rgba(255,255,255,.88);
-  font-size:clamp(1.02rem,1.5vw,1.24rem);line-height:1.55;
+  max-width:46ch;color:rgba(255,255,255,.9);
+  font-size:clamp(1.02rem,1.5vw,1.22rem);line-height:1.55;
   text-shadow:0 2px 16px rgba(0,0,0,.5);
 }
 @media (max-width:720px){
   .hero__grade{background:
     linear-gradient(180deg,rgba(12,14,17,.5) 0%,rgba(12,14,17,.2) 28%,rgba(12,14,17,.55) 72%,rgba(12,14,17,.85) 100%);}
 }
-.hero__actions{margin-top:2.2rem;display:flex;gap:1rem;flex-wrap:wrap}
 
 .hero__cue{position:absolute;left:50%;bottom:84px;transform:translateX(-50%);z-index:3;display:flex;flex-direction:column;align-items:center;gap:.6rem;color:rgba(255,255,255,.7)}
 .hero__cue span{font-family:var(--mono);font-size:.6rem;letter-spacing:.24em}
@@ -438,7 +459,7 @@ html.js .hero{height:240svh}
 .stats{background:var(--bg);padding-block:clamp(60px,8vw,110px)}
 .stats__grid{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(1.5rem,3vw,2.5rem)}
 .stat{border-left:2px solid var(--red);padding-left:1.2rem}
-.stat__num{display:block;font-family:var(--display);font-weight:800;font-size:clamp(2.6rem,6vw,4.6rem);line-height:1;letter-spacing:-.03em;color:var(--ink);font-variant-numeric:tabular-nums}
+.stat__num{display:block;font-family:var(--accent);font-weight:700;font-size:clamp(2.6rem,6vw,4.6rem);line-height:1;letter-spacing:-.01em;color:var(--ink);font-variant-numeric:tabular-nums}
 .stat__lbl{display:block;margin-top:.7rem;font-size:.86rem;color:var(--graphite);line-height:1.3}
 .stat__lbl sup{color:var(--red);font-size:.7em}
 .stats__note{margin-top:2.2rem;font-size:.68rem;color:var(--graphite)}

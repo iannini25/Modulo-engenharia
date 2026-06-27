@@ -3,7 +3,7 @@
 Site institucional da **Módulo Engenharia** (automação e engenharia para a
 indústria pesada: mineração, siderurgia, offshore e energia). Construído em
 **Astro** estático, com hero cinematográfico reativo ao scroll, tipografia da
-marca (Plus Jakarta Sans), GSAP/Lenis self-hosted e acessibilidade.
+marca (**Koralle NF**, a fonte da logo), GSAP/Lenis self-hosted e acessibilidade.
 
 ## Como rodar
 
@@ -36,20 +36,27 @@ public/
 └── favicons/ · og-image.png · robots.txt · site.webmanifest
 ```
 
-## Hero (still 4K + movimento de câmera no scroll)
+## Hero (scroll-vídeo: sequência de frames no canvas)
 
-O hero é uma imagem **4K** (`public/hero/platform.*`, 3840px) com um **movimento
-de câmera no scroll** (zoom lento via GSAP) e texto à esquerda. A imagem é
-**ilustrativa, gerada por IA** (Higgsfield: Nano Banana Pro) a partir de uma
-**referência real** do acervo da Módulo (`offshore-3.jpg`) — plataforma offshore
-ao entardecer. Representa o **segmento offshore**, não é "a plataforma da Módulo"
-(procedência em `site.ts`, crédito no rodapé).
+O hero é um **scroll-vídeo**: uma sequência de frames desenhada num `<canvas>` e
+"scrubada" pelo scroll. Começa com a plataforma em enquadramento fechado e dá um
+**pull-back lento, suave e estável** até a plataforma inteira caber na tela com
+uma margem de mar dos lados — ondas e reflexos em movimento, ao entardecer. Texto
+à esquerda, plataforma à direita.
 
-Para trocar: substitua `public/hero/platform.webp/.jpg` (desktop) e
-`platform-portrait.webp/.jpg` (mobile). O componente já tem o motor de
-sequência-de-frames embutido (caso queira voltar a um scroll-vídeo no futuro):
-basta colocar frames em `public/frames/` e ajustar `FRAME_COUNT` em
-`src/components/CinematicHero.astro`.
+O vídeo é **ilustrativo, gerado por IA** (Higgsfield: Kling 3.0, modo 4K) a partir
+de uma **referência real** do acervo da Módulo (`offshore-3.jpg`). Representa o
+**segmento offshore**, não é "a plataforma da Módulo" (procedência em `site.ts`,
+crédito no rodapé).
+
+Fallback (reduced-motion / sem-JS / frames ausentes): o pôster estático
+(`public/hero/platform.*`, frame 1 do vídeo) + um leve movimento de câmera.
+
+Para trocar os frames: gere um novo vídeo, extraia os frames para
+`public/frames/desktop/` (`f_001.webp` … 1500px) e `public/frames/mobile/`
+(900px), regenere `public/hero/platform.*` a partir do frame 1 e ajuste
+`FRAME_COUNT` / `FRAME_COUNT_MOBILE` em `src/components/CinematicHero.astro`
+(hoje 121 desktop / 70 mobile). `FRAME_COUNT = 0` volta o hero para still puro.
 
 ## ⚠️ Pendências do cliente (todas centralizadas em `src/data/site.ts`)
 
@@ -73,7 +80,7 @@ repositório à Vercel ou `vercel --prod`. Apontar o domínio
 ## Identidade
 
 - Vermelho **`#DE1019`** (amostrado da logo · `#AC0C12` / `#F32630`) · grafite `#14171A` · base `#F4F5F6`
-- Tipografia: **Plus Jakarta Sans** (display + corpo) · **IBM Plex Mono** (dados/HUD)
+- Tipografia: **Koralle NF** (display, a fonte da logo) · **Plus Jakarta Sans** (corpo) · **Zilla Slab** (acento) · **IBM Plex Mono** (dados/HUD)
 - Lighthouse: Performance 89 (mobile) / 97 (desktop) · Acessibilidade 97–100 · Best Practices 100 · SEO 100
 
 Documentos de design/plano em `docs/superpowers/`.

@@ -8,7 +8,6 @@ import '../styles/global.css';
 import Seo from '../components/Seo.astro';
 import JsonLd from '../components/JsonLd.astro';
 import Preloader from '../components/Preloader.astro';
-import Rail from '../components/Rail.astro';
 import Nav from '../components/Nav.astro';
 import MobileMenu from '../components/MobileMenu.astro';
 import Footer from '../components/Footer.astro';
@@ -31,7 +30,6 @@ const { title, description, canonical, ogImage } = Astro.props;
   <body>
     <a href="#main" class="skip-link">Pular para o conteúdo</a>
     <Preloader />
-    <Rail />
     <Nav />
     <MobileMenu />
 

@@ -85,7 +85,9 @@ button{font-family:inherit}
 :focus-visible{outline:2px solid var(--red-500);outline-offset:3px}
 .field input:focus-visible,.field textarea:focus-visible{outline-offset:0}
 
-.wrap{max-width:var(--maxw);margin-inline:auto;padding-inline:var(--pad)}
+.wrap{max-width:var(--maxw);margin-inline:auto;
+  padding-left:max(var(--pad),env(safe-area-inset-left));
+  padding-right:max(var(--pad),env(safe-area-inset-right));}
 .mono{font-family:var(--mono);font-weight:500;letter-spacing:.04em}
 
 /* ---------- shared type ---------- */
@@ -198,12 +200,16 @@ html.js [data-reveal]{opacity:0;transform:translateY(26px)}
   position:fixed;top:0;left:0;width:100%;z-index:90;
   display:flex;align-items:center;justify-content:space-between;gap:1.4rem;
   padding:18px var(--pad);
+  padding-left:max(var(--pad),env(safe-area-inset-left));
+  padding-right:max(var(--pad),env(safe-area-inset-right));
+  padding-top:max(18px,env(safe-area-inset-top));
   transition:background .45s var(--ease),box-shadow .45s,padding .45s,border-color .45s;
   border-bottom:1px solid transparent;
 }
 .nav.is-scrolled{
   background:rgba(244,245,246,.82);backdrop-filter:blur(16px) saturate(1.4);
-  border-bottom-color:var(--line);padding-top:12px;padding-bottom:12px;
+  border-bottom-color:var(--line);
+  padding-top:max(12px,env(safe-area-inset-top));padding-bottom:12px;
 }
 /* internal pages: solid nav from the top (first section is dark) */
 .nav--solid{
@@ -258,6 +264,10 @@ html.js [data-reveal]{opacity:0;transform:translateY(26px)}
   position:fixed;inset:0;z-index:80;background:var(--bg);
   display:flex;flex-direction:column;justify-content:center;gap:2.2rem;
   padding:var(--pad);
+  padding-top:max(var(--pad),calc(env(safe-area-inset-top) + 64px));
+  padding-left:max(var(--pad),env(safe-area-inset-left));
+  padding-right:max(var(--pad),env(safe-area-inset-right));
+  padding-bottom:max(var(--pad),env(safe-area-inset-bottom));
   clip-path:inset(0 0 100% 0);transition:clip-path .6s var(--ease-io);
   pointer-events:none;
 }
@@ -277,10 +287,10 @@ html.js [data-reveal]{opacity:0;transform:translateY(26px)}
    ============================================================ */
 /* Reduced-motion / no-JS default: a single static viewport (no dead scroll).
    With JS (animate), the section grows tall and the stage pins for a scroll-scrub. */
-.hero{position:relative;height:100svh;min-height:620px;background:var(--ink)}
+.hero{position:relative;height:100vh;height:100svh;min-height:620px;background:var(--ink)}
 html.js .hero{height:240svh}
 @media (max-width:860px){html.js .hero{height:175svh}}
-.hero__stage{position:sticky;top:0;height:100svh;min-height:620px;overflow:hidden}
+.hero__stage{position:sticky;top:0;height:100vh;height:100svh;min-height:620px;overflow:hidden}
 .hero__media{position:absolute;inset:0;will-change:transform}
 .hero__media picture{display:block;width:100%;height:100%}
 .hero__media img{width:100%;height:100%;object-fit:cover;object-position:50% 50%}
@@ -338,7 +348,8 @@ html.js .hero{height:240svh}
   padding-inline:clamp(22px,4.5vw,72px)}
 .hero__lead{max-width:min(600px,50%);pointer-events:auto}
 @media (max-width:860px){
-  .hero__inner{align-items:flex-end;padding-bottom:clamp(90px,16vh,150px)}
+  .hero__inner{align-items:flex-end;
+    padding-bottom:max(clamp(90px,16vh,150px),calc(env(safe-area-inset-bottom) + 90px))}
   .hero__lead{max-width:none}
 }
 .hero__hud--quiet{color:rgba(255,255,255,.7)}
@@ -449,9 +460,31 @@ html.js .hero{height:240svh}
 .eq-cta b{font-family:var(--display);font-weight:800;font-size:1.7rem;line-height:1.05}
 .eq-cta em{font-size:.9rem;opacity:.9}
 
-/* mobile fallback: native horizontal scroll */
+/* mobile fallback: native horizontal scroll (JS adds .equip--native; the media
+   query below makes it the default so the carousel works even without JS) */
 .equip--native .equip__pin{overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch}
 .equip--native .eq-card,.equip--native .eq-cta{scroll-snap-align:center}
+
+@media (max-width:860px){
+  /* drop the full-viewport pin: a tight, swipeable card rail instead of a
+     screen-tall section with one centred card surrounded by dead space */
+  .equip__pin{
+    height:auto;min-height:0;align-items:stretch;
+    padding-block:clamp(52px,9vw,84px);
+    overflow-x:auto;overflow-y:hidden;
+    scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;
+    scroll-padding-left:var(--pad);
+  }
+  .equip__track{align-items:stretch;gap:16px}
+  .equip__intro{width:min(76vw,330px);padding-right:1rem;align-self:center}
+  .equip__intro .display{font-size:clamp(2.1rem,9vw,2.9rem)}
+  .eq-card{width:min(78vw,300px);height:min(108vw,430px)}
+  .eq-card,.eq-cta{scroll-snap-align:center}
+  .eq-cta{width:min(72vw,260px)}
+  /* hide the native scrollbar track for a cleaner rail */
+  .equip__pin{scrollbar-width:none}
+  .equip__pin::-webkit-scrollbar{display:none}
+}
 
 /* ============================================================
    5 · NÚMEROS
@@ -573,7 +606,9 @@ html.js .hero{height:240svh}
    FAB
    ============================================================ */
 .fab{
-  position:fixed;right:clamp(16px,3vw,28px);bottom:clamp(16px,3vw,28px);z-index:70;
+  position:fixed;
+  right:max(clamp(16px,3vw,28px),env(safe-area-inset-right));
+  bottom:max(clamp(16px,3vw,28px),env(safe-area-inset-bottom));z-index:70;
   width:56px;height:56px;border-radius:50%;background:var(--wa);color:#06351b;
   display:grid;place-items:center;box-shadow:0 14px 30px -10px rgba(37,211,102,.55);
   transform:translateY(0);transition:transform .4s var(--ease),box-shadow .3s;
@@ -646,6 +681,35 @@ html.js .hero{height:240svh}
 }
 
 /* ============================================================
+   TOUCH TARGETS — ≥44px on coarse pointers (touch/stylus)
+   ============================================================ */
+@media (pointer:coarse){
+  .nav__burger{width:44px;height:44px}
+  .seg-tab{padding-block:.72rem;min-height:44px}
+  .chip{padding-block:.64rem;min-height:44px}
+  .footer__col a,.contact__direct a,.cform__alt a{min-height:44px;display:inline-flex;align-items:center}
+  .nav__links a{padding-block:.4rem}
+}
+
+/* ============================================================
+   LANDSCAPE PHONES — short viewport: tame the tall hero
+   ============================================================ */
+@media (orientation:landscape) and (max-height:560px){
+  .hero,.hero__stage{min-height:440px}
+  html.js .hero{height:170svh}
+  .seg-hero{height:clamp(360px,92vh,520px)}
+  .page-hero,.contact--top{padding-top:clamp(96px,22vh,150px)}
+  /* short viewport: shrink hero type + tighten rhythm so the bottom-aligned
+     text clears the fixed nav instead of colliding with the brand */
+  .hero__title{font-size:clamp(2.1rem,5.2vw,2.9rem)}
+  .hero__eyebrow{margin-bottom:.7rem}
+  .hero__meta{margin-top:1rem;gap:1rem}
+  .hero__lede{font-size:1rem}
+  .hero__inner{padding-bottom:max(36px,env(safe-area-inset-bottom))}
+  .hero__cue{display:none}
+}
+
+/* ============================================================
    REDUCED MOTION
    ============================================================ */
 @media (prefers-reduced-motion:reduce){
@@ -653,4 +717,8 @@ html.js .hero{height:240svh}
   html.js [data-reveal]{opacity:1;transform:none}
   .hero__media img{transform:none}
   .pl-sq--ink,.pl-sq--red{animation:none}
+  /* no scroll-scrub when motion is reduced → collapse the tall hero so there's
+     no dead scroll space (the poster fills one viewport) */
+  html.js .hero{height:100svh;min-height:560px}
+  .hero__stage{position:relative;height:100svh;min-height:560px}
 }

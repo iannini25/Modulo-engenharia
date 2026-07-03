@@ -1,0 +1,239 @@
+---
+// Contato / "Bloco de carimbo, a aprovação do desenho". The ACTION (AIDA).
+// The technical-drawing title block becomes the contact device: a graphite
+// stamp grid (stampFields), the promise repeated in giant Koralle, a line-art
+// wireframe of Minas Gerais with a single lit diamond pin, and the short form
+// that home.ts wires to WhatsApp. The submit CTA is the ONE fully-red block on
+// the whole page (btn--ember). No invented CNPJ or precise address.
+import DMark from './DMark.astro';
+import { copy } from '../../data/home';
+import { ignite } from '../../lib/ignite';
+const s = copy['contato'];
+
+const responsavel =
+  s.stampFields.find((f: any) => f.label === 'RESPONSÁVEL:')?.value ?? 'MÓDULO ENGENHARIA';
+const local = s.stampFields.find((f: any) => f.label === 'LOCAL:')?.value ?? 'MINAS GERAIS, BR';
+
+// ignite the ember only on the final period of the repeated promise
+const promiseHtml = ignite(s.promiseRepeat, '.');
+
+const segments = ['Mineração', 'Siderurgia', 'Offshore', 'Energia'];
+
+// simplified line-art silhouette of Minas Gerais (illustrative wireframe, not a map embed)
+const MG_OUTLINE =
+  'M66 46 L92 30 L120 44 L146 28 L172 46 L200 40 L224 62 L240 92 L246 120 L234 146 L214 160 L198 182 L170 194 L146 184 L120 196 L92 188 L74 166 L52 150 L40 120 L34 92 L48 66 Z';
+const MG_CONTOUR =
+  'M86 74 L120 66 L150 60 L186 72 L210 96 L214 124 L196 150 L168 168 L132 168 L104 154 L78 128 L72 100 Z';
+---
+<section id="contato" class="sec cto">
+  <div class="wrap cto__wrap">
+    <header class="cto__head" data-reveal>
+      <p class="u-kicker"><i></i>{s.kicker}</p>
+      <h2 class="cto__promise u-display u-xl" set:html={promiseHtml}></h2>
+      <p class="cto__reassure u-lede">{s.reassurance}</p>
+    </header>
+
+    <div class="cto__sheet">
+      <!-- the title block: carimbo of the technical drawing -->
+      <aside class="stamp mod lcorners" data-reveal>
+        <div class="stamp__top">
+          <p class="stamp__cap u-mono">BLOCO DE CARIMBO / APROVAÇÃO DO DESENHO</p>
+          <span class="stamp__revtab u-mono">REV B</span>
+        </div>
+
+        <dl class="stamp__grid">
+          {s.stampFields.map((f: any) => {
+            const wide = f.label === 'SEGMENTO:' || f.label === 'STATUS:';
+            const isStatus = f.label === 'STATUS:';
+            return (
+              <div class:list={['stamp__cell', wide && 'stamp__cell--wide']}>
+                <dt class="u-mono stamp__label">{f.label}</dt>
+                <dd class:list={['u-mono', 'stamp__value', isStatus && 'u-ember']}>
+                  {isStatus && <i class="stamp__live" aria-hidden="true"></i>}
+                  {f.value}
+                </dd>
+              </div>
+            );
+          })}
+        </dl>
+
+        <figure class="mapmg">
+          <svg
+            class="mapmg__svg"
+            viewBox="0 0 280 240"
+            role="img"
+            aria-label="Contorno ilustrativo de Minas Gerais, a base da Módulo Engenharia, em traço wireframe com um pino no ponto de operação"
+          >
+            <path class="mapmg__contour" d={MG_CONTOUR} data-draw-line />
+            <path class="mapmg__outline" d={MG_OUTLINE} data-draw-line />
+            <line class="mapmg__leader" x1="168" y1="108" x2="197" y2="94" />
+            <g class="mapmg__mark" transform="translate(168 108)">
+              <rect class="mapmg__pulse" x="-7" y="-7" width="14" height="14" />
+              <rect class="mapmg__dot" x="-5" y="-5" width="10" height="10" transform="rotate(45)" />
+            </g>
+            <text class="mapmg__tag" x="202" y="91">BASE</text>
+            <text class="mapmg__tag" x="202" y="105">MINAS GERAIS</text>
+          </svg>
+          <figcaption class="mapmg__cap u-mono">{s.locationLine}</figcaption>
+        </figure>
+      </aside>
+
+      <!-- the action: short form wired to WhatsApp by home.ts -->
+      <form
+        id="waForm"
+        class="wf mod lcorners lcorners--ember"
+        novalidate
+        data-reveal
+        aria-label="Falar com um engenheiro pelo WhatsApp"
+      >
+        <p class="wf__cap u-mono"><i class="wf__dot" aria-hidden="true"></i>PREENCHA, ABRE DIRETO NO WHATSAPP</p>
+
+        <div class="wf__field">
+          <label for="wf-nome">Seu nome</label>
+          <input id="wf-nome" name="nome" type="text" autocomplete="name" placeholder="Como podemos te chamar" />
+        </div>
+
+        <div class="wf__field">
+          <label for="wf-empresa">Empresa ou planta</label>
+          <input id="wf-empresa" name="empresa" type="text" autocomplete="organization" placeholder="Onde a máquina não pode parar" />
+        </div>
+
+        <div class="wf__field">
+          <span class="wf__legend u-mono" id="segLabel">Segmento da planta</span>
+          <div class="wf__chips" role="group" aria-labelledby="segLabel">
+            {segments.map((seg) => (
+              <button type="button" class="chip u-mono" data-seg={seg} aria-pressed="false">{seg}</button>
+            ))}
+          </div>
+        </div>
+
+        <div class="wf__field">
+          <label for="wf-msg">O que precisa resolver</label>
+          <textarea id="wf-msg" name="msg" rows="3" placeholder="Parada programada, retrofit, automação, corretiva de urgência"></textarea>
+        </div>
+
+        <button type="submit" class="btn btn--ember btn--lg wf__cta" data-magnetic>
+          {s.cta}
+          <svg class="arw" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <p class="wf__micro u-mono">{s.ctaMicrocopy}</p>
+      </form>
+    </div>
+
+    <!-- final signature: the stamp is sealed -->
+    <div class="cto__sign" data-reveal>
+      <DMark draw label="Módulo Engenharia" />
+      <span class="cto__seal u-mono">APROVADO / {responsavel} · {local}</span>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* faint 45deg blueprint texture, the drawing sheet aligned to the mother angle */
+  .cto{position:relative;scroll-margin-top:80px}
+  .cto::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
+    background-image:
+      repeating-linear-gradient(45deg,var(--line) 0 1px,transparent 1px 48px),
+      repeating-linear-gradient(-45deg,var(--line) 0 1px,transparent 1px 48px);
+    opacity:.12;
+    -webkit-mask-image:linear-gradient(180deg,transparent,black 16%,black 84%,transparent);
+    mask-image:linear-gradient(180deg,transparent,black 16%,black 84%,transparent)}
+  .cto__wrap{position:relative;z-index:1}
+
+  /* ---- header ---- */
+  .cto__head{max-width:920px;margin-bottom:clamp(2.4rem,5vw,4rem)}
+  .cto__promise{margin-top:1.3rem;text-wrap:balance}
+  .cto__reassure{margin-top:1.5rem;max-width:52ch;color:var(--ink);opacity:.92}
+
+  /* ---- sheet layout: title block + action side by side ---- */
+  .cto__sheet{display:grid;grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);
+    gap:clamp(1rem,2.4vw,2rem);align-items:start}
+
+  /* ---- the carimbo (title block) ---- */
+  .stamp{background:var(--surface);padding:clamp(1.2rem,2.2vw,1.7rem);--chf:26px;
+    box-shadow:inset 0 1px 0 rgba(236,238,241,.06)}
+  .stamp__top{display:flex;justify-content:space-between;align-items:center;gap:1rem;
+    padding-bottom:.9rem;border-bottom:var(--hair) solid var(--line);margin-bottom:1rem}
+  .stamp__cap{font-size:.6rem;letter-spacing:.13em;color:var(--muted);line-height:1.4}
+  .stamp__revtab{flex:none;font-size:.6rem;letter-spacing:.14em;color:var(--muted);
+    padding:.3rem .62rem;border:var(--hair) solid var(--line);clip-path:var(--clip-chf);--chf:8px}
+
+  .stamp__grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--hair);
+    background:var(--line);border:var(--hair) solid var(--line);
+    clip-path:var(--clip-chf);--chf:14px}
+  .stamp__cell{background:var(--surface);padding:.72rem .85rem;min-height:58px;
+    display:flex;flex-direction:column;gap:.3rem;justify-content:center}
+  .stamp__cell--wide{grid-column:1/-1}
+  .stamp__label{font-size:.56rem;letter-spacing:.13em;color:var(--muted)}
+  .stamp__value{font-size:.72rem;letter-spacing:.05em;color:var(--ink);line-height:1.3;
+    display:flex;align-items:center;gap:.45rem;flex-wrap:wrap}
+  .stamp__value.u-ember{color:var(--accent-hi)}
+  .stamp__live{width:7px;height:7px;flex:none;background:var(--accent);clip-path:var(--clip-diamond);
+    box-shadow:0 0 0 0 rgba(var(--accent-rgb),.55);animation:ctoLive 1.9s var(--ease) infinite}
+  @keyframes ctoLive{0%{box-shadow:0 0 0 0 rgba(var(--accent-rgb),.55)}70%{box-shadow:0 0 0 7px rgba(var(--accent-rgb),0)}100%{box-shadow:0 0 0 0 rgba(var(--accent-rgb),0)}}
+
+  /* ---- Minas Gerais line-art wireframe ---- */
+  .mapmg{margin-top:1.2rem;padding:.4rem .2rem 0}
+  .mapmg__svg{width:100%;height:auto;max-height:220px;display:block;overflow:visible}
+  .mapmg__outline{fill:none;stroke:var(--line);stroke-width:1.6;stroke-linejoin:round;vector-effect:non-scaling-stroke}
+  .mapmg__contour{fill:none;stroke:var(--line);stroke-width:1;opacity:.55;stroke-linejoin:round;vector-effect:non-scaling-stroke}
+  .mapmg__leader{stroke:var(--accent);stroke-width:1;opacity:.75}
+  .mapmg__mark{filter:drop-shadow(0 0 6px rgba(var(--accent-rgb),.7))}
+  .mapmg__dot{fill:var(--accent)}
+  .mapmg__pulse{fill:none;stroke:var(--accent);stroke-width:1.4;
+    transform-box:fill-box;transform-origin:center;animation:ctoMapPulse 2.6s var(--ease) infinite}
+  @keyframes ctoMapPulse{0%{transform:rotate(45deg) scale(.5);opacity:.8}70%{opacity:0}100%{transform:rotate(45deg) scale(2.3);opacity:0}}
+  .mapmg__tag{fill:var(--muted);font-family:var(--mono);font-size:9px;letter-spacing:.1em}
+  .mapmg__cap{margin-top:.4rem;font-size:.6rem;letter-spacing:.07em;color:var(--muted);line-height:1.5}
+
+  /* ---- the action form ---- */
+  .wf{position:relative;background:var(--surface);padding:clamp(1.3rem,2.4vw,2rem);--chf:26px;
+    display:flex;flex-direction:column;gap:1rem;box-shadow:inset 0 1px 0 rgba(236,238,241,.06)}
+  .wf__cap{display:inline-flex;align-items:center;gap:.55rem;font-size:.62rem;letter-spacing:.13em;
+    color:var(--muted);margin-bottom:.1rem}
+  .wf__dot{width:7px;height:7px;flex:none;background:var(--accent);clip-path:var(--clip-diamond);
+    box-shadow:0 0 8px rgba(var(--accent-rgb),.6)}
+  .wf__field{display:flex;flex-direction:column;gap:.5rem}
+  .wf__field label,.wf__legend{font-family:var(--mono);font-size:.64rem;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--muted)}
+  .wf input,.wf textarea{font-family:var(--sans);font-size:1rem;color:var(--ink);
+    background:var(--bg);border:var(--hair) solid var(--line);padding:.85rem 1rem;min-height:48px;
+    clip-path:var(--clip-chf);--chf:12px;transition:border-color .3s var(--ease),background .3s}
+  .wf textarea{min-height:98px;resize:vertical;line-height:1.5}
+  .wf input::placeholder,.wf textarea::placeholder{color:var(--muted)}
+  .wf input:focus,.wf textarea:focus{outline:none;border-color:var(--accent);background:var(--surface-2)}
+
+  .wf__chips{display:flex;flex-wrap:wrap;gap:.6rem}
+  .chip{font-size:.68rem;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);
+    background:var(--bg);border:var(--hair) solid var(--line);padding:.6rem .95rem;min-height:44px;
+    display:inline-flex;align-items:center;clip-path:var(--clip-chf);--chf:9px;
+    transition:color .25s var(--ease),border-color .25s,background .25s}
+  .chip::before{content:"";width:7px;height:7px;margin-right:.5rem;flex:none;
+    background:var(--muted-dim);clip-path:var(--clip-diamond);transition:background .25s,box-shadow .25s}
+  .chip.is-active{color:var(--accent-hi);border-color:var(--accent);background:var(--surface-2)}
+  .chip.is-active::before{background:var(--accent);box-shadow:0 0 8px rgba(var(--accent-rgb),.6)}
+  @media (hover:hover) and (pointer:fine){
+    .chip:hover{color:var(--ink);border-color:var(--muted-dim)}
+    .chip.is-active:hover{color:var(--accent-hi);border-color:var(--accent)}
+  }
+
+  .wf__cta{width:100%;margin-top:.4rem}
+  .wf__micro{font-size:.62rem;letter-spacing:.05em;color:var(--muted);text-transform:none;line-height:1.55}
+
+  /* ---- final seal ---- */
+  .cto__sign{margin-top:clamp(2.4rem,5vw,3.6rem);padding-top:1.6rem;
+    border-top:var(--hair) solid var(--line);display:flex;align-items:center;gap:1rem;flex-wrap:wrap;--dmark-w:40px}
+  .cto__seal{font-size:.62rem;letter-spacing:.11em;color:var(--muted)}
+
+  /* ---- reflow: stack the sheet, widen the CTA ---- */
+  @media (max-width:900px){
+    .cto__sheet{grid-template-columns:1fr}
+    .mapmg__svg{max-height:250px}
+  }
+  @media (max-width:560px){
+    .stamp__grid{grid-template-columns:1fr}
+    .stamp__cell--wide{grid-column:auto}
+    .wf__chips .chip{flex:1 1 42%;justify-content:center}
+    .chip::before{margin-right:.4rem}
+  }
+</style>

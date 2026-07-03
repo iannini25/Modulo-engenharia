@@ -1,0 +1,199 @@
+{
+  "systemName": "Grafite e Brasa — Sistema Módulo",
+  "palette": {
+    "bg": "#0B0D0F",
+    "surface": "#14171A",
+    "ink": "#ECEEF1",
+    "mutedInk": "#8A929B",
+    "brandRed": "#DE1019",
+    "accent": "#F32630",
+    "line": "#22262B"
+  },
+  "type": {
+    "display": "Koralle NF",
+    "body": "Plus Jakarta Sans",
+    "mono": "IBM Plex Mono",
+    "accent": "Zilla Slab"
+  },
+  "signatureElement": "O Módulo, o duplo losango deslocado da logo escalado para um sistema estrutural inteiro. Um único ângulo-mãe de 45 graus governa TODA forma da página, nada é retângulo, quadrado ou círculo puro. (1) Toda imagem vive dentro de um módulo chanfrado (canto entalhado no vértice do losango) ou de um parallelograma canted no mesmo ângulo. (2) As seções se montam de módulos deslocados de footprints deliberadamente DESIGUAIS que deslizam e travam com snap seco, literalizando o nome Módulo, nunca uma grade de losangos idênticos. (3) Uma marca persistente de dois losangos, um grafite preenchido e um vermelho em wireframe, reaparece como marcador de seção, bullet e moldura. (4) Um fio SVG de 1px (GSAP DrawSVG) tricota o contorno do losango na entrada de 1 ou 2 blocos-chave, e a transição de seção assinatura é o split-diamond, a tela se divide na diagonal do losango em dois triângulos que deslizam, reservado a no máximo duas trocas. O vermelho da marca é a brasa que só acende no ponto crítico.",
+  "imageTreatment": "Regra dura de forma: proibido retângulo, quadrado e círculo puro. Toda imagem é mascarada por clip-path no ângulo-mãe de 45 graus, em uma de três famílias derivadas do losango. FAMÍLIA A, módulo chanfrado, dois cantos opostos entalhados: clip-path polygon(var(--chf) 0, 100% 0, 100% calc(100% - var(--chf)), calc(100% - var(--chf)) 100%, 0 100%, 0 var(--chf)) com --chf entre 28px e 44px; é a moldura padrão das fotos humanas com rosto, porque os cantos entalhados nunca chegam ao centro. FAMÍLIA B, parallelograma canted: polygon(var(--sk) 0, 100% 0, calc(100% - var(--sk)) 100%, 0 100%) com --sk de 6 a 12 por cento, para as faixas de segmento e imagens que sangram na borda. FAMÍLIA C, losango pleno: polygon(50% 0, 100% 50%, 50% 100%, 0 50%), só para chips pequenos e o device de marca. PROTEÇÃO DE ROSTO, regra dura: cada foto humana tem zona-segura demarcada, o chanfro corta só espaço negativo, fundo ou borda, nunca o rosto; engenheiro.webp (de costas) é a única que tolera corte agressivo full-bleed em parallelograma; programador.webp e controle-automacao.webp (rosto em três quartos) usam Família A superdimensionada com a tela SCADA legível. COR versus DUOTONE: duotone grafite #14171A para vermelho #DE1019 só no acervo datado e baixa-res (recuperadora, empilhadeira, roda-canecas, patio-minerio, beneficiamento, alto-forno, siderurgica, offshore-1, offshore-2, navio-sonda, paineis), contido e pequeno como chip; as três fotos novas ficam quase em cor cheia, grandes, grau de herói; offshore-3.webp em cor plena como sujeito do herói; o âmbar do aço sobrevive uma única vez em laminacao.webp na Siderurgia. Cada imagem carrega cantoneira em L chanfrada em IBM Plex Mono e, quando aponta um ponto crítico real (botão vermelho, LED, plataforma), um balão DET A com leader-line no vértice do losango, dignificando o acervo e reforçando vermelho igual criticidade.",
+  "motionLanguage": "Peso deliberado de máquina pesada, curvas custom slow-in hard-settle, nunca bouncy. Entrada cubic-bezier(0.16, 1, 0.3, 1), travamento dos módulos com micro-overshoot que assenta seco. Dois motores particionados por região, jamais no mesmo elemento (conflito de transform). CAMADA SCROLL (scroll-cinematic, GSAP mais ScrollTrigger mais Lenis): dona do herói scroll-vídeo em canvas (frames/desktop/f_XXX.webp scrubada quadro a quadro, dolly-out de offshore-3 até caber com margem, único ativo preservado), do único pin com scroll horizontal (loop-check), dos reveals quietos, do parallax leve dentro das máscaras e de todo traço SVG. DrawSVG e MorphSVG são plugins do GSAP, todo desenho de linha roda no GSAP, nunca no anime.js (corrigindo a inconsistência da spec original). CAMADA MICRO (anime.js): odômetros mono, cantoneiras em L no hover, hover magnético dos CTAs, dot de status ao vivo, só onde não colide com o transform do scroll. Dois momentos cinematográficos no teto: herói scroll-vídeo e pin horizontal do loop-check com HUD acendendo em sequência. Split-diamond e fio DrawSVG reservados a no máximo duas trocas-chave, resto é reveal quieto, para não virar tique por seção. Vermelho só ignite (glow accent #F32630) no estado crítico e no hover. Só transform e opacity; backdrop-blur só na nav fixa; prefers-reduced-motion colapsa scroll-vídeo em frame estático, split vira opacity, snap e draw off, e o estático mostra todo o conteúdo. Mobile: sem pin, sem hover magnético, sem parallax em máscara, snap off, tudo reflowa.",
+  "designMd": "# DESIGN.md — Grafite e Brasa / Sistema Módulo\n\n> Design system final da Módulo Engenharia. Direção vencedora sintetizada, com os melhores enxertos das direções Dossiê Técnico e Sistema Modular Cinético, e todos os riscos do crítico já resolvidos como regra dura.\n\n## 1. Filosofia\n\nIndústria pesada vista à noite, quando a planta segue rodando e a escala aparece. O site é um cinema de operação, não um folder de vendas. O silêncio grafite dá seriedade institucional, o vermelho da marca é a brasa que só acende no ponto crítico, no estado, no alerta, no dado que decide, no clique que importa. Tudo nasce do mark: dois losangos deslocados que se encaixam viram um sistema estrutural inteiro, não um enfeite. A coesão vem de repetir um único ângulo-mãe de 45 graus e um único motivo, o módulo, então mesmo o acervo heterogêneo e baixa-res se unifica sob duotone e forma. A régua é relatório de engenharia caro, respiro macro, tipografia larga e confiante, grafismo de instrumento de precisão. Se um output pareceria igual ao de qualquer prompt de IA, falhou.\n\nJornada B2B encenada como operação: fisgar em 3 segundos, enquadrar o risco antes da solução, provar capacidade em software e hardware, mostrar os quatro segmentos dominados, reduzir risco com honestidade, levar ao WhatsApp com baixíssima fricção.\n\n## 2. Tokens\n\n### 2.1 Cor (a economia do vermelho é lei)\n\nEstratégia committed/drenched no escuro. Cerca de 90 por cento da tela é grafite. O vermelho aparece em menos de 10 por cento da superfície, sempre no ponto crítico, nunca decorativo.\n\n| Token | Hex | OKLCH aprox | Papel |\n|---|---|---|---|\n| bg | `#0B0D0F` | oklch(0.16 0.006 240) | Void, cenário de planta à noite |\n| surface | `#14171A` | oklch(0.22 0.007 240) | Painel elevado da marca, também o grafite do duotone |\n| ink | `#ECEEF1` | oklch(0.94 0.004 250) | Texto primário |\n| mutedInk | `#8A929B` | oklch(0.63 0.013 250) | Texto secundário, legendas, HUD neutro |\n| line | `#22262B` | oklch(0.28 0.008 245) | Hairline de grade, cota, moldura. Sobre imagem usar rgba(236,238,241,0.08) |\n| brandRed | `#DE1019` | oklch(0.57 0.243 27) | SÓ display grande e line-art (contraste >= 3:1). O vermelho da logo |\n| accent | `#F32630` | oklch(0.62 0.232 27) | Vermelho de TEXTO, HUD, rótulo, ignite/glow, dot ao vivo. 4.76:1 em bg |\n| redPressed | `#AC0C12` | oklch(0.46 0.205 27) | Estado pressed/escuro do CTA |\n| amberDiegetic | `#E4933B` | oklch(0.72 0.13 63) | Exceção diegética, calor do aço, SÓ em laminacao.webp na Siderurgia, uma vez |\n\n**Regra de contraste (crítica, não negociável):** `#DE1019` como texto pequeno falha WCAG AA no escuro (3.90:1 sobre bg). Portanto: qualquer vermelho em TEXTO, rótulo mono ou HUD usa `accent #F32630`. `brandRed #DE1019` fica reservado a display gigante e a traço de line-art (onde 3:1 basta). Nunca um rótulo IBM Plex Mono em `#DE1019`. O CTA de WhatsApp é o único bloco totalmente vermelho da página; se botões secundários, dots ou bordas também acenderem vermelho, a brasa perde significado. O âmbar e o azul da hora azul existem SÓ dentro da fotografia, jamais viram token de UI.\n\n### 2.2 Tipografia\n\nQuatro vozes num eixo de contraste real, não quatro sans quase iguais.\n\n| Fonte | Papel | Notas |\n|---|---|---|\n| **Koralle NF** | Display. A fonte da própria logo, geométrica arredondada, vira voz de comando | Só display e números gigantes. NUNCA no corpo |\n| **Plus Jakarta Sans** | Corpo. Humanista neutro de baixo contraste, quieto | Leitura editorial em medida larga |\n| **IBM Plex Mono** | Dados, HUD, cotas, loop tags, bloco de carimbo, rótulos ilustrativo | A voz SCADA/máquina |\n| **Zilla Slab** | Acento. Slab mecânico em pull-quotes, statement de missão, intros | A voz de engenharia carimbada |\n\nProibidas como display: Inter, Roboto, Arial, Open Sans, Helvetica.\n\n**Escala (clamp fluido, base editorial larga):**\n- Display XL (herói, CTA final): `clamp(3rem, 8vw, 8.5rem)`, Koralle, line-height 0.98, tracking -0.02em\n- Display L (abre seção): `clamp(2.25rem, 5vw, 4.5rem)`, Koralle, lh 1.02\n- H3 módulo: `clamp(1.5rem, 2.4vw, 2.25rem)`, Koralle\n- Pull-quote/missão: `clamp(1.6rem, 3vw, 2.75rem)`, Zilla Slab, lh 1.2\n- Corpo: `clamp(1rem, 1.15vw, 1.2rem)`, Plus Jakarta Sans, lh 1.6, medida 62ch máx\n- HUD/cota/carimbo: `0.75rem` a `0.8125rem`, IBM Plex Mono, tracking 0.08em, uppercase nos rótulos\n- Número gigante ilustrativo: `clamp(3.5rem, 10vw, 11rem)`, Koralle, com odômetro mono ao lado\n\nHeadline do herói em 2 a 3 linhas no máximo, nunca wrap de 6 linhas.\n\n### 2.3 Espaço\n\nRitmo macro. Escala base 4px. Seções `py-24` a `py-40` (`6rem` a `10rem`). Container largo até `1360px` com `px-6` mobile, `px-10` desktop. Gutter de grade de 12 colunas. Assimetria é a regra, simetria de três colunas iguais é banida.\n\n### 2.4 Raio e chanfro (o ângulo-mãe)\n\nNão há `border-radius` grande e macio de SaaS. A geometria é chanfro reto de 45 graus.\n- `--chf: clamp(28px, 3vw, 44px)` chanfro padrão do módulo\n- `--sk: 8%` inclinação do parallelograma canted\n- Cantoneiras em L: 2 traços de 1px de 24px de comprimento no vértice, cor `line` ou `accent` quando crítico\n- Raio suave permitido só em pills de CTA (`rounded-full`) e na nav flutuante\n\n### 2.5 Sombra e elevação\n\nSem drop-shadow escuro genérico. Elevação por: (1) mudança de superfície (`bg` para `surface`), (2) hairline `line`, (3) um inset highlight sutil no topo do módulo `inset 0 1px 0 rgba(236,238,241,0.06)`, (4) glow `accent` só no estado crítico/hover, `0 0 24px rgba(243,38,48,0.35)`. Nada de `shadow-md` padrão.\n\n## 3. Elemento-assinatura\n\nVer campo `signatureElement`. Em síntese: o duplo losango da logo vira sistema estrutural. Imagens em módulos chanfrados, seções que se montam de módulos de footprints desiguais com snap, marca de dois losangos como marcador persistente, fio SVG que tricota o losango em 1 ou 2 entradas-chave, transição split-diamond reservada.\n\nEnxerto do Dossiê Técnico: o **bloco de carimbo** do desenho técnico vira a seção de contato (o rodapé é a aprovação do desenho). Enxerto do Sistema Cinético: **âmbar exatamente uma vez** na Siderurgia como regra dura de economia de cor.\n\n## 4. Tratamento de imagem não-convencional\n\nVer campo `imageTreatment` para os clip-paths concretos das três famílias de forma (módulo chanfrado, parallelograma canted, losango pleno), a proteção de rosto e a regra cor versus duotone. Pontos-chave: nunca retângulo/quadrado/círculo; duotone só no acervo datado; três fotos novas quase em cor cheia; offshore-3 em cor plena; âmbar uma vez; balão DET A apontando o ponto crítico real.\n\n## 5. Linguagem de motion\n\nVer campo `motionLanguage`. Dois motores particionados (scroll-cinematic com GSAP/ScrollTrigger/Lenis/DrawSVG na camada de scroll e todo SVG; anime.js só micro sem colisão de transform). Dois momentos cinematográficos no teto: herói scroll-vídeo e pin horizontal do loop-check. Só transform e opacity. prefers-reduced-motion entrega versão estática completa.\n\n## 6. Acessibilidade e contraste\n\n- Texto vermelho SÓ em `accent #F32630` (>= 4.5:1 no escuro), display/line-art pode usar `brandRed`.\n- `mutedInk #8A929B` sobre `bg` fica em ~5:1, ok para corpo secundário; se cair abaixo em fundo de imagem, escurecer o overlay atrás.\n- Alvo de toque mínimo 44px. Pill de WhatsApp fixa usa `dvh` e `env(safe-area-inset-bottom)`.\n- Todo scroll-driven degrada com `prefers-reduced-motion`, e o conteúdo estático fica 100 por cento visível (nada preso em hidden).\n- Foco visível com anel `accent` de 2px. Legendas e alt em pt-BR. HUD tem equivalente textual.\n- Foto humana nunca tem rosto cortado pela máscara.\n\n## 7. Honestidade de dados (regra dura)\n\nMétricas são ilustrativas e rotuladas como `(ilustrativo)` em IBM Plex Mono, dentro da própria estética de documento técnico (enxerto do Dossiê). Só o número 4 (segmentos) é real e ganha destaque cromático. Proibido inventar cliente, case, logo, CNPJ ou endereço preciso. Sem travessão em nenhum texto, tudo reescrito com vírgula, incluindo o statement da missão e ranges em mono (escrever REV A, REV B, nunca com traço entre eles).\n\n## 8. Seções\n\nJornada AIDA em 11 blocos. Dois momentos cinematográficos: hero e ciclo-loop. Detalhe de layout, imagens e copy no array `sections`.\n\n1. hero, Herói scroll-vídeo, a plataforma que não pode parar (Atenção)\n2. tese-risco, O custo de parar, risk register frio mais contador de downtime (Interesse/dor)\n3. servicos-modulos, Seis serviços que se encaixam (Prova de capacidade)\n4. software-humano, Software e mão na máquina, a missão (Desejo/diferencial)\n5. ciclo-loop, Loop-check ao vivo, pin horizontal (Prova técnica, momento cinematográfico 2)\n6. retrofit, Rev A para Rev B, modernização de ativos (Diferencial)\n7. segmentos, Quatro temperaturas dominadas, o único dado real (Autoridade)\n8. prova-campo, Prova de campo, engenharia que vai à planta (Prova)\n9. confianca, Painel de disponibilidade, supervisório SCADA (Redução de risco)\n10. contato, Bloco de carimbo, aprovação do desenho mais WhatsApp (Ação)\n11. footer, O módulo se fecha (Fecho de marca)",
+  "sections": [
+    {
+      "id": "hero",
+      "name": "Herói, a plataforma que não pode parar",
+      "purpose": "Fisgar em 3 segundos, fixar a promessa onde falhar não é opção e deixar o WhatsApp acessível de imediato. É o único ativo preservado.",
+      "layout": "Canvas full-bleed com o scroll-vídeo (sequência frames/desktop/f_XXX.webp, poster offshore-3.webp) da plataforma vermelha ao entardecer, dolly-out scrubado do perto até a plataforma inteira caber com margem. offshore-3 fica em cor plena, é o sujeito vermelho sobre o azul da hora azul, único calor de imagem no topo. O texto NÃO flutua centralizado: a promessa em Koralle gigante em 2 a 3 linhas se ancora em cantoneiras chanfradas em L no terço inferior esquerdo, e o wordmark Koralle sangra para fora do frame no topo. HUD em IBM Plex Mono nos cantos com rótulo de estado (SISTEMA OPERANDO) e um dot ao vivo pulsando em accent, sem cifra inventada. No load, os dois losangos e o wordmark se desenham (GSAP DrawSVG). Pill de WhatsApp chanfrada fixa, sempre visível, com dvh e safe-area. Mobile: vídeo colapsa em frame estático da mobile, texto em stack, HUD reduzido a uma linha, pill fixa no rodapé.",
+      "images": [
+        "frames/desktop/f_001.webp",
+        "offshore-3.webp"
+      ],
+      "copyNeeds": [
+        "Headline de 2 a 3 linhas reescrevendo onde falhar não é opção, com vírgulas",
+        "Subhead de 1 linha sobre engenharia, automação e manutenção de máquinas críticas",
+        "Rótulo de estado do HUD em mono, sem número falso",
+        "Microcopy do botão WhatsApp de baixa fricção",
+        "Kicker curto de contexto do segmento offshore"
+      ]
+    },
+    {
+      "id": "tese-risco",
+      "name": "A tese, uma parada custa caro",
+      "purpose": "Enquadrar o risco e criar a dor antes da solução, mostrando o que está em jogo quando uma máquina crítica para, com credibilidade de quem opera planta.",
+      "layout": "Void grafite quase vazio. À esquerda, um risk register frio (enxerto do Dossiê) em IBM Plex Mono, três linhas honestas e qualitativas: o que para, o que se perde, o efeito em cascata, como um registro técnico, não banner alarmista. Ao centro-baixo, um único contador cinético gigante em Koralle mais odômetro mono (enxerto do Cinético) que sobe no scroll dramatizando o custo de downtime acumulando, emoldurado por cantoneiras em L e rotulado (ilustrativo) em mono. Uma única palavra da tese acende em accent, a palavra-brasa. À direita, engenheiro.webp num parallelograma canted alto no ângulo-mãe, duotone, sangrando para fora da borda direita, o homem de costas entrando na planta, o único corte agressivo permitido. Split-diamond opcional na entrada. Mobile: contador acima, register em lista, imagem full-width com corte no negativo.",
+      "images": [
+        "engenheiro.webp",
+        "patio-minerio.webp"
+      ],
+      "copyNeeds": [
+        "Statement editorial curto sobre o custo de parar uma máquina crítica",
+        "A palavra-brasa a destacar em accent",
+        "Itens do risk register em mono, 3 linhas qualitativas sem cifra inventada",
+        "Rótulo (ilustrativo) do contador de downtime"
+      ]
+    },
+    {
+      "id": "servicos-modulos",
+      "name": "Seis serviços que se encaixam",
+      "purpose": "Provar capacidade ponta a ponta apresentando os 6 serviços reais como módulos que se travam num sistema, literalizando o nome Módulo.",
+      "layout": "Momento de montagem. Ao rolar, seis módulos chanfrados de tamanhos e ângulos GENUINAMENTE desiguais deslizam da borda e travam com snap seco num mosaico entrelaçado, eco dos dois losangos escalados para seis, stagger pela posição, nunca uma grade de losangos idênticos (risco banido). Cada módulo abre nome do serviço em Koralle, uma linha de spec em mono e, no módulo-âncora maior, paineis.webp em duotone com os LEDs vermelho e verde amarrando no HUD via balão DET. Footprints deliberadamente diferentes. Hover magnético expande e revela o escopo. Rótulos MOD honestos em mono. Mobile: snap off, vira accordion vertical ou 2-col, cada serviço uma linha expansível, imagem do painel como faixa.",
+      "images": [
+        "paineis.webp",
+        "controle-automacao.webp"
+      ],
+      "copyNeeds": [
+        "Nome e uma linha de valor para cada um dos 6 serviços reais (Automação e Controle, Elétrica e Instrumentação, Máquinas de Pátio, Transportadores de Correia, Montagem e Manutenção, Comissionamento e Start-up)",
+        "Spec técnica curta por módulo (CLP e SCADA, loop-check, pesagem e intertravamento, retrofit)",
+        "Verbo de ação por módulo",
+        "Micro-descrição de detalhe no hover"
+      ]
+    },
+    {
+      "id": "software-humano",
+      "name": "Software e mão na máquina",
+      "purpose": "Cravar o diferencial central e a missão: software que dá controle e informação e reduz a interferência humana sobre o processo, com engenheiros que também executam em campo.",
+      "layout": "programador.webp full-bleed em parallelograma canted ocupando dois terços à direita, quase em cor cheia (duotone levíssimo), com a tela do supervisório mantida legível, refinaria ao entardecer, rosto em três quartos preservado pela zona-segura. À esquerda, um painel grafite sobrepõe a imagem no ângulo-mãe: a missão reescrita com vírgulas em Zilla Slab como pull-quote, e o vermelho accent acende só na frase sobre reduzir a interferência humana. A marca de dois losangos ecoa software mais hardware igual módulo. HUD mono sobre a tela com gauges rotulados (ilustrativo). Mobile: imagem em cima em Família A chanfrada sem cortar rosto, texto embaixo, sem parallax.",
+      "images": [
+        "programador.webp"
+      ],
+      "copyNeeds": [
+        "Reescrita da missão em 1 frase forte, com vírgulas, sem travessão, sobre eficiência, segurança, produtividade, qualidade e informação",
+        "Destaque na parte reduzir a interferência humana sobre o processo ou máquina",
+        "Subtexto sobre engenheiros que programam CLP e SCADA e botam a mão na máquina em campo",
+        "Rótulos de HUD em mono marcados (ilustrativo)"
+      ]
+    },
+    {
+      "id": "ciclo-loop",
+      "name": "Loop-check ao vivo, do CLP ao start-up",
+      "purpose": "Aprofundar a prova de competência técnica real (engenheiros que dominam CLP, SCADA, malhas e campo, não vendedores) e mostrar cobertura ponta a ponta com um único responsável.",
+      "layout": "Segundo e último momento cinematográfico (enxerto do Cinético). Pin com scroll horizontal curto: controle-automacao.webp full-bleed em duotone leve, rosto em três quartos preservado, o botão vermelho do painel amarrando na cor da marca via balão DET A com leader-line. Por cima, um overlay de HUD em IBM Plex Mono (gauges, malhas, loop tags) que se acende em sequência conforme o scroll horizontal percorre o loop, e um fio SVG de loop-check (GSAP DrawSVG) que se desenha ligando sensor, CLP, SCADA e atuador, fechando a malha. Cantoneiras em L nos vértices. Mobile: pin desligado, vira sequência vertical de nós que revelam no scroll normal, HUD em lista, sem travar a rolagem.",
+      "images": [
+        "controle-automacao.webp",
+        "paineis.webp"
+      ],
+      "copyNeeds": [
+        "Headline sobre domínio de CLP, SCADA, redes industriais e malhas",
+        "Explicação de loop-check e partida assistida em linguagem de operação",
+        "Loop tags e gauges ilustrativos de HUD, plausíveis, rotulados",
+        "Frase de desfecho sobre um único responsável do projeto à partida"
+      ]
+    },
+    {
+      "id": "retrofit",
+      "name": "Rev A para Rev B, modularidade aplicada",
+      "purpose": "Diferenciar com retrofit, modernização e automação de ativos existentes, não só projeto novo, usando a convenção real de revisão de desenho técnico.",
+      "layout": "Enxerto do Dossiê. Dispositivo de revisão de prancha: comparativo Rev A (ativo antigo) para Rev B (modernizado) usando o losango como pivô, com uma nuvem de revisão em accent marcando o que mudou e leader lines em mono descrevendo o retrofit. recuperadora.webp em duotone como a máquina de pátio sob modernização, contida num módulo chanfrado, com um segundo chip menor offset. A palavra rev escrita por extenso, nunca traço entre A e B. Ninguém no setor usa revisão de desenho como recurso de UI, é ownable. Mobile: os dois estados empilham, a nuvem de revisão vira uma lista de deltas.",
+      "images": [
+        "recuperadora.webp",
+        "empilhadeira.webp"
+      ],
+      "copyNeeds": [
+        "Headline sobre modernizar e automatizar ativos existentes",
+        "Rótulos Rev A e Rev B e itens da nuvem de revisão",
+        "Uma linha sobre retrofit reduzir parada e estender a vida do ativo, com vírgulas"
+      ]
+    },
+    {
+      "id": "segmentos",
+      "name": "Quatro temperaturas dominadas",
+      "purpose": "Firmar autoridade nos segmentos pesados e exibir o único dado 100 por cento real, quatro.",
+      "layout": "Quatro faixas diagonais empilhadas no ângulo-mãe (parallelograma canted, Família B), uma por segmento, cada uma com imagem duotone: patio-minerio.webp e roda-canecas.webp para Mineração, laminacao.webp e alto-forno.webp para Siderurgia, offshore-1.webp e navio-sonda.webp para Offshore, siderurgica.webp ou paineis.webp para Energia. Um numeral 4 gigante em Koralle atravessa as faixas como escultura tipográfica, rotulado honestamente como o único dado real, em destaque cromático. laminacao.webp guarda o âmbar do aço quente como o ÚNICO calor não vermelho de todo o site, regra dura. Sem grade de chips iguais, as faixas cortam a tela na diagonal do losango. Mobile: faixas viram cards de segmento empilhados, o 4 acima como marca, âmbar preservado só em Siderurgia.",
+      "images": [
+        "patio-minerio.webp",
+        "laminacao.webp",
+        "offshore-1.webp",
+        "alto-forno.webp",
+        "navio-sonda.webp",
+        "roda-canecas.webp"
+      ],
+      "copyNeeds": [
+        "Nome de cada segmento (Mineração, Siderurgia, Offshore, Energia) mais 1 linha de contexto de criticidade",
+        "Legenda do 4 segmentos como o único dado real",
+        "Microcopy mono de cada faixa"
+      ]
+    },
+    {
+      "id": "prova-campo",
+      "name": "Prova de campo, engenharia que vai à planta",
+      "purpose": "Provar presença física e execução real: campo, paradas programadas, corretiva, base em Minas Gerais, com equipamento de verdade.",
+      "layout": "Faixa full-bleed diagonal no ângulo-mãe com correia.webp cortando a paisagem de terra vermelha em duotone, a linha do transportador ecoa o eixo do losango e vira o próprio eixo estrutural da seção (a foto mais marcante como estrutura, não como card). Em overlay, texto sobre engenharia que vai a campo, paradas programadas e corretiva. Abaixo, pranchas menores cotadas do acervo (beneficiamento.webp, hero_patio.webp) em duotone como evidência, cada uma com legenda técnica em mono e cantoneira em L. Split-diamond na saída rumo aos números. Mobile: correia como banner diagonal encurtado, evidências em carrossel horizontal, nunca trem de card.",
+      "images": [
+        "correia.webp",
+        "beneficiamento.webp",
+        "hero_patio.webp"
+      ],
+      "copyNeeds": [
+        "Claim de presença em campo e base em Minas Gerais",
+        "Frase sobre atendimento em paradas programadas e corretiva",
+        "Legendas técnicas em mono de cada prancha de evidência",
+        "Uma frase-ponte sobre execução em campo"
+      ]
+    },
+    {
+      "id": "confianca",
+      "name": "Painel de disponibilidade",
+      "purpose": "Reduzir risco e gerar confiança institucional com números ilustrativos honestos, apresentados como o próprio produto da empresa, informação e supervisório.",
+      "layout": "A seção inteira é um readout de sala de controle em IBM Plex Mono (transforma o strip de métrica banido no supervisório SCADA que é literalmente o produto). Três módulos chanfrados de tamanhos diferentes e offset, cada número em Koralle grande com um mini-losango wireframe que se desenha (GSAP DrawSVG) e odômetro mono que sobe no scroll: mais de 15 anos, mais de 120 projetos, 99 por cento de disponibilidade, cada um com rótulo discreto (ilustrativo) em mono. Uma única linha de brasa accent por gauge no valor crítico. Grafite drenado, muito whitespace, sem foto, o dado é a cena. Mobile: módulos empilham em 1 coluna, odômetros disparam ao entrar na viewport, wireframe estático se reduced-motion.",
+      "images": [
+        "logo-original.png"
+      ],
+      "copyNeeds": [
+        "Os três números ilustrativos com rótulo honesto (ilustrativo)",
+        "Itens de postura de engenharia: base em Minas Gerais, atuação em campo, paradas programadas, corretiva",
+        "Enquadramento de que são valores indicativos, sem inventar cliente, case ou logo"
+      ]
+    },
+    {
+      "id": "contato",
+      "name": "Bloco de carimbo, a aprovação do desenho",
+      "purpose": "Ação: levar ao WhatsApp com baixíssima fricção, reforçando disponibilidade e proximidade, fechando o dossiê.",
+      "layout": "Enxerto do Dossiê. O bloco de carimbo do desenho técnico assume a tela como bloco de contato: campos em IBM Plex Mono (projeto, responsável, contato, local), o CTA magnético de WhatsApp como o ÚNICO bloco totalmente vermelho da página (módulo rômbico preenchido em brandRed, hover ignite accent com glow, redPressed no active, dot ao vivo). A promessa onde falhar não é opção repetida em Koralle gigante. O campo local do carimbo renderiza um contorno topográfico de Minas Gerais em line-art wireframe do losango (enxerto do Cinético, não é embed do Google Maps), com um único pino losango vermelho aceso no escuro. Assinatura final com os dois losangos se desenhando (DrawSVG). Mobile: carimbo em stack, CTA WhatsApp largo e fixo com dvh e safe-area, mapa wireframe reduzido.",
+      "images": [
+        "logo-original.png"
+      ],
+      "copyNeeds": [
+        "CTA principal de WhatsApp e microcopy de resposta ágil, fale com um engenheiro",
+        "Reafirmação da promessa e da disponibilidade e proximidade",
+        "Linha de localização (Minas Gerais) sem endereço falso preciso",
+        "Rótulos dos campos do bloco de carimbo em mono"
+      ]
+    },
+    {
+      "id": "footer",
+      "name": "Rodapé, o módulo se fecha",
+      "purpose": "Fechar a marca, reforçar o institucional e organizar contato e navegação, encerrando a narrativa de encaixe.",
+      "layout": "Rodapé mínimo em grafite construído como uma pequena grade de módulos rômbicos offset: navegação, serviços, contato, WhatsApp e base MG, cada grupo numa célula chanfrada. Os dois losangos da logo se montam ao entrar na viewport (snap final da narrativa) e aparecem grandes em wireframe hairline ao fundo, cortados pela borda. Wordmark Koralle, Módulo em grafite ink mais Engenharia em brandRed. Linha final em IBM Plex Mono com cidade, canal direto e um dot de status, mais a nota de que números são ilustrativos. Sem CNPJ ou endereço inventado. Mobile: grade vira 2 colunas depois 1, losangos de fundo reduzidos.",
+      "images": [
+        "logo-original.png"
+      ],
+      "copyNeeds": [
+        "Linha institucional curta de solidez, sem cliente ou case fabricado",
+        "Grupos de navegação e bloco de contato e WhatsApp",
+        "Base Minas Gerais e canal direto",
+        "Nota em mono de que métricas são ilustrativas, sem inventar CNPJ ou endereço"
+      ]
+    }
+  ]
+}

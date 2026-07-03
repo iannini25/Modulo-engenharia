@@ -1,0 +1,46 @@
+---
+import '@fontsource-variable/plus-jakarta-sans';
+import '@fontsource/ibm-plex-mono/400.css';
+import '@fontsource/ibm-plex-mono/500.css';
+import '@fontsource/ibm-plex-mono/600.css';
+import '@fontsource/zilla-slab/600.css';
+import '@fontsource/zilla-slab/700.css';
+import '../styles/system.css';
+
+import Seo from '../components/Seo.astro';
+import JsonLd from '../components/JsonLd.astro';
+import HomeNav from '../components/home/HomeNav.astro';
+import HomeFooter from '../components/home/HomeFooter.astro';
+import WaPill from '../components/home/WaPill.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  canonical?: string;
+  ogImage?: string;
+}
+const { title, description, canonical, ogImage } = Astro.props;
+---
+<!doctype html>
+<html lang="pt-BR" class="theme-dark">
+  <head>
+    <Seo title={title} description={description} canonical={canonical} ogImage={ogImage} themeColor="#0B0D0F" />
+    <JsonLd />
+    <script is:inline>document.documentElement.classList.add('js');</script>
+  </head>
+  <body>
+    <a href="#main" class="skip-link">Pular para o conteúdo</a>
+    <HomeNav />
+
+    <main id="main">
+      <span id="top"></span>
+      <slot />
+    </main>
+
+    <HomeFooter />
+    <WaPill />
+    <div class="grain" aria-hidden="true"></div>
+
+    <script>import '../scripts/home.ts';</script>
+  </body>
+</html>

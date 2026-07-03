@@ -1,5 +1,5 @@
 ---
-// SEO/meta head. Stub — completed with JSON-LD/favicons/full OG in Phase 4.
+// SEO/meta head. Stub, completed with JSON-LD/favicons/full OG in Phase 4.
 import { site } from '../data/site';
 
 interface Props {
@@ -7,12 +7,14 @@ interface Props {
   description: string;
   canonical?: string;
   ogImage?: string;
+  themeColor?: string;
 }
 const {
   title,
   description,
   canonical = Astro.url.href,
   ogImage = '/og-image.png',
+  themeColor = '#F4F5F6', // light default for the internal pages; dark home overrides
 } = Astro.props;
 
 const siteBase = Astro.site ?? new URL(Astro.url.origin);
@@ -25,7 +27,7 @@ const favicon =
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 <title>{title}</title>
 <meta name="description" content={description} />
-<meta name="theme-color" content="#F4F5F6" />
+<meta name="theme-color" content={themeColor} />
 <meta name="generator" content={Astro.generator} />
 <link rel="canonical" href={canonicalAbs} />
 

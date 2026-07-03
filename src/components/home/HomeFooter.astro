@@ -1,0 +1,57 @@
+---
+import DMark from './DMark.astro';
+import { copy, waHref, navLinks } from '../../data/home';
+const f = copy.footer;
+---
+<footer class="foot" id="foot">
+  <!-- hairline diamonds assembling at the close -->
+  <svg class="foot__bg" viewBox="0 0 400 200" aria-hidden="true" preserveAspectRatio="xMidYMid slice">
+    <rect class="foot__d" x="60" y="40" width="120" height="120" transform="rotate(45 120 100)" />
+    <rect class="foot__d foot__d--red" x="150" y="40" width="120" height="120" transform="rotate(45 210 100)" />
+  </svg>
+
+  <div class="wrap foot__in">
+    <div class="foot__brand">
+      <a href="#top" class="brand" aria-label="Módulo Engenharia">
+        <DMark draw />
+        <span class="brand__type"><b>{f.wordmarkInk}</b><em>{f.wordmarkRed}</em></span>
+      </a>
+      <p class="foot__tag">{f.institutionalLine}</p>
+      <a href={waHref} target="_blank" rel="noopener" class="btn btn--ember foot__cta" data-magnetic>{copy.contato.cta}</a>
+    </div>
+
+    {f.navGroups.map((g: any) => (
+      <nav class="foot__col" aria-label={g.title}>
+        <p class="foot__h u-mono">{g.title}</p>
+        {g.items.map((it: string, i: number) => (
+          <a href={g.title === 'CONTATO' && i === 0 ? '#contato' : g.title === 'SEGMENTOS' ? '#segmentos' : g.title === 'SERVIÇOS' ? '#servicos' : waHref}>{it}</a>
+        ))}
+      </nav>
+    ))}
+  </div>
+
+  <div class="wrap foot__base">
+    <span class="u-mono">{f.statusLine}<i class="foot__dot"></i></span>
+    <span class="u-illus">{f.illustrativeNote}</span>
+    <span class="u-mono foot__copy">{f.copyright}</span>
+  </div>
+</footer>
+
+<style>
+  .foot__bg{position:absolute;right:-40px;top:0;height:100%;width:min(50%,520px);opacity:.5;pointer-events:none}
+  .foot__d{fill:none;stroke:var(--line);stroke-width:1.2}
+  .foot__d--red{stroke:var(--red);opacity:.5}
+  .foot__in{position:relative;z-index:1;display:grid;grid-template-columns:1.7fr 1fr 1fr 1.1fr;gap:2.5rem;padding-bottom:3rem;border-bottom:var(--hair) solid var(--line)}
+  .foot__brand{max-width:34ch}
+  .foot__tag{margin:1.2rem 0 1.6rem;color:var(--muted);font-size:.94rem;line-height:1.55;max-width:32ch}
+  .foot__col{display:flex;flex-direction:column;gap:.7rem}
+  .foot__h{font-size:.66rem;letter-spacing:.16em;color:var(--muted);text-transform:uppercase;margin-bottom:.5rem}
+  .foot__col a{font-size:.92rem;color:var(--muted);width:fit-content;transition:color .3s}
+  .foot__col a:hover{color:var(--accent)}
+  .foot__base{position:relative;z-index:1;display:flex;justify-content:space-between;gap:1rem 2rem;flex-wrap:wrap;align-items:center;padding-block:1.6rem}
+  .foot__base .u-mono{font-size:.64rem;letter-spacing:.08em;color:var(--muted)}
+  .foot__dot{display:inline-block;width:6px;height:6px;margin-left:.5rem;background:var(--accent);clip-path:var(--clip-diamond);box-shadow:0 0 8px rgba(var(--accent-rgb),.7);vertical-align:middle}
+  @media (pointer:coarse){.foot__col a{min-height:44px;display:inline-flex;align-items:center}}
+  @media (max-width:900px){.foot__in{grid-template-columns:1fr 1fr}.foot__brand{grid-column:1/-1}}
+  @media (max-width:560px){.foot__in{grid-template-columns:1fr}.foot__bg{display:none}}
+</style>

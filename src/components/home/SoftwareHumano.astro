@@ -1,0 +1,251 @@
+---
+// Software e mão na máquina: the mission and the core differentiator.
+// programador.webp sits in a canted parallelogram (~2/3, right) almost in full
+// colour, the supervisory screen legible, refinery at dusk, face preserved in
+// the safe zone (the cant only bites negative space). A graphite module panel
+// overlaps its left edge at the mother angle carrying the mission as a Zilla
+// pull-quote; ONLY the accent phrase ignites in ember. A diegetic mono HUD
+// reads over the screen. The double-diamond mark echoes software + hardware =
+// módulo. Mobile: image on top in a chamfered module (no face cut), text below,
+// parallax kept tiny/gap-safe (shared home.ts owns the effect).
+import { copy } from '../../data/home';
+import { ignite } from '../../lib/ignite';
+import DMark from './DMark.astro';
+const s = copy['software-humano'];
+
+// Ignite only the accent clause inside the mission (same pattern as the hero).
+const quoteHtml = ignite(s.missionPullquote, s.accentPhrase);
+
+const imgAlt =
+  'Engenheiro da Módulo diante do supervisório SCADA rodando em campo, refinaria ao entardecer ao fundo, atenção voltada para a tela do processo.';
+---
+<section id="software" class="sec sh" aria-labelledby="sh-quote">
+  <div class="wrap sh__grid">
+    <!-- LEFT: graphite module panel, overlaps the image at the mother angle -->
+    <div class="sh__panel mod" data-reveal>
+      <p class="u-kicker"><i></i>{s.kicker}</p>
+
+      <h2 id="sh-quote" class="u-slab sh__quote" set:html={quoteHtml}></h2>
+
+      <p class="sh__sub">{s.subtext}</p>
+
+      <!-- the two diamonds literalise software + hardware = módulo -->
+      <p class="sh__eq u-mono" aria-label="Software mais hardware é igual a Módulo">
+        <span>SOFTWARE</span>
+        <span class="sh__op" aria-hidden="true">+</span>
+        <span>HARDWARE</span>
+        <span class="sh__op" aria-hidden="true">=</span>
+        <DMark class="sh__mark" label="Módulo" />
+        <span class="sh__eqword">MÓDULO</span>
+      </p>
+    </div>
+
+    <!-- RIGHT: canted photo plate, light-touch parallax, instrument frame -->
+    <figure class="sh__media lcorners" data-parallax="0.1" data-reveal>
+      <div class="sh__frame imod imod--cant">
+        <img
+          src="/assets/img/programador.webp"
+          srcset="/assets/img/programador-900.webp 900w, /assets/img/programador.webp 1600w"
+          sizes="(max-width: 900px) 92vw, 58vw"
+          width="1600"
+          height="1200"
+          alt={imgAlt}
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+
+      <!-- diegetic supervisory HUD (decorative; illustrative gauges labelled) -->
+      <div class="sh__hud" aria-hidden="true">
+        <p class="sh__line sh__line--live"><i class="sh__dot"></i>{s.hudLabels[0]}</p>
+        <p class="sh__line"><i class="sh__sq"></i>{s.hudLabels[1]}</p>
+        <div class="sh__gauge">
+          <span class="sh__glabel">{s.hudLabels[2]}</span>
+          <span class="sh__bar"><i style="width:62%"></i></span>
+        </div>
+        <div class="sh__gauge">
+          <span class="sh__glabel">{s.hudLabels[3]}</span>
+          <span class="sh__bar"><i style="width:48%"></i></span>
+        </div>
+      </div>
+
+      <figcaption class="sh__cap u-mono"><i></i>{s.imageCaption}</figcaption>
+    </figure>
+  </div>
+</section>
+
+<style>
+  .sh{overflow:hidden}
+
+  /* 12-col frame: panel (1..6) overlaps the media plate (5..12) at cols 5..6 */
+  .sh__grid{
+    display:grid;
+    grid-template-columns:repeat(12,1fr);
+    align-items:center;
+    position:relative;
+  }
+
+  /* ---- left module panel ---- */
+  .sh__panel{
+    grid-column:1 / 7;
+    grid-row:1;
+    z-index:2;
+    align-self:center;
+    background:var(--surface);
+    box-shadow:inset 0 1px 0 rgba(236,238,241,.06);
+    padding:clamp(1.6rem,3vw,3rem);
+    max-width:640px;
+  }
+  .sh__panel .u-kicker{color:var(--ink);margin-bottom:1.5rem}
+  .sh__quote{
+    font-size:clamp(1.5rem,2.7vw,2.5rem);
+    line-height:1.2;
+    letter-spacing:-.005em;
+    color:var(--ink);
+    text-wrap:balance;
+  }
+  .sh__sub{
+    margin-top:1.5rem;
+    max-width:46ch;
+    color:var(--muted);
+    font-size:clamp(1rem,1.05vw,1.12rem);
+    line-height:1.62;
+  }
+
+  /* software + hardware = módulo */
+  .sh__eq{
+    margin-top:clamp(1.6rem,2.4vw,2.2rem);
+    padding-top:1.4rem;
+    border-top:var(--hair) solid var(--line);
+    display:flex;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:.55rem .7rem;
+    font-size:.72rem;
+    color:var(--muted);
+  }
+  .sh__eq .sh__op{color:var(--muted)}
+  .sh__eq .sh__eqword{color:var(--ink);font-weight:600}
+  .sh__eq :global(.dmark.sh__mark){width:30px;height:28px}
+
+  /* ---- right media plate ---- */
+  .sh__media{
+    grid-column:5 / -1;
+    grid-row:1;
+    align-self:stretch;
+    position:relative;
+    min-height:clamp(440px,54vw,640px);
+  }
+  .sh__frame{position:absolute;inset:0}
+  /* oversize + centre so the ±2.4% parallax translate never opens a gap,
+     while the cant only clips sky/negative space (face stays in the safe zone) */
+  .sh__frame img{
+    position:absolute;
+    left:0;top:-9%;
+    width:100%;height:118%;
+    object-fit:cover;
+    object-position:50% 42%;
+  }
+
+  /* instrument HUD over the screen (top-right, clear of the panel overlap) */
+  .sh__hud{
+    position:absolute;
+    z-index:3;
+    top:clamp(14px,2vw,26px);
+    right:clamp(14px,2vw,26px);
+    display:flex;
+    flex-direction:column;
+    gap:.55rem;
+    padding:.8rem .95rem;
+    background:linear-gradient(180deg,rgba(11,13,15,.84),rgba(11,13,15,.6));
+    clip-path:var(--clip-chf);
+    --chf:12px;
+    border:var(--hair) solid var(--line-soft);
+    font-family:var(--mono);
+    max-width:min(58%,240px);
+  }
+  .sh__line{
+    display:flex;align-items:center;gap:.5rem;
+    font-size:.6rem;letter-spacing:.12em;color:var(--ink);
+  }
+  .sh__dot{
+    width:7px;height:7px;flex:none;background:var(--accent);
+    clip-path:var(--clip-diamond);
+    box-shadow:0 0 10px rgba(var(--accent-rgb),.6);
+    animation:sh-pulse 1.9s var(--ease) infinite;
+  }
+  .sh__sq{
+    width:7px;height:7px;flex:none;border:1px solid var(--muted);
+    transform:rotate(45deg);
+  }
+  @keyframes sh-pulse{
+    0%{box-shadow:0 0 0 0 rgba(var(--accent-rgb),.55)}
+    70%{box-shadow:0 0 0 7px rgba(var(--accent-rgb),0)}
+    100%{box-shadow:0 0 0 0 rgba(var(--accent-rgb),0)}
+  }
+  .sh__gauge{display:flex;flex-direction:column;gap:.32rem}
+  .sh__glabel{font-size:.54rem;letter-spacing:.1em;color:var(--muted)}
+  .sh__bar{display:block;height:3px;background:var(--line);position:relative}
+  .sh__bar i{position:absolute;left:0;top:0;height:100%;background:var(--muted-dim)}
+
+  /* technical caption chip, bottom-right, always clear of the panel */
+  .sh__cap{
+    position:absolute;
+    z-index:3;
+    right:clamp(12px,1.6vw,20px);
+    bottom:clamp(12px,1.6vw,20px);
+    display:inline-flex;align-items:center;gap:.5rem;
+    padding:.5rem .75rem;
+    background:rgba(11,13,15,.72);
+    clip-path:var(--clip-chf-tr);
+    --chf:12px;
+    font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);
+    max-width:min(80%,340px);
+  }
+  .sh__cap i{
+    width:7px;height:7px;flex:none;background:var(--accent);
+    clip-path:var(--clip-diamond);opacity:.85;
+  }
+
+  /* the L-corner brackets frame the plate as an instrument crop */
+  .sh__media.lcorners::before{top:0;left:0}
+  .sh__media.lcorners::after{bottom:0;right:0}
+
+  /* ============================================================
+     MOBILE: image on top (chamfered, face-safe), text below.
+     Grid rows are re-assigned so the plate leads regardless of DOM.
+     ============================================================ */
+  @media (max-width:900px){
+    .sh__grid{grid-template-columns:1fr;gap:0}
+    .sh__media{
+      grid-column:1;grid-row:1;
+      min-height:clamp(340px,74vw,460px);
+    }
+    /* swap the cant for the chamfer module (never bites the face) */
+    .sh__frame{clip-path:var(--clip-chf)}
+    .sh__panel{
+      grid-column:1;grid-row:2;
+      align-self:stretch;
+      max-width:none;
+      margin-top:calc(-1 * clamp(20px,6vw,40px));
+      padding:clamp(1.5rem,6vw,2.2rem);
+    }
+    .sh__quote{font-size:clamp(1.4rem,6vw,2rem)}
+    .sh__sub{max-width:none}
+    .sh__cap{max-width:min(86%,300px)}
+  }
+
+  @media (max-width:560px){
+    .sh__hud{
+      top:clamp(10px,3vw,16px);right:clamp(10px,3vw,16px);
+      max-width:64%;padding:.65rem .75rem;
+    }
+    .sh__cap{font-size:.54rem}
+  }
+
+  /* touch: no hover-only affordances here; keep gauge legible.
+     (parallax is owned by home.ts and stays gap-safe via the image buffer) */
+  @media (prefers-reduced-motion:reduce){
+    .sh__dot{animation:none}
+  }
+</style>

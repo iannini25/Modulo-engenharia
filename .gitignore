@@ -1,7 +1,37 @@
+# ── Dependencias e saida de build (reinstalaveis / regeneraveis) ──
 node_modules/
 dist/
 .astro/
 .vercel/
-.DS_Store
+*.tsbuildinfo
+
+# ── Logs e caches ──
 *.log
 npm-debug.log*
+yarn-error.log*
+.eslintcache
+
+# ── Convencao agentskills.io (junctions/symlinks; nao sobrevivem a clone/zip) ──
+# A fonte unica de skills fica em .claude/skills/. Ver CLAUDE.md secao 2.
+.agents/
+
+# ── Clones de referencia de componentes (PARTE A do prompts/03) ──
+# Reclonaveis com prompts/03-catalogar-componentes-externos.md.
+# Versione apenas components-catalog.md, nao os clones.
+_ref/
+
+# ── Fontes pessoais (saida do prompts/02) ──
+# NAO versionar: sao as fontes do SEU disco, varias comerciais/licenciadas
+# (Neue Haas, Druk, Helvetica). Publica-las violaria as licencas.
+# Cada usuario gera as suas rodando prompts/02-ingerir-minhas-fontes.md.
+fonts-woff2/
+fonts-manifest.json
+specimen.html
+specimen-novas.html
+showcase/fonts/
+
+# ── SO / editor ──
+.DS_Store
+Thumbs.db
+*.swp
+.idea/

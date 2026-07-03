@@ -1,0 +1,13 @@
+---
+// The signature device: two offset diamonds (one graphite fill, one red wire),
+// scaled from the logo. Reused as brand mark, section marker and loader.
+// `draw` adds the class the motion layer hooks to draw the wire on enter.
+interface Props { class?: string; draw?: boolean; label?: string }
+const { class: klass = '', draw = false, label } = Astro.props;
+---
+<span class:list={["dmark", klass, draw && "dmark--draw"]} role="img" aria-label={label ?? "Módulo"}>
+  <svg viewBox="0 0 48 44" aria-hidden="true">
+    <rect class="d-fill" x="4" y="10" width="24" height="24" rx="1.5" transform="rotate(45 16 22)" />
+    <rect class="d-wire" x="20" y="10" width="24" height="24" rx="1.5" transform="rotate(45 32 22)" />
+  </svg>
+</span>

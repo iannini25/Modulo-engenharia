@@ -1,0 +1,282 @@
+---
+// Segmentos: "Quatro segmentos pesados", a autoridade e o ÚNICO dado 100% real: 4.
+// Um numeral 4 gigante em Koralle (accent, a única brasa da seção porque é o único
+// número real) fica ao lado de quatro faixas diagonais no ângulo-mãe, uma por
+// segmento, cada uma com a foto do acervo: Mineração (duotone frio), Siderurgia
+// (COR, o âmbar do aço quente que sobrevive uma única vez no site), Offshore
+// (duotone) e Energia (duotone). No mobile o 4 vira marca acima e as faixas
+// reflowam para cards chanfrados empilhados, com o âmbar preservado só na Siderurgia.
+import { copy } from '../../data/home';
+import DMark from './DMark.astro';
+
+const s = copy['segmentos'];
+
+interface SegMedia { src: string; alt: string; amber?: boolean }
+
+// Mapa por nome (robusto à ordem) → foto do segmento no acervo.
+const media: Record<string, SegMedia> = {
+  'Mineração': {
+    src: '/assets/img/patio-minerio-duo.webp',
+    alt: 'Pátio de estocagem de minério com máquinas em carga, em duotone grafite, do segmento de mineração',
+  },
+  'Siderurgia': {
+    src: '/assets/img/laminacao.webp',
+    alt: 'Tira de aço incandescente na laminação, o calor âmbar do metal quente da siderurgia',
+    amber: true,
+  },
+  'Offshore': {
+    src: '/assets/img/offshore-1-duo.webp',
+    alt: 'Plataforma de petróleo offshore no mar aberto, em duotone grafite, do segmento offshore',
+  },
+  'Energia': {
+    src: '/assets/img/paineis-duo.webp',
+    alt: 'Painéis elétricos de subestação, em duotone grafite, do segmento de energia',
+  },
+};
+
+const pad2 = (n: number): string => String(n).padStart(2, '0');
+const total = pad2(s.segments.length);
+---
+
+<section id="segmentos" class="sec seg">
+  <div class="wrap">
+    <header class="sec__head seg__head">
+      <p class="u-kicker" data-reveal><i></i>{s.kicker}</p>
+      <h2 class="u-display u-l seg__title" data-reveal>{s.headline}</h2>
+    </header>
+
+    <div class="seg__grid">
+      <!-- O único dado real da página: 4 segmentos. A única brasa da seção. -->
+      <aside class="seg__mark" data-reveal>
+        <p class="seg__four u-display" data-count="4">4</p>
+        <p class="u-mono seg__unit"><i class="seg__dia" aria-hidden="true"></i>SEGMENTOS PESADOS</p>
+        <p class="u-mono seg__numlabel">{s.numeralLabel}</p>
+        <div class="seg__sig">
+          <DMark label="Módulo Engenharia" />
+          <span class="u-mono seg__sigtxt">DADO CONFIRMADO</span>
+        </div>
+      </aside>
+
+      <!-- As faixas diagonais no ângulo-mãe, uma por segmento. -->
+      <ol class="seg__stack">
+        {s.segments.map((seg: { name: string; context: string; micro: string }, i: number) => {
+          const m = media[seg.name];
+          return (
+            <li class:list={["seg__stripe", m?.amber && "is-amber"]} data-reveal>
+              <div class="seg__media" data-parallax="0.06">
+                <img
+                  src={m?.src}
+                  alt={m?.alt}
+                  width="1600"
+                  height="900"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <span class="seg__scrim" aria-hidden="true"></span>
+              <div class="seg__content">
+                <div class="seg__frame lcorners">
+                  <span class="u-mono seg__idx">SEG {pad2(i + 1)} / {total}</span>
+                  <h3 class="seg__name u-display">{seg.name}</h3>
+                  <p class="seg__ctx">{seg.context}</p>
+                  <span class="u-mono seg__micro"><i class="seg__dia" aria-hidden="true"></i>{seg.micro}</span>
+                </div>
+              </div>
+            </li>
+          );
+        })}
+      </ol>
+    </div>
+  </div>
+</section>
+
+<style>
+  .seg { position: relative; }
+  .seg__head { max-width: 860px; }
+  .seg__title { margin-top: 1.1rem; }
+
+  /* ---------- mobile-first: o 4 acima como marca, faixas viram cards ---------- */
+  .seg__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: clamp(24px, 6vw, 36px);
+    margin-top: clamp(2.2rem, 6vw, 3.2rem);
+  }
+
+  /* the real number + its honest label + brand device */
+  .seg__mark {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: .6rem clamp(1rem, 4vw, 1.6rem);
+  }
+  .seg__four {
+    font-size: clamp(5.2rem, 30vw, 9rem);
+    line-height: .78;
+    letter-spacing: -.05em;
+    color: var(--accent);                 /* a única brasa da seção: o único número real */
+    text-shadow: 0 0 clamp(28px, 7vw, 60px) color-mix(in srgb, var(--accent) 22%, transparent);
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: "tnum" 1;
+  }
+  .seg__unit {
+    display: inline-flex;
+    align-items: center;
+    gap: .55rem;
+    font-size: .72rem;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+  .seg__dia {
+    width: 8px; height: 8px; flex: none;
+    background: var(--muted);             /* marcador losango neutro: reserva o vermelho pro 4 */
+    clip-path: var(--clip-diamond);
+  }
+  .seg__numlabel {
+    flex-basis: 100%;
+    max-width: 36ch;
+    margin-top: .1rem;
+    font-size: .74rem;
+    line-height: 1.55;
+    color: var(--muted);
+    text-transform: none;
+  }
+  .seg__sig {
+    flex-basis: 100%;
+    display: inline-flex;
+    align-items: center;
+    gap: .6rem;
+    margin-top: .3rem;
+  }
+  .seg__sig { --dmark-w: 30px; }
+  .seg__sigtxt { font-size: .64rem; color: var(--muted-dim); text-transform: uppercase; }
+
+  /* ---------- the diagonal segment stripes ---------- */
+  .seg__stack {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(12px, 3.5vw, 20px);
+  }
+  .seg__stripe {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    clip-path: var(--clip-chf);           /* mobile: card chanfrado (nunca retângulo puro) */
+    background: var(--surface);
+    min-height: clamp(152px, 46vw, 232px);
+  }
+  .seg__media { position: absolute; inset: 0; z-index: 0; background: var(--surface); }
+  .seg__media img {
+    position: absolute;
+    left: 0; top: -8%;                    /* folga p/ o parallax do <img> filho não revelar borda */
+    width: 100%; height: 116%;
+    object-fit: cover;
+    object-position: center;
+  }
+  /* graphite scrim: escuro na esquerda (onde vive o texto), transparente à direita
+     para o duotone frio respirar e, na Siderurgia, o âmbar do aço sobreviver */
+  .seg__scrim {
+    position: absolute; inset: 0; z-index: 1; pointer-events: none;
+    background: linear-gradient(100deg,
+      color-mix(in srgb, var(--bg) 94%, transparent) 0%,
+      color-mix(in srgb, var(--bg) 85%, transparent) 32%,
+      color-mix(in srgb, var(--bg) 52%, transparent) 56%,
+      color-mix(in srgb, var(--bg) 14%, transparent) 80%,
+      transparent 100%);
+  }
+  /* Siderurgia: deixa a direita clarear mais cedo para o âmbar do aço quente
+     respirar, o único calor não vermelho de todo o site */
+  .seg__stripe.is-amber .seg__scrim {
+    background: linear-gradient(100deg,
+      color-mix(in srgb, var(--bg) 93%, transparent) 0%,
+      color-mix(in srgb, var(--bg) 82%, transparent) 30%,
+      color-mix(in srgb, var(--bg) 44%, transparent) 52%,
+      color-mix(in srgb, var(--bg) 8%, transparent) 74%,
+      transparent 92%);
+  }
+  .seg__content {
+    position: relative; z-index: 2;
+    display: flex;
+    min-height: inherit;
+    padding: clamp(18px, 4.6vw, 30px) clamp(24px, 6.5vw, 46px);
+  }
+  .seg__frame {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: .5rem;
+    width: 100%;
+  }
+  .seg__idx { font-size: .66rem; color: var(--muted); }
+  .seg__name { font-size: clamp(1.55rem, 7vw, 2.2rem); line-height: 1; color: var(--ink); }
+  .seg__ctx {
+    max-width: 42ch;
+    font-size: clamp(.95rem, 3.4vw, 1.1rem);
+    line-height: 1.45;
+    color: var(--ink);
+    opacity: .9;
+  }
+  .seg__micro {
+    display: inline-flex; align-items: center; gap: .5rem;
+    margin-top: .15rem;
+    font-size: .66rem; color: var(--muted);
+  }
+  .seg__micro .seg__dia { width: 7px; height: 7px; }
+
+  /* ---------- desktop: 4 vira escultura fixa que acompanha as faixas cantadas ---------- */
+  @media (min-width: 861px) {
+    .seg__grid {
+      grid-template-columns: minmax(210px, .82fr) minmax(0, 2.05fr);
+      gap: clamp(32px, 4vw, 70px);
+      align-items: start;
+    }
+    .seg__mark {
+      position: sticky;
+      top: clamp(96px, 15vh, 168px);
+      align-self: start;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1.1rem;
+    }
+    .seg__four { font-size: clamp(9rem, 17vw, 15rem); line-height: .8; }
+    .seg__numlabel { max-width: 26ch; }
+
+    .seg__stack { gap: clamp(14px, 1.7vw, 24px); }
+    /* faixas cantadas alternando o ângulo-mãe, com footprints deliberadamente desiguais */
+    .seg__stripe { clip-path: var(--clip-cant); min-height: clamp(162px, 17vw, 220px); }
+    .seg__stripe:nth-child(even) {
+      clip-path: var(--clip-cant-l);
+      width: calc(100% - clamp(24px, 4vw, 64px));
+      margin-left: auto;
+    }
+    .seg__stripe:nth-child(1) { min-height: clamp(174px, 19vw, 244px); }
+    .seg__stripe:nth-child(3) { min-height: clamp(150px, 15vw, 200px); }
+    .seg__content { padding: clamp(22px, 2.4vw, 32px) clamp(44px, 6vw, 86px); }
+    .seg__name { font-size: clamp(1.7rem, 2.4vw, 2.4rem); }
+    .seg__ctx { font-size: clamp(1rem, 1.15vw, 1.14rem); }
+  }
+
+  /* hover ignite só onde há ponteiro fino: a foto esquenta rumo à cor, o scrim
+     abre, as cantoneiras acendem em accent e o índice vira brasa. Filter (não
+     transform) na imagem porque o transform pertence ao parallax do GSAP.
+     Nada disso no toque. */
+  @media (hover: hover) and (pointer: fine) and (min-width: 861px) {
+    .seg__media img { transition: filter .6s var(--ease); }
+    .seg__scrim { transition: opacity .5s var(--ease); }
+    .seg__idx { transition: color .4s var(--ease); }
+    .seg__name { transition: transform .5s var(--ease); }
+    .lcorners::before, .lcorners::after { transition: border-color .4s var(--ease); }
+    .seg__stripe:hover .seg__media img { filter: saturate(1.16) brightness(1.05); }
+    .seg__stripe.is-amber:hover .seg__media img { filter: saturate(1.24) brightness(1.08); }
+    .seg__stripe:hover .seg__scrim { opacity: .8; }
+    .seg__stripe:hover .seg__frame::before,
+    .seg__stripe:hover .seg__frame::after { border-color: var(--accent); }
+    .seg__stripe:hover .seg__idx { color: var(--accent-hi); }
+    .seg__stripe:hover .seg__name { transform: translateX(6px); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .seg__scrim { transition: none; }
+  }
+</style>

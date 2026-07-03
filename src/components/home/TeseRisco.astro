@@ -1,0 +1,218 @@
+---
+// tese-risco: "O custo de parar" (Interesse/dor).
+// Void grafite quase vazio: risk register frio em mono à esquerda, contador
+// cinético gigante (odômetro) ao centro-baixo com a palavra-brasa acesa no
+// statement, e engenheiro.webp num parallelograma canted alto sangrando pela
+// borda direita (homem de costas, corte agressivo permitido). Único ember da
+// seção é a palavra que acende em accent; o resto é grafite drenado.
+import { copy } from '../../data/home';
+import { ignite } from '../../lib/ignite';
+import DMark from './DMark.astro';
+
+const s = copy['tese-risco'];
+
+// a palavra-brasa acende dentro do statement (só a primeira ocorrência)
+const statementHtml = ignite(s.statement, s.palavraBrasa);
+
+// cada linha do register vem como "RÓTULO / descrição"; separa em rótulo + texto
+const rows = (s.riskRegister as string[]).map((line) => {
+  const [label, ...rest] = line.split(' / ');
+  return { label, desc: rest.join(' / ') };
+});
+
+const imageAlt =
+  'Engenheiro de costas entrando na planta industrial no início do turno, com capacete e uniforme';
+---
+<section id="tese" class="tese" aria-labelledby="tese-h">
+  <h2 id="tese-h" class="tese__sr">O custo de parar</h2>
+
+  <!-- módulo estrutural sussurrado no void (decorativo) -->
+  <div class="tese__mark" aria-hidden="true"><DMark draw /></div>
+
+  <div class="wrap tese__wrap">
+    <div class="tese__inner">
+      <p class="u-kicker tese__kicker" data-reveal><i></i>{s.kicker}</p>
+
+      <p class="tese__statement u-slab" data-reveal set:html={statementHtml}></p>
+
+      <ul class="tese__register" data-reveal>
+        {rows.map((r) => (
+          <li class="tese__row">
+            <span class="tese__mk" aria-hidden="true"></span>
+            <span class="tese__rowLabel u-mono">{r.label}</span>
+            <span class="tese__rowDesc u-mono">{r.desc}</span>
+          </li>
+        ))}
+      </ul>
+
+      <div class="tese__counter" data-reveal>
+        <p class="tese__clabel u-illus">{s.counterLabel}</p>
+        <div class="tese__odo lcorners">
+          <span
+            class="tese__num u-display"
+            data-count="4800"
+            data-prefix="R$ "
+            data-suffix=" /min"
+          >R$ 4800 /min</span>
+        </div>
+        <p class="tese__note u-mono">{s.counterNote}</p>
+      </div>
+    </div>
+  </div>
+
+  <figure class="tese__figure" data-parallax="0.12" data-reveal>
+    <div class="imod imod--cant tese__imod">
+      <img
+        src="/assets/img/engenheiro.webp"
+        srcset="/assets/img/engenheiro-900.webp 900w, /assets/img/engenheiro.webp 1000w"
+        sizes="(max-width: 900px) 100vw, 40vw"
+        width="1000"
+        height="560"
+        alt={imageAlt}
+        loading="lazy"
+        decoding="async"
+      />
+    </div>
+    <figcaption class="tese__cap">
+      <span class="tese__capInner lcorners u-mono">{s.imageCaption}</span>
+    </figcaption>
+  </figure>
+</section>
+
+<style>
+  /* ---- shell: void grafite, respiro macro, imagem sangrando à direita ---- */
+  .tese{
+    position:relative;
+    background:var(--bg);
+    min-height:88svh;
+    display:flex;align-items:center;
+    padding-block:clamp(96px,13vh,168px);
+    overflow:hidden; /* segura o sangramento canted à direita */
+  }
+  .tese__wrap{position:relative;z-index:2;width:100%}
+
+  .tese__sr{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;
+    clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+  /* coluna de conteúdo à esquerda, deixando o terço direito para a foto */
+  .tese__inner{max-width:min(60%,640px)}
+
+  .tese__kicker{color:var(--ink);margin-bottom:clamp(1.6rem,3vw,2.4rem)}
+
+  /* statement: voz de engenharia carimbada (Zilla), a palavra-brasa acende */
+  .tese__statement{
+    font-size:clamp(1.35rem,2.4vw,2.15rem);
+    line-height:1.3;color:var(--ink);
+    max-width:34ch;text-wrap:balance;
+    margin-bottom:clamp(2.4rem,5vw,3.6rem);
+  }
+
+  /* register frio: tabela de instrumento, hairlines, sem alarde */
+  .tese__register{list-style:none;max-width:46ch;margin-bottom:clamp(2.8rem,6vw,4.4rem)}
+  .tese__row{
+    display:flex;gap:.8rem;align-items:center;
+    padding:.9rem 0;border-top:var(--hair) solid var(--line);
+  }
+  .tese__row:last-child{border-bottom:var(--hair) solid var(--line)}
+  /* marcador: losango wireframe (grafite), a brasa fica reservada à palavra */
+  .tese__mk{width:8px;height:8px;flex:none;border:var(--hair) solid var(--muted-dim);
+    transform:rotate(45deg)}
+  .tese__rowLabel{flex:none;color:var(--ink);font-size:.72rem;letter-spacing:.14em;
+    text-transform:uppercase}
+  .tese__rowDesc{color:var(--muted);font-size:.8rem;letter-spacing:.01em;line-height:1.4;
+    font-weight:400}
+
+  /* hover: the risk row wakes, diamond marker fills ember and spins, label ignites */
+  @media (hover:hover) and (pointer:fine){
+    .tese__row{transition:background .35s var(--ease)}
+    .tese__mk{transition:background .35s var(--ease),border-color .35s var(--ease),transform .45s var(--ease)}
+    .tese__rowLabel{transition:color .3s var(--ease)}
+    .tese__row:hover{background:linear-gradient(90deg,color-mix(in srgb,var(--surface) 55%,transparent),transparent 70%)}
+    .tese__row:hover .tese__mk{background:var(--accent);border-color:var(--accent);transform:rotate(135deg)}
+    .tese__row:hover .tese__rowLabel{color:var(--accent-hi)}
+  }
+
+  /* contador cinético gigante, centro-baixo, emoldurado por cantoneiras em L */
+  .tese__counter{max-width:100%}
+  .tese__clabel{margin-bottom:1rem}
+  .tese__odo{display:inline-block;position:relative;
+    padding:clamp(1rem,2.2vw,1.7rem) clamp(1.1rem,2.4vw,1.9rem)}
+  .tese__num{
+    display:block;color:var(--ink);
+    font-size:clamp(2.6rem,8vw,6.25rem);line-height:1;letter-spacing:-.02em;
+    white-space:nowrap;font-variant-numeric:tabular-nums}
+  .tese__note{margin-top:1.05rem;color:var(--muted);font-size:.72rem;letter-spacing:.04em;
+    max-width:40ch;text-transform:none}
+
+  /* figura: parallelograma canted alto, sangrando pela borda direita */
+  .tese__figure{
+    position:absolute;z-index:1;margin:0;
+    top:clamp(80px,11vh,150px);bottom:clamp(80px,11vh,150px);
+    right:calc(-1 * clamp(14px,3vw,52px));
+    width:min(36vw,540px);pointer-events:none;
+  }
+  .tese__imod{
+    --sk:clamp(24px,5vw,64px);
+    position:relative;width:100%;height:100%;background:var(--surface);
+  }
+  /* overhang para o parallax não abrir fresta; corte agressivo tolerado (de costas) */
+  .tese__figure .tese__imod img{
+    position:absolute;left:0;top:-10%;width:100%;height:120%;
+    object-fit:cover;object-position:50% 40%;
+    filter:saturate(.86) contrast(1.03) brightness(.94); /* duotone leve, quase cor cheia */
+  }
+  /* blend das bordas no void + leitura da legenda; fica dentro do clip canted */
+  .tese__imod::after{
+    content:"";position:absolute;inset:0;pointer-events:none;
+    background:
+      linear-gradient(90deg,rgba(11,13,15,.55) 0%,rgba(11,13,15,0) 26%,rgba(11,13,15,0) 68%,rgba(11,13,15,.5) 100%),
+      linear-gradient(180deg,rgba(11,13,15,.32) 0%,transparent 22%,transparent 58%,rgba(11,13,15,.72) 100%);
+  }
+
+  /* legenda em mono numa cantoneira (scrim chanfrado, não retângulo puro) */
+  .tese__cap{position:absolute;left:clamp(14px,2vw,26px);bottom:clamp(14px,2.4vw,30px);
+    z-index:2;pointer-events:none;max-width:min(74%,320px)}
+  .tese__capInner{--chf:10px;display:block;
+    padding:.6rem clamp(.7rem,1.4vw,1rem);
+    background:rgba(11,13,15,.66);clip-path:var(--clip-chf);
+    color:var(--ink);font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;line-height:1.5}
+
+  /* watermark do módulo no void (whisper, line-art) */
+  .tese__mark{position:absolute;z-index:0;pointer-events:none;
+    left:34%;top:64%;transform:translate(-50%,-50%);
+    width:clamp(180px,26vw,380px);opacity:.05;--dmark-w:100%}
+
+  /* ============================ MOBILE: reflow ============================ */
+  @media (max-width:900px){
+    .tese{min-height:auto;display:block;overflow:visible;
+      padding-block:clamp(72px,14vw,110px)}
+    .tese__mark{display:none}
+
+    /* stack: kicker, statement, contador em cima, register em lista, imagem full-width */
+    .tese__inner{max-width:none;display:flex;flex-direction:column}
+    .tese__kicker{order:1}
+    .tese__statement{order:2;max-width:24ch;margin-bottom:clamp(2rem,7vw,2.8rem)}
+    .tese__counter{order:3;margin-bottom:clamp(2.2rem,8vw,3.2rem)}
+    .tese__register{order:4;max-width:none;margin-bottom:0}
+
+    .tese__num{font-size:clamp(2.4rem,13vw,4.6rem)}
+
+    /* imagem: full-width, canted, sem depender de parallax perceptível.
+       relative (não static) para a legenda continuar ancorando na figura */
+    .tese__figure{position:relative;top:auto;bottom:auto;right:auto;width:100%;
+      margin-top:clamp(2.4rem,9vw,3.4rem)}
+    .tese__imod{--sk:clamp(20px,7vw,44px);aspect-ratio:16/10;height:auto}
+    .tese__figure .tese__imod img{object-position:50% 38%}
+    .tese__cap{max-width:min(84%,340px)}
+  }
+
+  @media (max-width:420px){
+    .tese__row{flex-wrap:wrap;gap:.35rem .7rem}
+    .tese__rowDesc{flex-basis:100%;padding-left:1.5rem}
+  }
+
+  /* toque: sem hover magnético/parallax aqui; nada a degradar além do global */
+  @media (prefers-reduced-motion:reduce){
+    .tese__num{color:var(--ink)}
+  }
+</style>

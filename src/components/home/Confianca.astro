@@ -1,0 +1,174 @@
+---
+// Confiança, "Painel de disponibilidade". The banned metric strip reframed as
+// the control-room readout that is literally the product: three chamfered
+// modules of unequal footprints, each a SCADA gauge tile with a Koralle number
+// that rises (data-count odometer), a wireframe diamond that draws itself
+// (graphite, not red), a single accent ember on the value, and an honest
+// (ILUSTRATIVO) label. Drained graphite, no photo, macro breathing room.
+import { copy } from '../../data/home';
+const s = copy['confianca'];
+
+/** Split an illustrative metric ("+15" / "+120" / "99%") into odometer parts
+ *  so the shared data-count hook can count it up while keeping prefix/suffix. */
+const splitMetric = (value: string) => {
+  const m = /^(\D*)(\d+)(\D*)$/.exec(value);
+  return m ? { prefix: m[1], num: m[2], suffix: m[3] } : { prefix: '', num: value, suffix: '' };
+};
+type Metric = { value: string; unit: string; label: string };
+const metrics = (s.metrics as Metric[]).map((m) => ({ ...m, ...splitMetric(m.value) }));
+
+const titleId = 'confianca-title';
+---
+<section id="confianca" class="sec conf" aria-labelledby={titleId}>
+  <div class="wrap">
+    <header class="conf__head" data-reveal>
+      <p class="u-kicker"><i></i>{s.kicker}</p>
+      <h2 id={titleId} class="conf__title u-display u-l">{s.headline}</h2>
+    </header>
+
+    <div
+      class="conf__panel lcorners"
+      role="group"
+      aria-label="Painel de disponibilidade, leitura ilustrativa de sala de controle"
+    >
+      <div class="conf__scada" aria-hidden="true"></div>
+
+      {metrics.map((m, i) => (
+        <article class={`conf__mod conf__mod--${i}`} data-reveal>
+          <div class="conf__mtop">
+            <span class="conf__slot u-mono">{String(i + 1).padStart(2, '0')}</span>
+            <svg class="conf__ring" viewBox="0 0 44 44" aria-hidden="true">
+              <polygon data-draw-line points="22,3 41,22 22,41 3,22" />
+            </svg>
+          </div>
+
+          <div class="conf__body">
+            <div class="conf__readout">
+              <span
+                class="conf__val u-display"
+                data-count={m.num}
+                data-prefix={m.prefix}
+                data-suffix={m.suffix}
+              >{m.value}</span>
+              {m.unit && <span class="conf__unit u-mono">{m.unit}</span>}
+            </div>
+            <span class="conf__ember" aria-hidden="true"></span>
+            <p class="conf__label u-illus">{m.label}</p>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <ul class="conf__posture" role="list" data-reveal>
+      {(s.postureItems as string[]).map((p) => (
+        <li class="conf__posture-item u-mono">{p}</li>
+      ))}
+    </ul>
+
+    <p class="conf__note u-mono" data-reveal>{s.honestyNote}</p>
+  </div>
+</section>
+
+<style>
+  .conf{position:relative;background:var(--bg)}
+  .conf__head{max-width:760px}
+  .conf__title{margin-top:1.1rem;color:var(--ink);text-wrap:balance}
+
+  /* the readout board: unequal chamfered tiles floating on drained graphite */
+  .conf__panel{
+    position:relative;
+    margin-top:clamp(3rem,6vw,5rem);
+    padding:clamp(16px,2.4vw,30px);
+    display:grid;
+    grid-template-columns:repeat(12,1fr);
+    gap:clamp(1rem,1.8vw,1.8rem);
+    align-items:start;
+  }
+
+  /* faint SCADA graph-paper, masked so it never reads as a boxed rectangle */
+  .conf__scada{
+    position:absolute;inset:0;z-index:0;pointer-events:none;
+    background-image:
+      linear-gradient(var(--line-soft) 1px,transparent 1px),
+      linear-gradient(90deg,var(--line-soft) 1px,transparent 1px);
+    background-size:clamp(34px,4vw,52px) clamp(34px,4vw,52px);
+    -webkit-mask-image:radial-gradient(125% 95% at 50% 38%,#000 42%,transparent 100%);
+    mask-image:radial-gradient(125% 95% at 50% 38%,#000 42%,transparent 100%);
+    opacity:.7;
+  }
+
+  .conf__mod{
+    position:relative;z-index:1;
+    display:flex;flex-direction:column;
+    padding:clamp(1.4rem,2.4vw,2.4rem);
+    clip-path:var(--clip-chf);
+    background:linear-gradient(180deg,var(--surface) 0%,var(--surface-2) 100%);
+    box-shadow:inset 0 1px 0 rgba(236,238,241,.06);
+    min-height:clamp(210px,25vw,290px);
+  }
+  /* genuinely unequal footprints + vertical offsets (never three equal columns) */
+  .conf__mod--0{grid-column:1 / 5}
+  .conf__mod--1{grid-column:5 / 10;margin-top:clamp(2.4rem,5vw,4.2rem);min-height:clamp(260px,30vw,360px)}
+  .conf__mod--2{grid-column:10 / 13;margin-top:clamp(1.1rem,2.6vw,2rem)}
+
+  .conf__mtop{display:flex;align-items:flex-start;justify-content:space-between;gap:.8rem}
+  .conf__slot{font-size:.66rem;letter-spacing:.18em;color:var(--muted)}
+  .conf__ring{width:clamp(30px,3.4vw,44px);height:clamp(30px,3.4vw,44px);flex:none;overflow:visible}
+  .conf__ring polygon{fill:none;stroke:var(--muted-dim);stroke-width:1.4;vector-effect:non-scaling-stroke}
+
+  .conf__body{margin-top:auto;display:flex;flex-direction:column;gap:.9rem;padding-top:2.2rem}
+  .conf__readout{display:flex;align-items:baseline;gap:.55rem;flex-wrap:wrap}
+  .conf__val{font-size:clamp(3rem,6vw,5rem);line-height:.88;letter-spacing:-.03em;color:var(--ink);font-variant-numeric:tabular-nums}
+  .conf__mod--1 .conf__val{font-size:clamp(3.4rem,8vw,6.6rem)}
+  .conf__unit{font-size:.72rem;letter-spacing:.14em;color:var(--muted);text-transform:uppercase}
+
+  /* the single ember per module: one accent line on the critical value */
+  .conf__ember{width:clamp(46px,4vw,66px);height:2px;background:var(--accent);box-shadow:0 0 12px rgba(var(--accent-rgb),.3)}
+  .conf__label{margin-top:.1rem}
+
+  /* hover: the readout "activates", module lifts, the wireframe ring grows and
+     ignites to accent, the ember bar under the value stretches and glows, the
+     value brightens (a control-room tile coming alive) */
+  @media (hover:hover) and (pointer:fine){
+    .conf__mod{transition:transform .45s var(--ease)}
+    .conf__ring{transition:transform .55s var(--ease)}
+    .conf__ring polygon{transition:stroke .4s var(--ease),stroke-width .4s var(--ease)}
+    .conf__ember{transition:width .5s var(--ease),box-shadow .4s var(--ease)}
+    .conf__val{transition:color .4s var(--ease)}
+    .conf__slot{transition:color .35s var(--ease)}
+    .conf__mod:hover{transform:translateY(-4px)}
+    .conf__mod:hover .conf__ring{transform:scale(1.16)}
+    .conf__mod:hover .conf__ring polygon{stroke:var(--accent);stroke-width:2.4}
+    .conf__mod:hover .conf__ember{width:clamp(72px,7vw,112px);box-shadow:0 0 16px rgba(var(--accent-rgb),.55)}
+    .conf__mod:hover .conf__val{color:#fff}
+    .conf__mod:hover .conf__slot{color:var(--accent-hi)}
+  }
+
+  /* posture row: mono labels, graphite diamond bullets (red stays on the data) */
+  .conf__posture{
+    position:relative;z-index:1;list-style:none;
+    margin-top:clamp(2.4rem,4vw,3.4rem);
+    padding-top:1.4rem;border-top:var(--hair) solid var(--line);
+    display:flex;flex-wrap:wrap;gap:.9rem clamp(1.4rem,3vw,2.6rem);
+  }
+  .conf__posture-item{display:inline-flex;align-items:center;gap:.6rem;font-size:.72rem;letter-spacing:.1em;color:var(--muted)}
+  .conf__posture-item::before{content:"";width:7px;height:7px;flex:none;background:var(--muted-dim);clip-path:var(--clip-diamond)}
+
+  .conf__note{margin-top:clamp(1.4rem,2.4vw,2rem);max-width:74ch;font-size:.7rem;line-height:1.7;letter-spacing:.03em;color:var(--muted);text-transform:none}
+
+  /* ---- mobile: modules stack in 1 column, offsets off, no board tricks ---- */
+  @media (max-width:900px){
+    .conf__panel{grid-template-columns:1fr;gap:clamp(1rem,3vw,1.4rem);padding:clamp(10px,3vw,16px)}
+    .conf__mod,
+    .conf__mod--0,
+    .conf__mod--1,
+    .conf__mod--2{grid-column:auto;margin-top:0;min-height:0}
+    .conf__body{padding-top:1.6rem}
+    .conf__val{font-size:clamp(2.9rem,13vw,4rem)}
+    .conf__mod--1 .conf__val{font-size:clamp(3.1rem,15vw,4.6rem)}
+  }
+  @media (max-width:560px){
+    .conf__posture{gap:.85rem 1.2rem}
+    .conf__posture-item{width:calc(50% - .6rem)}
+  }
+</style>

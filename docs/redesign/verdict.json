@@ -1,0 +1,61 @@
+{
+  "ranking": [
+    "Grafite e Brasa",
+    "Dossiê Técnico / Blueprint Editorial",
+    "DIREÇÃO C — Sistema Modular Cinético (Grade Viva)"
+  ],
+  "winner": "Grafite e Brasa",
+  "perDirection": [
+    {
+      "name": "Grafite e Brasa",
+      "brandFit": 9,
+      "premium": 9,
+      "disruptive": 8,
+      "feasible": 9,
+      "journey": 9,
+      "note": "Vencedora. Traduz o MARK (duplo losango -> sistema modular estrutural) + indústria pesada à noite, e é a única CONTÍNUA com o único ativo preservado: hero full-bleed canvas scroll-vídeo dolly-out da plataforma vermelha no escuro. Mais feasible em Astro+CSS+GSAP (o escuro esconde o acervo baixa-res, um só pin). Jornada operation-cinema mais tensa: 'painel de disponibilidade' transforma o strip-de-métrica BANIDO em supervisório SCADA (o próprio produto). Contras a corrigir no build: #DE1019 como texto pequeno falha AA (3,90:1 em #0B0D0F) -> usar #F32630 para HUD vermelho; a spec de motion atribui 'DrawSVG' ao anime.js (DrawSVG é plugin do GSAP), inconsistência a arrumar; risco de split-diamond/DrawSVG virar tique por seção."
+    },
+    {
+      "name": "Dossiê Técnico / Blueprint Editorial",
+      "brandFit": 8,
+      "premium": 9,
+      "disruptive": 9,
+      "feasible": 6,
+      "journey": 7,
+      "note": "Conceito mais ownable e award-worthy (documento de engenharia = cultura real da empresa; vermelho = tinta de anotação no ponto crítico). Mais disruptivo e premium-editorial dos três. MAS: (1) paleta clara briga com o hero escuro preservado, que vira plate colado em papel em vez de fundo; (2) bloco de carimbo/rótulo 'PRANCHA 0X' repetido nas 13 seções estoura o orçamento de eyebrows (<=ceil(secoes/3)=5) e vira meta-label reflexo, exatamente o tell banido; (3) #DE1019 como texto de anotação sobre papel #E7E6E0 = 4,01:1, falha AA (usar #AC0C12 = 5,97:1); (4) duotone-sobre-claro enfraquece o acervo baixa-res; (5) 13 seções = jornada longa. Maior custo de build e maior risco de execução."
+    },
+    {
+      "name": "DIREÇÃO C — Sistema Modular Cinético (Grade Viva)",
+      "brandFit": 8,
+      "premium": 7,
+      "disruptive": 8,
+      "feasible": 6,
+      "journey": 8,
+      "note": "Tradução mais literal do nome/módulo (grade que se monta ao vivo), contínua com o hero. Mas é essencialmente uma B com mais literalismo cinético e menos contenção editorial: orçamento de contraste mais apertado (fundo #14171A -> #DE1019 texto = 3,57:1, pior de todas; até o #F32630 dá 4,35:1, falha marginal); dois momentos cinematográficos (hero + pin horizontal) no teto do 1-2 permitido, com auto-montagem snap-lock em quase toda seção = maior orquestração, maior risco de jank/mobile e de virar demo kinética em vez de premium. Snap-lock repetido também é o candidato mais provável a recair no 'grade de cards idênticos' fantasiada de losango."
+    }
+  ],
+  "keepFromLosers": [
+    "A: bloco de carimbo do desenho técnico vira a seção CONTATO/footer (campos em mono + CTA WhatsApp como único bloco vermelho) — fecho temático 'aprovação do desenho' que B não tem.",
+    "A: risk register frio na seção de risco (lista mono 'o que para / o que se perde / efeito cascata') em vez de banner alarmista — mais crível para quem opera planta.",
+    "A: dispositivo Rev A -> Rev B com nuvem de revisão vermelha para contar RETROFIT/modernização (convenção real de desenho técnico, ninguém no setor usa como UI); B carece de um momento dedicado a retrofit.",
+    "A: balão DET A com leader-line apontando o ponto crítico da foto (botão vermelho, LED) — dignifica o acervo baixa-res e reforça 'vermelho = crítico'.",
+    "A: rótulo '(ilustrativo)' nativo dentro da estética de documento — transforma a honestidade das métricas fracas em signo de seriedade em vez de esconder.",
+    "C: pin com scroll horizontal para 'loop-check / comissionamento' como o SEGUNDO e último momento cinematográfico (HUD de gauges acendendo em sequência); comissionamento é abstrato e ganha corpo navegável.",
+    "C: um único contador cinético dramatizando o custo de downtime (número que sobe, rotulado ilustrativo) no lugar de 3 cards de problema.",
+    "C: mapa de Minas Gerais em wireframe topográfico (não embed do Google Maps) com um pino losango vermelho aceso — understatement premium para base-campo.",
+    "C: regra 'âmbar exatamente uma vez, diegético, na Siderurgia (laminação)' — articulação mais afiada da economia de cor; adotar como regra dura explícita para blindar o 'vermelho = única cor de sistema'."
+  ],
+  "risks": [
+    "Contraste: #DE1019 como TEXTO pequeno falha WCAG AA no escuro (3,90:1 sobre #0B0D0F no vencedor; 3,57:1 sobre #14171A na C; 4,01:1 sobre papel #E7E6E0 na A). Usar #F32630 para qualquer texto/HUD vermelho no escuro (4,76:1 em #0B0D0F) e #AC0C12 no claro (5,97:1); reservar #DE1019 para display grande e line-art (>=3:1). Nunca rótulo mono em #DE1019.",
+    "'Seis módulos que se encaixam' recair em grade de cards idênticos rômbicos (o tell banido fantasiado). Exigir footprints e ângulos genuinamente desiguais; se virarem losangos iguais em grade regular, é slop.",
+    "Split-diamond em TODA troca de seção + DrawSVG 'tricotando o losango' em todo bloco = fadiga de motion e vira eyebrow-reflexo por seção. Reservar para 1-2 trocas-chave; resto com reveal quieto. Respeitar o teto de 1-2 momentos cinematográficos.",
+    "Máscara rômbica/parallelograma cortando rosto das 3 fotos humanas novas (programador, engenharia-de-controle três-quartos). Zona-segura obrigatória; chanfro só em espaço negativo; só engenheiro (de costas) tolera corte agressivo full-bleed.",
+    "Duotone grafite->vermelho achatar TODAS as imagens, inclusive as 3 novas cinematográficas — mata o calor humano/software que o brief quer em primeiro plano. Duotone só no acervo datado baixa-res; 3 novas quase em cor cheia; offshore-3 vermelha em cor plena como sujeito do herói.",
+    "HUD/contadores inventando números precisos. Métricas ILUSTRATIVAS e rotuladas como tal; só '4 segmentos' é real; sem cliente, case ou logo fabricado.",
+    "Perf/reduced-motion: animar só transform/opacity; backdrop-blur só na nav fixa; prefers-reduced-motion colapsa scroll-vídeo em frame estático, split-reveal->opacity, snap off — e o caminho estático PRECISA mostrar todo o conteúdo (nada preso em 'hidden até rolar').",
+    "Mobile/toque: snap-lock auto-montagem, pin, hover magnético e parallax-em-máscara precisam degradar (sem hover, sem pin travando). Reflow para stack/2-col/carrossel, nunca 'trem de card'. Trocar 100vh/h-screen por dvh + safe-area para a pill fixa de WhatsApp.",
+    "Travessão banido ('—'/'–'): reescrever tudo com vírgula; atenção ao statement da missão e a ranges em mono (ex.: 'REV A–B', intervalos de coordenada) que sorrateiramente reintroduzem en-dash. Koralle só display, nunca corpo; nada de Inter/Roboto como display.",
+    "Motor de motion: DrawSVG é plugin do GSAP (a spec da B atribui 'DrawSVG' ao anime.js — inconsistência interna). Todo traço SVG no GSAP; anime.js só em micro que não colida transform; nunca dividir o draw de um mesmo SVG entre dois motores.",
+    "Não deixar a economia do vermelho vazar: WhatsApp/CTA é o único bloco totalmente vermelho; se botões secundários, dots e bordas também acenderem vermelho, o 'ignite no ponto crítico' perde significado e vira decoração."
+  ]
+}

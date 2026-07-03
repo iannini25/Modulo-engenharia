@@ -1,0 +1,168 @@
+---
+// Prova de campo: the transporter photo becomes the STRUCTURAL AXIS of the
+// section (a full-bleed canted band on the mother angle, light parallax), with
+// the presence claim above and two smaller chamfered evidence planks below,
+// each in an L-corner instrument frame. Mobile: the band shortens and the
+// evidence planks reflow into a scroll-snap carousel (never a card train).
+import DMark from './DMark.astro';
+import { copy } from '../../data/home';
+import { ignite } from '../../lib/ignite';
+const s = copy['prova-campo'];
+
+// the single section brasa: the field-execution payoff word ignites in accent
+const bridgeHtml = ignite(s.bridgeLine, s.accentPhrase);
+
+// two evidence planks from the dated archive, in cold graphite duotone
+const evidence = [
+  {
+    src: '/assets/img/beneficiamento-duo.webp',
+    alt: 'Usina de beneficiamento de minério com estruturas metálicas e correias, imagem em duotone grafite',
+    caption: s.evidenceCaptions[1],
+    idx: 'EV.01',
+  },
+  {
+    src: '/assets/img/hero_patio-duo.webp',
+    alt: 'Pátio de estocagem de minério com máquinas de pátio em carga, imagem em duotone grafite',
+    caption: s.evidenceCaptions[2],
+    idx: 'EV.02',
+  },
+];
+---
+<section id="campo" class="sec campo" aria-labelledby="campo-title">
+  <div class="wrap">
+    <header class="campo__head" data-reveal>
+      <p class="u-kicker"><i></i>{s.kicker}</p>
+      <h2 id="campo-title" class="campo__title u-display u-l">{s.headline}</h2>
+      <p class="u-lede campo__lede">{s.presenceClaim}</p>
+    </header>
+  </div>
+
+  <!-- full-bleed structural band: the conveyor cuts the section on the mother angle -->
+  <figure class="campo__band" data-parallax="0.1" data-reveal>
+    <div class="campo__bandclip imod imod--cant">
+      <img
+        class="campo__img"
+        src="/assets/img/correia-duo.webp"
+        alt="Transportador de correia de longa distância cortando o pátio de mineração em operação, imagem em duotone grafite"
+        loading="lazy"
+        decoding="async"
+      />
+      <span class="campo__scrim" aria-hidden="true"></span>
+    </div>
+    <figcaption class="campo__panel mod">
+      <span class="campo__paneltag u-mono">{s.evidenceCaptions[0]}</span>
+      <span class="campo__panelbody">{s.serviceLine}</span>
+    </figcaption>
+  </figure>
+
+  <div class="wrap">
+    <div class="campo__bridge" data-reveal>
+      <DMark class="campo__mark" />
+      <p class="campo__bridgeq u-slab" set:html={bridgeHtml}></p>
+    </div>
+
+    <div class="campo__ev" role="group" aria-label="Evidências de campo">
+      {evidence.map((ev) => (
+        <figure class="campo__evitem" data-reveal>
+          <div class="campo__plank lcorners">
+            <div class="campo__evbox imod imod--chf">
+              <img src={ev.src} alt={ev.alt} loading="lazy" decoding="async" />
+            </div>
+          </div>
+          <figcaption class="campo__evcap u-mono">
+            <span class="campo__evn">{ev.idx}</span>{ev.caption}
+          </figcaption>
+        </figure>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .campo{position:relative;overflow:hidden}
+
+  /* -------- header -------- */
+  .campo__head{max-width:760px}
+  .campo__title{margin-top:1.1rem;color:var(--ink);text-wrap:balance}
+  .campo__lede{margin-top:1.25rem}
+
+  /* -------- structural band (full-bleed, canted on the mother angle) -------- */
+  .campo__band{position:relative;width:100%;height:clamp(360px,44vw,560px);
+    margin-block:clamp(2.4rem,5vw,4.2rem)}
+  .campo__bandclip{position:absolute;inset:0;--sk:clamp(44px,7vw,120px)}
+  /* oversize the image so the parallax has vertical headroom and never reveals an edge */
+  .campo__img{position:absolute;left:0;top:-9%;width:100%;height:118%;
+    object-fit:cover;object-position:50% 46%}
+  .campo__scrim{position:absolute;inset:0;pointer-events:none;background:
+    linear-gradient(90deg,
+      color-mix(in srgb,var(--bg) 80%,transparent) 0%,
+      color-mix(in srgb,var(--bg) 24%,transparent) 42%,
+      transparent 68%),
+    linear-gradient(0deg,
+      color-mix(in srgb,var(--bg) 74%,transparent) 0%,
+      transparent 44%)}
+
+  /* graphite instrument panel over the band: photo label + service statement */
+  .campo__panel{position:absolute;
+    left:max(clamp(20px,5vw,72px),env(safe-area-inset-left));
+    bottom:clamp(20px,5vw,54px);max-width:min(460px,52%);
+    background:var(--surface);border:var(--hair) solid var(--line);
+    --chf:22px;padding:1.15rem 1.35rem 1.3rem;
+    box-shadow:inset 0 1px 0 color-mix(in srgb,var(--ink) 6%,transparent)}
+  .campo__paneltag{display:block;font-size:.64rem;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--muted);margin-bottom:.55rem;line-height:1.35}
+  .campo__panelbody{display:block;font-size:clamp(.95rem,1.05vw,1.08rem);
+    line-height:1.5;color:var(--ink)}
+
+  /* -------- bridge line: the single section brasa lives here -------- */
+  .campo__bridge{display:flex;gap:clamp(1rem,2vw,1.6rem);align-items:flex-start;
+    max-width:52ch;margin-top:clamp(2.6rem,5vw,4rem);--dmark-w:38px}
+  /* the mark is a child-component root: reach it with :global (scoped rules cannot) */
+  .campo__bridge :global(.campo__mark){margin-top:.4rem}
+  .campo__bridgeq{font-size:clamp(1.5rem,2.7vw,2.4rem);line-height:1.18;
+    color:var(--ink);letter-spacing:-.005em}
+
+  /* -------- evidence planks (chamfered modules in L-corner frames) -------- */
+  .campo__ev{display:grid;grid-template-columns:repeat(2,1fr);
+    gap:clamp(1.4rem,3vw,2.4rem);margin-top:clamp(2.6rem,5vw,3.6rem)}
+  .campo__evitem{margin:0}
+  .campo__plank{position:relative}
+  .campo__evbox{aspect-ratio:16/11}
+  .campo__evcap{display:flex;gap:.6rem;margin-top:.95rem;font-size:.66rem;
+    letter-spacing:.1em;text-transform:uppercase;color:var(--muted);line-height:1.45}
+  .campo__evn{color:var(--muted);flex:none}
+
+  /* hover: evidence plank lifts, the archive photo warms + zooms inside its chamfer,
+     the L-corner brackets ignite, the index turns ember */
+  @media (hover:hover) and (pointer:fine){
+    .campo__evitem{transition:transform .5s var(--ease)}
+    .campo__evbox img{transition:transform .6s var(--ease),filter .6s var(--ease)}
+    .campo__plank.lcorners::before,.campo__plank.lcorners::after{transition:border-color .4s var(--ease)}
+    .campo__evn{transition:color .35s var(--ease)}
+    .campo__evitem:hover{transform:translateY(-5px)}
+    .campo__evitem:hover .campo__evbox img{transform:scale(1.06);filter:saturate(1.14) brightness(1.05)}
+    .campo__evitem:hover .campo__plank.lcorners::before,
+    .campo__evitem:hover .campo__plank.lcorners::after{border-color:var(--accent)}
+    .campo__evitem:hover .campo__evn{color:var(--accent-hi)}
+  }
+
+  /* -------- reflow: shorter banner, evidence becomes a scroll-snap carousel -------- */
+  @media (max-width:720px){
+    .campo__band{height:clamp(240px,60vw,340px)}
+    .campo__bandclip{--sk:clamp(30px,9vw,64px)}
+    .campo__panel{max-width:none;
+      right:max(clamp(20px,5vw,72px),env(safe-area-inset-right));--chf:16px;
+      padding:1rem 1.15rem 1.1rem}
+
+    .campo__ev{grid-template-columns:none;display:flex;gap:1rem;
+      overflow-x:auto;scroll-snap-type:x mandatory;overscroll-behavior-x:contain;
+      margin-inline:calc(-1 * var(--pad));padding-inline:var(--pad);padding-bottom:.4rem;
+      scrollbar-width:none;-webkit-overflow-scrolling:touch}
+    .campo__ev::-webkit-scrollbar{display:none}
+    .campo__evitem{flex:0 0 82%;scroll-snap-align:start}
+  }
+
+  @media (max-width:420px){
+    .campo__evitem{flex-basis:88%}
+  }
+</style>

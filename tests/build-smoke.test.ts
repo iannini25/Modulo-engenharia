@@ -6,9 +6,10 @@ describe('build output', () => {
     const p = 'dist/index.html';
     expect(existsSync(p), 'run `npm run build` first').toBe(true);
     const html = readFileSync(p, 'utf8');
-    expect(html).toContain('id="servicos"');
-    expect(html).toContain('id="contato"');
-    expect(html).toContain('id="equipamentos"');
+    // the "Grafite e Brasa" one-page journey anchors (nav + hero)
+    for (const id of ['inicio', 'servicos', 'software', 'segmentos', 'campo', 'contato']) {
+      expect(html, `missing home section: #${id}`).toContain(`id="${id}"`);
+    }
   });
 
   it('builds all internal pages', () => {

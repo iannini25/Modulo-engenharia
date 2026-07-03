@@ -1,0 +1,325 @@
+{
+  "voiceNotes": "DIAGNÓSTICO (Schwartz/Halbert/Ogilvy). Nível de consciência: Consciente da solução, beirando Consciente do produto (o gestor sabe que existe automação, retrofit e manutenção de campo, está escolhendo QUEM executa). Sofisticação: estágio 3-4, mercado cheio de \"soluções completas\", então precisa de mecanismo com nome: o Sistema Módulo, seis serviços que se travam num sistema só, com um único responsável do CLP à partida. Fome (Halbert): gestor de planta pesada que não pode pagar downtime, já busca automação, comissionamento, retrofit e parada programada. Ideia Grande: \"onde falhar não é opção\", entregue por engenheiros que programam o supervisório E botam a mão na máquina em campo. Ação única: falar com um engenheiro no WhatsApp (rótulo único na página inteira). Nicho: engenharia industrial e automação para indústria pesada · público: gestores e engenheiros de mineração, siderurgia, offshore, energia · eixo de status: dominância (competência, controle, não deixar parar) · perfil 6.1: Produto/tech premium (grotesk larga + mono nos números, escuro + acento).\n\nTOM. Voz de sala de controle: séria, precisa, calma sob pressão. Frase curta, substantivo técnico exato (CLP, SCADA, malha, intertravamento, loop-check), verbo concreto sempre. \"A gente\" para calor e proximidade de quem atende, nunca vendedor. A brasa (vermelho/accent) só acende numa palavra ou frase por seção, igual ao vermelho da marca: no ponto crítico, nunca decorativo. Especificidade no lugar de adjetivo (Ogilvy): \"do sensor ao atuador\", \"da última conexão à primeira tonelada\", em vez de \"qualidade e excelência\". Honestidade vira ativo de marca: os números são ilustrativos e assumidos como tal dentro da estética de documento técnico; o único dado real, 4 segmentos, ganha destaque. WhatsApp = você fala com quem executa, não com call center. Zero clichê de IA, zero \"solução completa/inovadora\", zero travessão (só vírgula, ponto, dois-pontos, barra; hífen apenas em start-up, loop-check, navio-sonda, tags de instrumento). Teste do balcão (Olivetto): a frase que dá pra repetir é \"onde falhar não é opção\".\n\nDADOS REAIS A CONFIRMAR (hoje ilustrativos ou omitidos): anos reais de atuação, nº real de projetos entregues, meta/registro real de disponibilidade, cidade-base exata em MG, número do WhatsApp, e se há depoimento real de cliente autorizado (sem ele, não existe seção de depoimento, por regra). Só \"4 segmentos\" está confirmado como real.\n\nA/B do herói: (A) \"Na máquina que não pode parar, falhar não é opção.\" (dominância + promessa da marca). (B) \"Máquina crítica parada custa caro. Falhar não é opção.\" (ângulo custo + promessa). Racional: A vende o frame de controle para quem já sente o risco; B ativa a dor financeira antes da solução.",
+  "sections": [
+    {
+      "id": "nav",
+      "copy": {
+        "wordmark": "Módulo Engenharia",
+        "links": [
+          "Serviços",
+          "Software",
+          "Segmentos",
+          "Campo",
+          "Contato"
+        ],
+        "cta": "Falar com um engenheiro",
+        "status": "SISTEMA OPERANDO"
+      }
+    },
+    {
+      "id": "hero",
+      "copy": {
+        "kicker": "OFFSHORE, OPERAÇÃO QUE NÃO PARA",
+        "headline": "Na máquina que não pode parar, falhar não é opção.",
+        "headlineAltAB": "Máquina crítica parada custa caro. Falhar não é opção.",
+        "palavraBrasa": "parar",
+        "subhead": "Engenharia, automação e manutenção para as máquinas críticas que a indústria pesada não pode deixar parar.",
+        "hudStateLabel": "SISTEMA OPERANDO",
+        "hudCornerLeft": "MÓDULO · OPERAÇÃO CONTÍNUA",
+        "hudCornerRight": "BASE MINAS GERAIS, BR",
+        "cta": "Falar com um engenheiro",
+        "ctaMicrocopy": "Resposta rápida no WhatsApp. Você fala com quem executa o projeto."
+      }
+    },
+    {
+      "id": "tese-risco",
+      "copy": {
+        "kicker": "O CUSTO DE PARAR",
+        "statement": "Quando uma máquina crítica para, o relógio não para junto. Cada minuto vira produção perdida, contrato atrasado, prejuízo acumulado.",
+        "palavraBrasa": "minuto",
+        "riskRegister": [
+          "O QUE PARA / a linha toda, não só o equipamento",
+          "O QUE SE PERDE / tonelada parada, equipe ociosa, prazo estourado",
+          "EFEITO CASCATA / uma falha puxa a próxima, planta abaixo"
+        ],
+        "counterLabel": "CUSTO DE PARADA, ACUMULANDO (ILUSTRATIVO)",
+        "counterNote": "Valor indicativo. O número real depende da sua planta.",
+        "imageCaption": "ENGENHEIRO ENTRANDO NA PLANTA, INÍCIO DE TURNO"
+      }
+    },
+    {
+      "id": "servicos-modulos",
+      "copy": {
+        "kicker": "O SISTEMA MÓDULO",
+        "headline": "Seis serviços, um sistema que se encaixa.",
+        "subhead": "Do projeto elétrico à partida assistida, cada frente trava na outra. Você fala com um responsável, não com seis fornecedores.",
+        "modules": [
+          {
+            "tag": "MOD 01",
+            "name": "Automação e Controle de Processos",
+            "verb": "Programamos",
+            "value": "Seu processo sob controle, com a informação certa na tela certa.",
+            "spec": "CLP · SCADA · REDES INDUSTRIAIS",
+            "hover": "Lógica de CLP, supervisório SCADA e redes que conversam. O operador enxerga a planta inteira e decide com dado, não no escuro."
+          },
+          {
+            "tag": "MOD 02",
+            "name": "Engenharia Elétrica e Instrumentação",
+            "verb": "Projetamos",
+            "value": "Do painel ao sensor, a base elétrica que sustenta a operação.",
+            "spec": "PAINÉIS · SENSORES · MALHAS DE CONTROLE",
+            "hover": "Projeto e montagem de painéis, instrumentação de campo e malhas fechadas. A parte que ninguém vê e que segura tudo de pé."
+          },
+          {
+            "tag": "MOD 03",
+            "name": "Máquinas de Pátio",
+            "verb": "Automatizamos",
+            "value": "Empilhadeira e recuperadora automatizadas, modernizadas, de volta ao ritmo.",
+            "spec": "AUTOMAÇÃO · MODERNIZAÇÃO · RETROFIT",
+            "hover": "Empilhadeiras e recuperadoras que ganham automação e controle novos, sem trocar a máquina inteira."
+          },
+          {
+            "tag": "MOD 04",
+            "name": "Transportadores de Correia",
+            "verb": "Instrumentamos",
+            "value": "A correia longa protegida, pesada e intertravada de ponta a ponta.",
+            "spec": "PROTEÇÕES · PESAGEM · INTERTRAVAMENTO",
+            "hover": "Proteção, pesagem em movimento e intertravamento em transportadores de longa distância. A correia para na hora certa, não na pior hora."
+          },
+          {
+            "tag": "MOD 05",
+            "name": "Montagem e Manutenção Eletromecânica",
+            "verb": "Executamos",
+            "value": "Equipe em campo, na parada programada e na corretiva que não pode esperar.",
+            "spec": "CAMPO · PARADA PROGRAMADA · CORRETIVA",
+            "hover": "Montagem e manutenção com a mão na máquina, na parada planejada e na emergência que apareceu de madrugada."
+          },
+          {
+            "tag": "MOD 06",
+            "name": "Comissionamento e Start-up",
+            "verb": "Comissionamos",
+            "value": "Loop-check e partida assistida, da última conexão à primeira tonelada.",
+            "spec": "LOOP-CHECK · PARTIDA ASSISTIDA",
+            "hover": "Testamos malha por malha e acompanhamos a partida. A planta sobe funcionando, não improvisando."
+          }
+        ]
+      }
+    },
+    {
+      "id": "software-humano",
+      "copy": {
+        "kicker": "SOFTWARE E MÃO NA MÁQUINA",
+        "missionPullquote": "Nosso software e nosso hardware aumentam a eficiência, a segurança e a qualidade, colocam a informação certa na mão de quem decide, e reduzem a interferência humana sobre o processo.",
+        "accentPhrase": "reduzem a interferência humana sobre o processo",
+        "subtext": "Os mesmos engenheiros que escrevem a lógica do CLP e desenham o supervisório também sobem no equipamento em campo. Software e máquina, o mesmo time.",
+        "hudLabels": [
+          "SUPERVISÓRIO ATIVO",
+          "MALHA FECHADA",
+          "PRESSÃO (ILUSTRATIVO)",
+          "SETPOINT (ILUSTRATIVO)"
+        ],
+        "imageCaption": "SUPERVISÓRIO RODANDO EM CAMPO, REFINARIA AO ENTARDECER"
+      }
+    },
+    {
+      "id": "ciclo-loop",
+      "copy": {
+        "kicker": "PROVA TÉCNICA, DO CLP AO START-UP",
+        "headline": "Do CLP à partida, a malha inteira sob domínio.",
+        "explanation": "No loop-check a gente testa cada caminho do sinal: do sensor de campo ao CLP, do CLP ao supervisório, do comando ao atuador. Nada sobe antes de a malha fechar.",
+        "startupLine": "Na partida assistida, a equipe fica na planta até o processo estabilizar. Você não sobe a operação sozinho.",
+        "loopNodes": [
+          "SENSOR / mede o campo",
+          "CLP / decide a lógica",
+          "SCADA / mostra e registra",
+          "ATUADOR / executa o comando"
+        ],
+        "hudTags": [
+          "LOOP TAG FT-118 (ILUSTRATIVO)",
+          "PT-204 · LIC-330 (ILUSTRATIVO)",
+          "PV / SP / MV",
+          "STATUS: MALHA FECHADA"
+        ],
+        "closingLine": "Do primeiro desenho à primeira tonelada, um só responsável. Você não vira gerente de fornecedor."
+      }
+    },
+    {
+      "id": "retrofit",
+      "copy": {
+        "kicker": "MODERNIZAÇÃO DE ATIVOS",
+        "headline": "Modernizar o que você já tem, sem comprar máquina nova.",
+        "revA": {
+          "label": "REV A",
+          "caption": "ATIVO COMO ESTÁ, comando manual, controle no olho do operador"
+        },
+        "revB": {
+          "label": "REV B",
+          "caption": "ATIVO MODERNIZADO, automação e dados em tempo real"
+        },
+        "revisionCloud": [
+          "+ CLP e supervisório",
+          "+ intertravamento de segurança",
+          "+ sensores e medição",
+          "+ painel elétrico refeito"
+        ],
+        "oneLiner": "Retrofit evita o custo de uma máquina nova, reduz a parada, e estende a vida do ativo por anos.",
+        "imageCaption": "RECUPERADORA DE PÁTIO EM MODERNIZAÇÃO"
+      }
+    },
+    {
+      "id": "segmentos",
+      "copy": {
+        "kicker": "AUTORIDADE",
+        "headline": "Quatro segmentos pesados, a mesma regra: não parar.",
+        "numeralLabel": "4 é o único número 100% real deste site.",
+        "segments": [
+          {
+            "name": "Mineração",
+            "context": "Pátio, correia, beneficiamento. Volume que não pode parar de correr.",
+            "micro": "PÁTIO · CORREIA · BENEFICIAMENTO"
+          },
+          {
+            "name": "Siderurgia",
+            "context": "Alto-forno e laminação. O calor não perdoa hora de máquina parada.",
+            "micro": "ALTO-FORNO · LAMINAÇÃO"
+          },
+          {
+            "name": "Offshore",
+            "context": "Plataforma e navio-sonda. No mar, cada parada custa o dobro.",
+            "micro": "PLATAFORMA · NAVIO-SONDA"
+          },
+          {
+            "name": "Energia",
+            "context": "Geração e subestação. A linha precisa ficar de pé.",
+            "micro": "GERAÇÃO · SUBESTAÇÃO · SUPERVISÓRIO"
+          }
+        ]
+      }
+    },
+    {
+      "id": "prova-campo",
+      "copy": {
+        "kicker": "PROVA DE CAMPO",
+        "headline": "Projeto sai do papel na planta, não no slide.",
+        "presenceClaim": "Engenharia que não fica no escritório. A gente vai pra planta, com base em Minas Gerais e campo onde o cliente estiver.",
+        "serviceLine": "Atende a parada programada com plano na mão, e a corretiva com a equipe pronta pra sair.",
+        "bridgeLine": "Projeto é metade. A outra metade é subir no equipamento e fazer funcionar.",
+        "accentPhrase": "fazer funcionar",
+        "evidenceCaptions": [
+          "TRANSPORTADOR DE LONGA DISTÂNCIA, EM OPERAÇÃO",
+          "USINA DE BENEFICIAMENTO DE MINÉRIO",
+          "PÁTIO DE ESTOCAGEM, MÁQUINAS EM CARGA"
+        ]
+      }
+    },
+    {
+      "id": "confianca",
+      "copy": {
+        "kicker": "LEITURA DE SALA DE CONTROLE",
+        "headline": "Disponibilidade é rotina, não promessa.",
+        "metrics": [
+          {
+            "value": "+15",
+            "unit": "ANOS",
+            "label": "TEMPO DE ESTRADA (ILUSTRATIVO)"
+          },
+          {
+            "value": "+120",
+            "unit": "PROJETOS",
+            "label": "ENTREGAS (ILUSTRATIVO)"
+          },
+          {
+            "value": "99%",
+            "unit": "",
+            "label": "DISPONIBILIDADE ALVO (ILUSTRATIVO)"
+          }
+        ],
+        "postureItems": [
+          "BASE EM MINAS GERAIS",
+          "ATUAÇÃO EM CAMPO",
+          "PARADA PROGRAMADA",
+          "CORRETIVA DE URGÊNCIA"
+        ],
+        "honestyNote": "Números indicativos, do jeito que um supervisório mostra: o que vale é o dado, não o enfeite. Sem cliente inventado, sem logo emprestada."
+      }
+    },
+    {
+      "id": "contato",
+      "copy": {
+        "kicker": "APROVAÇÃO DO DESENHO",
+        "promiseRepeat": "Onde falhar não é opção.",
+        "reassurance": "Sua planta não escolhe hora pra parar. A gente também não.",
+        "cta": "Falar com um engenheiro",
+        "ctaMicrocopy": "Resposta rápida no WhatsApp. Você fala com quem executa, não com um call center.",
+        "locationLine": "Base em Minas Gerais, Brasil. Atendemos onde a planta estiver.",
+        "stampFields": [
+          {
+            "label": "PROJETO:",
+            "value": "SUA PLANTA"
+          },
+          {
+            "label": "SEGMENTO:",
+            "value": "MINERAÇÃO / SIDERURGIA / OFFSHORE / ENERGIA"
+          },
+          {
+            "label": "RESPONSÁVEL:",
+            "value": "MÓDULO ENGENHARIA"
+          },
+          {
+            "label": "LOCAL:",
+            "value": "MINAS GERAIS, BR"
+          },
+          {
+            "label": "REV:",
+            "value": "B"
+          },
+          {
+            "label": "STATUS:",
+            "value": "AGUARDANDO SEU CONTATO"
+          }
+        ]
+      }
+    },
+    {
+      "id": "footer",
+      "copy": {
+        "wordmarkInk": "Módulo",
+        "wordmarkRed": "Engenharia",
+        "institutionalLine": "Engenharia, automação e manutenção para a indústria que não pode parar.",
+        "navGroups": [
+          {
+            "title": "SERVIÇOS",
+            "items": [
+              "Automação e Controle",
+              "Elétrica e Instrumentação",
+              "Máquinas de Pátio",
+              "Transportadores de Correia",
+              "Montagem e Manutenção",
+              "Comissionamento e Start-up"
+            ]
+          },
+          {
+            "title": "SEGMENTOS",
+            "items": [
+              "Mineração",
+              "Siderurgia",
+              "Offshore",
+              "Energia"
+            ]
+          },
+          {
+            "title": "CONTATO",
+            "items": [
+              "Falar com um engenheiro",
+              "WhatsApp direto com a engenharia",
+              "Minas Gerais, Brasil"
+            ]
+          }
+        ],
+        "statusLine": "MINAS GERAIS, BR · WHATSAPP DIRETO · SISTEMA OPERANDO",
+        "illustrativeNote": "MÉTRICAS DESTE SITE SÃO ILUSTRATIVAS. O ÚNICO DADO REAL É 4 SEGMENTOS.",
+        "copyright": "© 2026 Módulo Engenharia. Todos os direitos reservados."
+      }
+    }
+  ]
+}

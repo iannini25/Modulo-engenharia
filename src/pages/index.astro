@@ -1,25 +1,28 @@
 ---
-import Base from '../layouts/Base.astro';
-import CinematicHero from '../components/CinematicHero.astro';
-import Manifesto from '../components/Manifesto.astro';
-import Services from '../components/Services.astro';
-import EquipShowcase from '../components/EquipShowcase.astro';
-import Stats from '../components/Stats.astro';
-import Process from '../components/Process.astro';
-import Sectors from '../components/Sectors.astro';
-import ContactSection from '../components/ContactSection.astro';
-import { site } from '../data/site';
+import HomeLayout from '../layouts/HomeLayout.astro';
+import HeroModulo from '../components/home/HeroModulo.astro';
+import TeseRisco from '../components/home/TeseRisco.astro';
+import ServicosModulos from '../components/home/ServicosModulos.astro';
+import SoftwareHumano from '../components/home/SoftwareHumano.astro';
+import CicloLoop from '../components/home/CicloLoop.astro';
+import Retrofit from '../components/home/Retrofit.astro';
+import Segmentos from '../components/home/Segmentos.astro';
+import ProvaCampo from '../components/home/ProvaCampo.astro';
+import Confianca from '../components/home/Confianca.astro';
+import Contato from '../components/home/Contato.astro';
 ---
-<Base
-  title={`${site.brand.name} — Automação e Engenharia para a Indústria Pesada`}
-  description="Módulo Engenharia: automação, engenharia elétrica, instrumentação, montagem e manutenção para mineração, siderurgia, offshore e energia. Mais produtividade, mais segurança, menos esforço humano."
+<HomeLayout
+  title="Módulo Engenharia, automação para a indústria que não pode parar"
+  description="Engenharia, automação e manutenção para as máquinas críticas da indústria pesada: mineração, siderurgia, offshore e energia. Fale com um engenheiro."
 >
-  <CinematicHero />
-  <Manifesto />
-  <Services />
-  <EquipShowcase />
-  <Stats />
-  <Process />
-  <Sectors />
-  <ContactSection />
-</Base>
+  <HeroModulo />
+  <TeseRisco />
+  <ServicosModulos />
+  <SoftwareHumano />
+  <CicloLoop />
+  <Retrofit />
+  <Segmentos />
+  <ProvaCampo />
+  <Confianca />
+  <Contato />
+</HomeLayout>

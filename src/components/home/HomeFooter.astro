@@ -2,6 +2,7 @@
 import DMark from './DMark.astro';
 import { copy, waHref, navLinks } from '../../data/home';
 const f = copy.footer;
+import BiSign from '../BiSign.astro';
 ---
 <footer class="foot" id="foot">
   <!-- hairline diamonds assembling at the close -->
@@ -35,6 +36,7 @@ const f = copy.footer;
     <span class="u-illus">{f.illustrativeNote}</span>
     <span class="u-mono foot__copy">{f.copyright}</span>
   </div>
+  <BiSign />
 </footer>
 
 <style>

@@ -5,6 +5,7 @@ import { greetingURL } from '../lib/wa';
 const wa = greetingURL(site.contact.whatsappDigits);
 const year = new Date().getFullYear();
 const heroCredit = site.media.find((m) => m.id === 'hero');
+import BiSign from './BiSign.astro';
 ---
 <footer class="footer">
   <div class="wrap footer__in">
@@ -44,4 +45,5 @@ const heroCredit = site.media.find((m) => m.id === 'hero');
       </span>
     )}
   </div>
+  <BiSign />
 </footer>

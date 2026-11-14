@@ -43,16 +43,19 @@ const heroAlt =
 
     <div class="hero__inner">
       <div class="hero__lead lcorners lcorners--ember">
-        <p class="u-kicker hero__kicker" data-reveal><i></i>{h.kicker}</p>
         <h1 class="hero__title u-display" data-reveal set:html={ignite(h.headline, h.palavraBrasa)}></h1>
         <p class="hero__sub" data-reveal>{h.subhead}</p>
         <div class="hero__cta" data-reveal>
-          <a href="#contato" class="btn btn--ember btn--lg">
-            {h.cta}
-            <svg class="arw" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </a>
+          <a href="#contato" class="btn btn--ember btn--lg"><span class="btn__t">{h.cta}</span><span class="btn-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
           <p class="hero__micro u-mono">{h.ctaMicrocopy}</p>
         </div>
+      </div>
+    </div>
+
+    <div class="hero__notch" data-reveal>
+      <div class="hero__notch-in">
+        <span class="hero__notch-n">4</span>
+        <p class="hero__notch-t"><b>segmentos pesados</b>mineração, siderurgia, offshore e energia</p>
       </div>
     </div>
 

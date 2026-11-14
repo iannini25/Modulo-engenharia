@@ -1,17 +1,17 @@
 ---
-// Cinematic scroll hero v3 — "Plataforma no Entardecer".
+// Cinematic scroll hero v3, "Plataforma no Entardecer".
 // Primary: a scroll-scrubbed FRAME SEQUENCE on canvas (AI-generated video from the
 // real offshore-3.jpg reference). Fallback (reduced-motion / no-JS / frames absent):
 // the static golden-hour poster + a scroll camera move. Text sits LEFT, platform RIGHT.
 // Honesty: the platform is an ILLUSTRATIVE representation of the offshore segment
 // (AI-generated from a real reference), never claimed as "Módulo's platform".
 // Frames-mode: a 4K AI scroll-video (Kling 3.0, 4K mode) from the real offshore-3
-// reference — starts close, slow zoom-out, waves + birds + the rig operating.
+// reference, starts close, slow zoom-out, waves + birds + the rig operating.
 // Drawn on a canvas, scrubbed by scroll; the 4K first frame is the poster fallback.
 const FRAME_COUNT = 121; // public/frames/desktop
 const FRAME_COUNT_MOBILE = 70; // public/frames/mobile
 const heroAlt =
-  'Plataforma de petróleo offshore em mar aberto ao entardecer — representação do segmento offshore atendido pela Módulo Engenharia (imagem ilustrativa)';
+  'Plataforma de petróleo offshore em mar aberto ao entardecer, representação do segmento offshore atendido pela Módulo Engenharia (imagem ilustrativa)';
 ---
 <section
   id="inicio"
@@ -48,9 +48,6 @@ const heroAlt =
 
     <div class="hero__inner">
       <div class="hero__lead">
-        <p class="hero__eyebrow" data-reveal>
-          <i class="hero__dash" aria-hidden="true"></i>ENGENHARIA · AUTOMAÇÃO · MANUTENÇÃO
-        </p>
         <h1 class="hero__title">
           <span class="line" data-reveal>Onde falhar</span>
           <span class="line line--step" data-reveal>não é <em>opção</em><span class="hero__period">.</span></span>
@@ -58,9 +55,9 @@ const heroAlt =
         <div class="hero__meta" data-reveal>
           <p class="hero__lede">
             Automação e engenharia que elevam produtividade e segurança onde o
-            erro custa caro — da mina ao mar aberto.
+            erro custa caro, da mina ao mar aberto.
           </p>
-          <a href="#contato" class="btn btn--solid btn--lg" data-magnetic>Iniciar um projeto<svg viewBox="0 0 24 24" class="ico-arrow"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg></a>
+          <a href="#contato" class="btn btn--solid btn--lg"><span class="btn__t">Iniciar um projeto</span><span class="btn-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
         </div>
       </div>
     </div>

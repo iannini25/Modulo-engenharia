@@ -284,3 +284,92 @@ html.js [data-reveal].is-in{opacity:1;transform:none;transition:opacity .8s var(
 .grain{position:fixed;inset:0;z-index:55;pointer-events:none;opacity:.05;mix-blend-mode:overlay;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   background-size:170px 170px}
+
+/* ============================================================
+   PADRÃO LAB (nov/2026): raios coerentes, botão pílula com fill,
+   hover H1 Varredura, hero em card com recorte côncavo,
+   wordmark no rodapé. Sobrescreve a geometria de chanfro.
+   ============================================================ */
+:root{
+  --r-card:24px;               /* cards e painéis */
+  --r-img:18px;                /* fotos */
+  --ember:#C10D16;             /* vermelho da marca no botão: texto claro passa AA */
+  --clip-chf:inset(0 round var(--r-card));
+  --clip-chf-tr:inset(0 round var(--r-card));
+  --clip-cant:inset(0 round var(--r-card));
+  --clip-cant-l:inset(0 round var(--r-card));
+  --fill-ease:cubic-bezier(.65,0,.35,1);
+}
+.u-kicker{display:none !important}
+.imod{border-radius:var(--r-img)}
+
+/* ---- botão-assinatura: pílula + círculo da seta que cresce e preenche ---- */
+.btn{clip-path:none;border-radius:999px;text-transform:none;font-family:var(--sans);font-weight:600;letter-spacing:0;font-size:.95rem;isolation:isolate}
+.btn--ember{--ins:5px;--ic:40px;background:var(--ember);color:var(--ink);gap:1rem;
+  padding:var(--ins) var(--ins) var(--ins) 1.45rem;
+  box-shadow:0 10px 26px -14px rgba(var(--red-rgb),.7),inset 0 1px 0 rgba(236,238,241,.14)}
+.btn--ember.btn--lg{--ic:48px;--ins:6px;padding-left:1.8rem;font-size:1.02rem}
+.btn--ember.nav__cta{--ic:32px;--ins:4px;padding-left:1.05rem;font-size:.84rem}
+.btn--ember::before{content:"";position:absolute;z-index:0;right:var(--ins);top:var(--ins);bottom:var(--ins);
+  width:var(--ic);border-radius:999px;background:var(--ink);transition:width .55s var(--fill-ease)}
+.btn__t{position:relative;z-index:1;white-space:nowrap;transition:color .45s var(--fill-ease)}
+.btn-ic{position:relative;z-index:1;flex:none;width:var(--ic);height:var(--ic);display:grid;place-items:center;border-radius:50%;color:var(--ember)}
+.btn-ic svg{width:42%;height:42%}
+.btn--ember:focus-visible::before{width:calc(100% - 2 * var(--ins))}
+.btn--ember:focus-visible .btn__t{color:var(--bg)}
+.btn--ember:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+@media (hover:hover) and (pointer:fine){
+  .btn--ember:hover{transform:none;box-shadow:0 14px 30px -14px rgba(var(--red-rgb),.8),inset 0 1px 0 rgba(236,238,241,.18)}
+  .btn--ember:hover::before{width:calc(100% - 2 * var(--ins))}
+  .btn--ember:hover .btn__t{color:var(--bg)}
+}
+.btn--ember:active{background:var(--red-pressed);transform:none}
+
+/* ---- H1 Varredura: botões sem círculo, links, cards, imagens ---- */
+.btn--line{overflow:hidden}
+.btn--line::after{content:"";position:absolute;inset:0;z-index:-1;background:var(--ink);transform:scaleX(0);transform-origin:left;transition:transform .5s var(--fill-ease)}
+.nav__links a,.foot__col a,.foot a.u-link{background:linear-gradient(rgba(var(--accent-rgb),.42),rgba(var(--accent-rgb),.42)) no-repeat 0 100%/0% 40%;transition:background-size .45s var(--fill-ease),color .3s}
+.nav__links a::after{display:none}
+.mod,.svc-mod,.conf__panel,.seg__frame,.campo__panel,.stamp,.wf{transition:box-shadow .45s var(--fill-ease),background-color .45s var(--fill-ease)}
+.imod img{transition:transform 1.2s var(--ease),filter 1.2s var(--ease)}
+@media (hover:hover) and (pointer:fine){
+  .btn--line:hover{color:var(--bg);border-color:var(--ink)}
+  .btn--line:hover::after{transform:scaleX(1)}
+  .nav__links a:hover,.foot__col a:hover{background-size:100% 40%;color:var(--ink)}
+  .mod:hover,.svc-mod:hover,.conf__panel:hover,.seg__frame:hover,.campo__panel:hover,.stamp:hover,.wf:hover{
+    box-shadow:inset 0 0 0 1px rgba(var(--accent-rgb),.75),0 0 0 0 transparent;background-color:color-mix(in oklab,var(--surface) 92%,var(--accent))}
+  .imod:hover img{transform:scale(1.06);filter:brightness(.82)}
+}
+
+/* ---- WhatsApp: pílula, aparece depois do hero ---- */
+.wa-pill{clip-path:none;border-radius:999px;background:var(--ember);color:var(--ink);
+  transition:transform .45s var(--ease),opacity .45s var(--ease),box-shadow .3s var(--ease)}
+html.js:not(.past-hero) .wa-pill{opacity:0;transform:translateY(18px);pointer-events:none}
+@media (max-width:560px){.wa-pill{padding:.9rem}}
+
+/* ---- hero em card com margem + recorte côncavo ---- */
+.hero{--gap:12px;--rh:30px}
+.hero__stage{clip-path:inset(var(--gap) round var(--rh))}
+.hero__notch{position:absolute;z-index:4;right:var(--gap);bottom:var(--gap);background:var(--bg);
+  padding:14px 0 0 14px;border-top-left-radius:var(--rh)}
+.hero__notch::before,.hero__notch::after{content:"";position:absolute;width:var(--rh);height:var(--rh);
+  background:radial-gradient(circle at 0 0,transparent calc(var(--rh) - .5px),var(--bg) var(--rh))}
+.hero__notch::before{top:calc(var(--rh) * -1);right:0}
+.hero__notch::after{left:calc(var(--rh) * -1);bottom:0}
+.hero__notch-in{display:flex;align-items:center;gap:1rem;background:var(--surface);border-radius:calc(var(--rh) - 12px);
+  padding:1rem 1.4rem 1rem 1.1rem;max-width:340px}
+.hero__notch-n{font-family:var(--display);font-weight:700;font-size:3.2rem;line-height:.9;color:var(--accent);letter-spacing:-.03em}
+.hero__notch-t{font-size:.86rem;line-height:1.4;color:var(--muted)}
+.hero__notch-t b{display:block;color:var(--ink);font-weight:600;font-size:.95rem}
+@media (max-width:900px){.hero{--gap:8px;--rh:22px}.hero__notch{display:none}}
+
+/* ---- rodapé: wordmark gigante tom sobre tom ---- */
+.foot__word{font-family:var(--display);font-weight:700;font-size:34vw;line-height:.8;letter-spacing:-.06em;
+  color:var(--surface-2);white-space:nowrap;text-align:center;margin:clamp(24px,4vw,56px) 0 -9vw;overflow:hidden;user-select:none;pointer-events:none}
+.foot__word span{color:color-mix(in oklab,var(--surface-2) 70%,var(--red))}
+
+@media (prefers-reduced-motion:reduce){
+  .btn--ember::before,.btn__t,.btn--line::after,.imod img,.wa-pill{transition:none !important}
+}
+.svc-meta{font-family:var(--sans) !important;text-transform:none !important;letter-spacing:0 !important;font-size:.98rem !important;color:var(--ink) !important}
+@media (max-width:720px){.hud--tr{display:none !important}}

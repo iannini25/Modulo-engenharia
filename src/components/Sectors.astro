@@ -6,7 +6,6 @@ const first = site.segments.mineracao;
 <section id="atuacao" class="section sectors">
   <header class="wrap sec-head sec-head--row">
     <div>
-      <p class="kicker" data-reveal>[ 04 ] &nbsp;SEGMENTOS</p>
       <h2 class="display" data-reveal>Indústrias que atendemos</h2>
     </div>
     <p class="lead" data-reveal>Selecione um segmento para ver como a Módulo atua nele.</p>
@@ -27,7 +26,7 @@ const first = site.segments.mineracao;
             tabindex={active ? 0 : -1}
             data-sector={s.slug}
           >
-            <span class="seg-tab__code mono">{`M—0${i + 1}`}</span> {s.title}
+            {s.title}
           </button>
         );
       })}
@@ -44,7 +43,7 @@ const first = site.segments.mineracao;
         <ul class="sectors__list" id="secList">
           {first.capabilities.map((c) => <li>{c}</li>)}
         </ul>
-        <a href={`/${first.slug}`} id="secCta" class="btn btn--solid" data-magnetic>Ver atuação em {first.title}</a>
+        <a href={`/${first.slug}`} id="secCta" class="btn btn--solid"><span class="btn__t">Ver atuação em {first.title}</span><span class="btn-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
       </div>
     </div>
   </div>

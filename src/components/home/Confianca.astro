@@ -22,7 +22,6 @@ const titleId = 'confianca-title';
 <section id="confianca" class="sec conf" aria-labelledby={titleId}>
   <div class="wrap">
     <header class="conf__head" data-reveal>
-      <p class="u-kicker"><i></i>{s.kicker}</p>
       <h2 id={titleId} class="conf__title u-display u-l">{s.headline}</h2>
     </header>
 
@@ -36,7 +35,6 @@ const titleId = 'confianca-title';
       {metrics.map((m, i) => (
         <article class={`conf__mod conf__mod--${i}`} data-reveal>
           <div class="conf__mtop">
-            <span class="conf__slot u-mono">{String(i + 1).padStart(2, '0')}</span>
             <svg class="conf__ring" viewBox="0 0 44 44" aria-hidden="true">
               <polygon data-draw-line points="22,3 41,22 22,41 3,22" />
             </svg>

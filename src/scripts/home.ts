@@ -37,7 +37,12 @@ const onScroll = (fn: () => void) => {
   const burger = document.getElementById('homeBurger');
   const menu = document.getElementById('homeMenu');
   if (nav) {
-    const update = () => nav.classList.toggle('is-scrolled', window.scrollY > 40);
+    const heroEl = document.getElementById('inicio');
+    const update = () => {
+      nav.classList.toggle('is-scrolled', window.scrollY > 40);
+      const past = heroEl ? heroEl.getBoundingClientRect().bottom < window.innerHeight * 0.9 : window.scrollY > 600;
+      document.documentElement.classList.toggle('past-hero', past);
+    };
     update();
     onScroll(update);
   }
@@ -85,12 +90,23 @@ document.querySelectorAll('a[href^="#"]').forEach((a) => {
     els.forEach((el) => el.classList.add('is-in'));
     return;
   }
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach((en) => {
-      if (en.isIntersecting) { (en.target as HTMLElement).classList.add('is-in'); io.unobserve(en.target); }
+  /* vertical position check (not IntersectionObserver): also catches items that sit
+     off-screen horizontally inside the mobile carousel, so nothing stays hidden */
+  let pending = els.slice();
+  let ticking = false;
+  const check = () => {
+    ticking = false;
+    const limit = window.innerHeight * 0.9;
+    pending = pending.filter((el) => {
+      if (el.getBoundingClientRect().top < limit) { el.classList.add('is-in'); return false; }
+      return true;
     });
-  }, { rootMargin: '0px 0px -12% 0px', threshold: 0.08 });
-  els.forEach((el) => io.observe(el));
+    if (!pending.length) window.removeEventListener('scroll', onS);
+  };
+  const onS = () => { if (!ticking) { ticking = true; requestAnimationFrame(check); } };
+  window.addEventListener('scroll', onS, { passive: true });
+  window.addEventListener('resize', onS);
+  check();
 })();
 
 /* ---------------------------------------------------- SVG DIAMOND DRAW (no premium plugin) */
@@ -141,7 +157,7 @@ if (animate) {
   }
   if (document.querySelector('.hero__inner')) {
     gsap.to('.hero__inner', {
-      yPercent: -22, opacity: 0, ease: 'none',
+      yPercent: -22, autoAlpha: 0, ease: 'none',
       scrollTrigger: { trigger: '.hero', start: 'top top', end: '42% top', scrub: true },
     });
   }

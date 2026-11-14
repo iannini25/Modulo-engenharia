@@ -35,3 +35,5 @@ showcase/fonts/
 Thumbs.db
 *.swp
 .idea/
+
+_qa/

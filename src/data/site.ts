@@ -1,5 +1,5 @@
 /* ============================================================
-   MÓDULO ENGENHARIA — single source of editable content.
+   MÓDULO ENGENHARIA, single source of editable content.
    Everything a non-developer edits lives here. Items marked
    ⚠️ PLACEHOLDER must be confirmed with the client before
    go-live. Keep copy faithful to the client's own voice and
@@ -41,7 +41,7 @@ export type MediaCredit = {
 
 const placeholderCase: Case = {
   title: 'Case a confirmar',
-  summary: '⚠️ Placeholder — case real a ser fornecido pelo cliente.',
+  summary: '⚠️ Placeholder, case real a ser fornecido pelo cliente.',
   placeholder: true,
 };
 
@@ -57,13 +57,13 @@ export const site = {
   },
 
   contact: {
-    // ⚠️ PLACEHOLDER — "+55 31 999485 8169" é ambíguo (um dígito a mais).
+    // ⚠️ PLACEHOLDER, "+55 31 999485 8169" é ambíguo (um dígito a mais).
     // NÃO publicar sem confirmação do cliente.
     whatsappDigits: '5531999485816',
     whatsappDisplay: '+55 (31) 99948-5816', // ⚠️ derivado do placeholder; confirmar com o cliente
     whatsappConfirmed: false,
     email: 'rodolfocintra.modulo@gmail.com',
-    baseLocation: 'Minas Gerais — Brasil',
+    baseLocation: 'Minas Gerais, Brasil',
   },
 
   nav: [
@@ -76,12 +76,12 @@ export const site = {
   ] as NavItem[],
 
   services: [
-    { code: 'S—01', title: 'Automação & Controle de Processos', desc: 'Lógica de CLP, supervisórios SCADA, redes industriais e integração de chão de fábrica. Mais visibilidade, menos parada.' },
-    { code: 'S—02', title: 'Engenharia Elétrica & Instrumentação', desc: 'Projeto, dimensionamento e montagem de painéis, sensores e malhas de instrumentação calibradas para ambiente severo.' },
-    { code: 'S—03', title: 'Máquinas de Pátio', desc: 'Empilhadeiras e recuperadoras: automação, modernização e retrofit de controle para operação contínua e segura.' },
-    { code: 'S—04', title: 'Transportadores de Correia', desc: 'Proteções, pesagem, intertravamentos e controle de acionamento para longas distâncias com alta disponibilidade.' },
-    { code: 'S—05', title: 'Montagem & Manutenção Eletromecânica', desc: 'Equipes em campo para montagem, paradas programadas e manutenção corretiva com foco em retorno rápido à produção.' },
-    { code: 'S—06', title: 'Comissionamento & Start-up', desc: 'Testes, loop-check e partida assistida. Entregamos o sistema validado, documentado e pronto para operar.' },
+    { code: 'S01', title: 'Automação & Controle de Processos', desc: 'Lógica de CLP, supervisórios SCADA, redes industriais e integração de chão de fábrica. Mais visibilidade, menos parada.' },
+    { code: 'S02', title: 'Engenharia Elétrica & Instrumentação', desc: 'Projeto, dimensionamento e montagem de painéis, sensores e malhas de instrumentação calibradas para ambiente severo.' },
+    { code: 'S03', title: 'Máquinas de Pátio', desc: 'Empilhadeiras e recuperadoras: automação, modernização e retrofit de controle para operação contínua e segura.' },
+    { code: 'S04', title: 'Transportadores de Correia', desc: 'Proteções, pesagem, intertravamentos e controle de acionamento para longas distâncias com alta disponibilidade.' },
+    { code: 'S05', title: 'Montagem & Manutenção Eletromecânica', desc: 'Equipes em campo para montagem, paradas programadas e manutenção corretiva com foco em retorno rápido à produção.' },
+    { code: 'S06', title: 'Comissionamento & Start-up', desc: 'Testes, loop-check e partida assistida. Entregamos o sistema validado, documentado e pronto para operar.' },
   ] as Service[],
 
   segments: {
@@ -89,7 +89,7 @@ export const site = {
       slug: 'mineracao', title: 'Mineração', badge: 'MINERAÇÃO', img: '/assets/img/empilhadeira.webp',
       intro: 'Disponibilidade alta em ambiente abrasivo e crítico.',
       description:
-        'Automação e manutenção de máquinas de pátio, transportadores e plantas de beneficiamento — ' +
+        'Automação e manutenção de máquinas de pátio, transportadores e plantas de beneficiamento, ' +
         'alta disponibilidade em ambiente abrasivo e crítico.',
       capabilities: ['Recuperadoras e empilhadeiras', 'Transportadores de longa distância', 'Supervisório de pátio e beneficiamento'],
       cases: [placeholderCase],
@@ -98,7 +98,7 @@ export const site = {
       slug: 'siderurgia', title: 'Siderurgia', badge: 'SIDERURGIA', img: '/assets/img/laminacao.webp',
       intro: 'Estabilidade e segurança em processos de alta temperatura.',
       description:
-        'Instrumentação e controle para processos de alta temperatura — do alto-forno à laminação, ' +
+        'Instrumentação e controle para processos de alta temperatura, do alto-forno à laminação, ' +
         'com foco em estabilidade e segurança operacional.',
       capabilities: ['Instrumentação de alto-forno', 'Controle de acionamento de laminação', 'Elétrica e automação de planta'],
       cases: [placeholderCase],
@@ -137,20 +137,20 @@ export const site = {
   },
 
   forms: {
-    // ⚠️ PLACEHOLDER — criar uma chave gratuita em https://web3forms.com e colar aqui.
+    // ⚠️ PLACEHOLDER, criar uma chave gratuita em https://web3forms.com e colar aqui.
     web3formsKey: 'WEB3FORMS_ACCESS_KEY_PLACEHOLDER',
   },
 
   // Procedência das mídias. O hero é uma imagem ILUSTRATIVA gerada por IA
   // (Higgsfield: Nano Banana Pro → Kling 3.0) a partir de uma referência REAL do
-  // acervo da Módulo (offshore-3.jpg). Representa o segmento offshore — não é "a
+  // acervo da Módulo (offshore-3.jpg). Representa o segmento offshore, não é "a
   // plataforma da Módulo". Honestidade de procedência registrada aqui.
   media: [
     {
       id: 'hero',
       source: 'Imagem ilustrativa gerada por IA (Higgsfield) a partir de referência real do acervo Módulo (offshore-3)',
       url: '',
-      license: 'Conteúdo gerado por IA — uso comercial do solicitante',
+      license: 'Conteúdo gerado por IA, uso comercial do solicitante',
       author: 'Nano Banana Pro + Kling 3.0',
     },
   ] as MediaCredit[],

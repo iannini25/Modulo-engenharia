@@ -376,7 +376,7 @@ if (animate) {
       if (desc) desc.textContent = d.description;
       if (list) list.innerHTML = d.capabilities.map((x) => `<li>${x}</li>`).join('');
       const cta = document.getElementById('secCta') as HTMLAnchorElement | null;
-      if (cta) { cta.setAttribute('href', `/${d.slug}`); cta.textContent = `Ver atuação em ${d.title}`; }
+      if (cta) { cta.setAttribute('href', `/${d.slug}`); const t = cta.querySelector('.btn__t'); (t || cta).textContent = `Ver atuação em ${d.title}`; }
       if (media) media.classList.remove('is-swapping');
     }, 260);
   }

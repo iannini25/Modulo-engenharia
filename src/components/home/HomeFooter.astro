@@ -18,7 +18,7 @@ import BiSign from '../BiSign.astro';
         <span class="brand__type"><b>{f.wordmarkInk}</b><em>{f.wordmarkRed}</em></span>
       </a>
       <p class="foot__tag">{f.institutionalLine}</p>
-      <a href={waHref} target="_blank" rel="noopener" class="btn btn--ember foot__cta">{copy.contato.cta}</a>
+      <a href={waHref} target="_blank" rel="noopener" class="btn btn--ember foot__cta"><span class="btn__t">{copy.contato.cta}</span><span class="btn-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
     </div>
 
     {f.navGroups.map((g: any) => (
@@ -36,6 +36,7 @@ import BiSign from '../BiSign.astro';
     <span class="u-illus">{f.illustrativeNote}</span>
     <span class="u-mono foot__copy">{f.copyright}</span>
   </div>
+  <div class="foot__word" aria-hidden="true">Módul<span>o</span></div>
   <BiSign />
 </footer>
 
@@ -49,7 +50,7 @@ import BiSign from '../BiSign.astro';
   .foot__col{display:flex;flex-direction:column;gap:.7rem}
   .foot__h{font-size:.66rem;letter-spacing:.16em;color:var(--muted);text-transform:uppercase;margin-bottom:.5rem}
   .foot__col a{font-size:.92rem;color:var(--muted);width:fit-content;transition:color .3s}
-  .foot__col a:hover{color:var(--accent)}
+  .foot__col a:hover{color:var(--ink)}
   .foot__base{position:relative;z-index:1;display:flex;justify-content:space-between;gap:1rem 2rem;flex-wrap:wrap;align-items:center;padding-block:1.6rem}
   .foot__base .u-mono{font-size:.64rem;letter-spacing:.08em;color:var(--muted)}
   .foot__dot{display:inline-block;width:6px;height:6px;margin-left:.5rem;background:var(--accent);clip-path:var(--clip-diamond);box-shadow:0 0 8px rgba(var(--accent-rgb),.7);vertical-align:middle}

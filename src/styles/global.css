@@ -722,3 +722,45 @@ html.js .hero{height:240svh}
   html.js .hero{height:100svh;min-height:560px}
   .hero__stage{position:relative;height:100svh;min-height:560px}
 }
+
+/* ============================================================
+   PADRÃO LAB nas subpáginas (nov/2026): mesmo sistema da home
+   ============================================================ */
+:root{--r:14px;--r-lg:24px;--ember:#C10D16;--fill-ease:cubic-bezier(.65,0,.35,1);--paper:#FCFCFB}
+.kicker,.hero__eyebrow,.rail{display:none !important}
+.eq-card img,.sectors__media img,.manifesto__media img,.seg-hero img{border-radius:0}
+.cform input,.cform textarea,.cform select{border-radius:var(--r)}
+/* botão-assinatura: pílula + círculo que cresce e preenche */
+.btn{border-radius:999px;isolation:isolate;position:relative;overflow:hidden}
+.btn--solid,.btn--wa{--ins:5px;--ic:40px;gap:1rem;padding:var(--ins) var(--ins) var(--ins) 1.45rem;background:var(--ember);color:#F4F5F6;border:none;box-shadow:0 10px 26px -14px rgba(222,16,25,.6)}
+.btn--lg.btn--solid,.btn--lg.btn--wa{--ic:48px;--ins:6px;padding-left:1.8rem}
+.nav__cta.btn--solid{--ic:32px;--ins:4px;padding-left:1.05rem}
+.btn--solid::before,.btn--wa::before{content:"";position:absolute;z-index:0;right:var(--ins);top:var(--ins);bottom:var(--ins);width:var(--ic);border-radius:999px;background:#F4F5F6;transition:width .55s var(--fill-ease)}
+.btn__t{position:relative;z-index:1;display:inline-flex;align-items:center;gap:.5rem;white-space:nowrap;transition:color .45s var(--fill-ease)}
+.btn-ic{position:relative;z-index:1;flex:none;width:var(--ic);height:var(--ic);display:grid;place-items:center;border-radius:50%;color:var(--ember)}
+.btn-ic svg{width:42%;height:42%}
+.btn--solid:focus-visible::before,.btn--wa:focus-visible::before{width:calc(100% - 2 * var(--ins))}
+.btn--solid:focus-visible .btn__t,.btn--wa:focus-visible .btn__t{color:var(--ink)}
+@media (hover:hover) and (pointer:fine){
+  .btn--solid:hover,.btn--wa:hover{background:var(--ember);transform:none}
+  .btn--solid:hover::before,.btn--wa:hover::before{width:calc(100% - 2 * var(--ins))}
+  .btn--solid:hover .btn__t,.btn--wa:hover .btn__t{color:var(--ink)}
+}
+.btn--wa .btn__t svg{width:20px;height:20px}
+.cform .btn--wa{justify-content:space-between}
+@media (max-width:420px){.btn__t{white-space:normal}}
+/* H1 Varredura: botões sem círculo, links, cards, imagens */
+.btn--ghost-dark::after,.btn--ghost-light::after{content:"";position:absolute;inset:0;z-index:-1;background:#F4F5F6;transform:scaleX(0);transform-origin:left;transition:transform .5s var(--fill-ease)}
+.nav__links a,.footer__col a,.contact__direct a{background:linear-gradient(rgba(222,16,25,.3),rgba(222,16,25,.3)) no-repeat 0 100%/0% 40%;transition:background-size .45s var(--fill-ease),color .3s}
+.nav__links a::after{display:none}
+.svc,.proc,.seg-case,.eq-card,.seg-tab,.cform{transition:box-shadow .45s var(--fill-ease),background-color .45s var(--fill-ease)}
+.eq-card img,.sectors__media img,.manifesto__media img{transition:transform 1.2s var(--ease),filter 1.2s var(--ease)}
+.proc:hover,.menu__links a:hover{padding-left:0 !important}
+@media (hover:hover) and (pointer:fine){
+  .btn--ghost-dark:hover,.btn--ghost-light:hover{color:var(--ink);background:transparent}
+  .btn--ghost-dark:hover::after,.btn--ghost-light:hover::after{transform:scaleX(1)}
+  .nav__links a:hover,.footer__col a:hover,.contact__direct a:hover{background-size:100% 40%}
+  .svc:hover,.proc:hover,.seg-case:hover,.seg-tab:hover,.eq-card:hover{box-shadow:inset 0 0 0 1px rgba(222,16,25,.7);background-color:color-mix(in oklab,var(--paper) 94%,#DE1019)}
+  .eq-card:hover img,.sectors__media:hover img,.manifesto__media:hover img{transform:scale(1.06);filter:brightness(.82)}
+}
+@media (prefers-reduced-motion:reduce){.btn::before,.btn::after,.btn__t,.eq-card img{transition:none !important}}

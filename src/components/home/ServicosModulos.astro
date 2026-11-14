@@ -19,15 +19,9 @@ const panelAlt =
     <!-- cabeçalho da seção -->
     <div class="svc-head sec__head">
       <div class="svc-head__lead">
-        <p class="u-kicker" data-reveal><i></i>{s.kicker}</p>
         <h2 id="svc-title" class="svc-head__title u-display u-l" data-reveal>{s.headline}</h2>
         <p class="u-lede" data-reveal>{s.subhead}</p>
-        <p class="svc-meta u-mono" data-reveal>
-          <span class="svc-meta__n" data-count="6" data-prefix="0">06</span>
-          <span>Serviços</span>
-          <span class="svc-meta__x" aria-hidden="true">/</span>
-          <span>Um responsável, não seis fornecedores</span>
-        </p>
+        <p class="svc-meta" data-reveal>Um responsável pelo projeto inteiro, em vez de seis fornecedores.</p>
       </div>
       <div class="svc-head__mark" data-reveal aria-hidden="true">
         <DMark draw={true} />
@@ -57,7 +51,6 @@ const panelAlt =
             style={`transition-delay:${i * 70}ms`}
           >
             <header class="svc-mod__top">
-              <span class="svc-mod__tag u-mono"><i class="svc-dot" aria-hidden="true"></i>{m.tag}</span>
               <span class="svc-mod__verb u-mono">{m.verb}</span>
             </header>
             <div class="svc-mod__body">
@@ -175,13 +168,13 @@ const panelAlt =
     .svc-mod__more{position:absolute;left:0;right:0;bottom:0;z-index:2;
       padding:clamp(20px,1.9vw,28px);
       background:var(--surface-2);border-top:var(--hair) solid var(--accent);
-      opacity:0;transform:translateY(14px);pointer-events:none;
-      transition:opacity .35s var(--ease),transform .4s var(--ease)}
+      visibility:hidden;clip-path:inset(0 100% 0 0);pointer-events:none;
+      transition:clip-path .5s cubic-bezier(.65,0,.35,1),visibility 0s linear .5s}
     .svc-mod:hover,.svc-mod:focus-within{
-      border-color:var(--accent);transform:translateY(-3px);
-      filter:drop-shadow(0 0 20px rgba(var(--accent-rgb),.24))}
+      border-color:var(--accent);
+      background:color-mix(in oklab,var(--surface) 92%,var(--accent))}
     .svc-mod:hover .svc-dot,.svc-mod:focus-within .svc-dot{background:var(--accent)}
-    .svc-mod:hover .svc-mod__more,.svc-mod:focus-within .svc-mod__more{opacity:1;transform:none}
+    .svc-mod:hover .svc-mod__more,.svc-mod:focus-within .svc-mod__more{visibility:visible;clip-path:inset(0 0 0 0);transition:clip-path .5s cubic-bezier(.65,0,.35,1),visibility 0s}
     /* imagem: brasa por filter (o transform pertence ao parallax do GSAP, nunca dois sistemas) */
     .svc-anchor:hover .svc-anchor__img img{filter:contrast(1.02) brightness(1.02)}
   }

@@ -13,9 +13,7 @@ const nav = copy.nav;
     {navLinks.map((l) => <a href={l.href}>{l.label}</a>)}
   </nav>
 
-  <a href={waHref} target="_blank" rel="noopener" class="btn btn--ember nav__cta">
-    {nav.cta}
-  </a>
+  <a href={waHref} target="_blank" rel="noopener" class="btn btn--ember nav__cta"><span class="btn__t">{nav.cta}</span><span class="btn-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
 
   <button class="nav__burger" id="homeBurger" aria-label="Abrir menu" aria-expanded="false" aria-controls="homeMenu">
     <span></span><span></span>
@@ -25,8 +23,8 @@ const nav = copy.nav;
 <div class="menu" id="homeMenu" aria-hidden="true">
   <nav class="menu__links" aria-label="Navegação">
     {navLinks.map((l, i) => (
-      <a href={l.href} data-menu-link><span>{String(i + 1).padStart(2, '0')}</span>{l.label}</a>
+      <a href={l.href} data-menu-link>{l.label}</a>
     ))}
   </nav>
-  <a href={waHref} target="_blank" rel="noopener" class="btn btn--ember btn--lg menu__cta">{nav.cta}</a>
+  <a href={waHref} target="_blank" rel="noopener" class="btn btn--ember btn--lg menu__cta"><span class="btn__t">{nav.cta}</span><span class="btn-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
 </div>

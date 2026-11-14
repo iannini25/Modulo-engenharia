@@ -28,7 +28,6 @@ const MG_CONTOUR =
 <section id="contato" class="sec cto">
   <div class="wrap cto__wrap">
     <header class="cto__head" data-reveal>
-      <p class="u-kicker"><i></i>{s.kicker}</p>
       <h2 class="cto__promise u-display u-xl" set:html={promiseHtml}></h2>
       <p class="cto__reassure u-lede">{s.reassurance}</p>
     </header>
@@ -112,10 +111,7 @@ const MG_CONTOUR =
           <textarea id="wf-msg" name="msg" rows="3" placeholder="Parada programada, retrofit, automação, corretiva de urgência"></textarea>
         </div>
 
-        <button type="submit" class="btn btn--ember btn--lg wf__cta">
-          {s.cta}
-          <svg class="arw" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </button>
+        <button type="submit" class="btn btn--ember btn--lg wf__cta"><span class="btn__t">{s.cta}</span><span class="btn-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button>
         <p class="wf__micro u-mono">{s.ctaMicrocopy}</p>
       </form>
     </div>

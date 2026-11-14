@@ -16,9 +16,7 @@ const isActive = (href: string) => pathname === href || pathname === href + '/';
     ))}
   </nav>
 
-  <a href={wa} class="btn btn--solid nav__cta" data-magnetic target="_blank" rel="noopener">
-    Falar com a engenharia
-  </a>
+  <a href={wa} class="btn btn--solid nav__cta" target="_blank" rel="noopener"><span class="btn__t">Falar com a engenharia</span><span class="btn-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
 
   <button class="nav__burger" id="burger" aria-label="Abrir menu" aria-expanded="false">
     <span></span><span></span>
